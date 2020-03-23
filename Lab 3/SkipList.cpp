@@ -2,11 +2,8 @@
 
 SkipList::SkipList()
 {
-	head = new node();
-	tail = new node();
-
-	strcpy(head->word, node::NEG_INF);
-	strcpy(tail->word, node::POS_INF);
+	head = createNegativeInfinityNode();
+	tail = createPositiveInfinityNode();
 
 	head->right = tail;
 	tail->left = head;
@@ -15,6 +12,24 @@ SkipList::SkipList()
 	height = 1;
 
 	srand(time(NULL));
+}
+
+SkipList::node* SkipList::createNegativeInfinityNode()
+{
+	node* newNode = new node();
+
+	strcpy(newNode->word, node::NEG_INF);
+
+	return newNode;
+}
+
+SkipList::node* SkipList::createPositiveInfinityNode()
+{
+	node* newNode = new node();
+
+	strcpy(newNode->word, node::POS_INF);
+
+	return newNode;
 }
 
 SkipList::node* SkipList::find(const char word[50])
@@ -64,8 +79,22 @@ void SkipList::insert(const char word[50])
 
 			if (currentHeight > height)
 			{
+				node* negativeNode = createNegativeInfinityNode();
+				node* positiveNode = createPositiveInfinityNode();
 
+				negativeNode->down = head;
+				positiveNode->down = tail;
+
+				negativeNode->right = positiveNode;
+				positiveNode->left = negativeNode;
+
+				head->up = negativeNode;
+				tail->up = positiveNode;
+
+				height++;
 			}
+
+			// We've added a new level if needed, we need to pile on another node now
 		}
 	}
 }

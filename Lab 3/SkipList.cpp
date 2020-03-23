@@ -14,7 +14,7 @@ SkipList::SkipList()
 	amountOfItems = 0;
 	height = 1;
 
-	srand(time());
+	srand(time(NULL));
 }
 
 SkipList::node* SkipList::find(const char word[50])

@@ -35,5 +35,8 @@
     <ClCompile Include="BST.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="SkipList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

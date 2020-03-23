@@ -2,7 +2,9 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 using namespace std;
 
@@ -25,11 +27,14 @@ private:
 		node* left = nullptr;
 		node* right = nullptr;
 
-		const static char NEG_INF = '.';
-		const static char POS_INF = ',';
+		const static char NEG_INF[50];
+		const static char POS_INF[50];
 	};
 
-	node find(const char word[50]);
+	node* createNegativeInfinityNode();
+	node* createPositiveInfinityNode();
+
+	node* find(const char word[50]);
 
 	node* head;
 	node* tail;

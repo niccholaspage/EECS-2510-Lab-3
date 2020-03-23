@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <iostream>
 
 using namespace std;
 
@@ -15,7 +16,7 @@ public:
 
 	void insert(const char word[50]);
 
-	void traverse();
+	void list();
 private:
 	struct node
 	{

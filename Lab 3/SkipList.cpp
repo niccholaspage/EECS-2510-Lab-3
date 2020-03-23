@@ -1,5 +1,8 @@
 #include "SkipList.h"
 
+const char SkipList::node::NEG_INF[50] = { '.' };
+const char SkipList::node::POS_INF[50] = { ',' };
+
 SkipList::SkipList()
 {
 	head = createNegativeInfinityNode();
@@ -117,5 +120,35 @@ void SkipList::insert(const char word[50])
 
 		pileNode->left = leftNode->up;
 		pileNode->right = rightNode->up;
+	}
+}
+
+void SkipList::list()
+{
+	node* lowestHead = head;
+
+	while (lowestHead->down != nullptr)
+	{
+		lowestHead = lowestHead->down;
+	}
+
+	node* lowestTail = tail;
+
+	while (lowestTail->down != nullptr)
+	{
+		lowestTail = lowestTail->down;
+	}
+
+	int index = 1;
+
+	cout << "Set contains: "; // so we print out "Set contains: " as a prefix,
+
+	while (lowestHead != lowestTail)
+	{
+		cout << "(" << ++index << ") " << lowestHead->word << " " << lowestHead->count << ", ";
+
+		lowestHead = lowestHead->right;
+
+		index++;
 	}
 }

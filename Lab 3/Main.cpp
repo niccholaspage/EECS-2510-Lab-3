@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "BST.h"
+#include "SkipList.h"
 
 using namespace std;
 
@@ -8,7 +9,7 @@ int main()
 {
 	cout << "Hello there!\n";
 
-	BST* tree = new BST();
+	SkipList* tree = new SkipList();
 
 	tree->insert("b");
 	tree->insert("a");

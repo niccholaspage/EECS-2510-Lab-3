@@ -59,42 +59,63 @@ void SkipList::insert(const char word[50])
 	if (strcmp(p->word, word) == 0)
 	{
 		p->count++;
+
+		return;
 	}
-	else
+
+	node* newNode = new node();
+
+	// Specify defaults if you want because Dr. Thomas for some reason likes to be super redundant and uncool
+
+	strcpy(newNode->word, word);
+
+	p->right->left = newNode;	// We get the node's right link and set its left child to our new node.
+	p->right = newNode;			// We then set p's right child to be the new node.
+
+	amountOfItems++;
+
+	int currentHeight = 1;
+
+	while (rand() & 1)
 	{
-		node* newNode = new node();
+		currentHeight++;
 
-		// Specify defaults if you want because Dr. Thomas for some reason likes to be super redundant and uncool
-
-		strcpy(newNode->word, word);
-
-		p->right->left = newNode;	// We get the node's right link and set its left child to our new node.
-		p->right = newNode;			// We then set p's right child to be the new node.
-
-		int currentHeight = 1;
-
-		while (rand() & 1)
+		if (currentHeight > height)
 		{
-			currentHeight++;
+			node* negativeNode = createNegativeInfinityNode();
+			node* positiveNode = createPositiveInfinityNode();
 
-			if (currentHeight > height)
-			{
-				node* negativeNode = createNegativeInfinityNode();
-				node* positiveNode = createPositiveInfinityNode();
+			negativeNode->down = head;
+			positiveNode->down = tail;
 
-				negativeNode->down = head;
-				positiveNode->down = tail;
+			negativeNode->right = positiveNode;
+			positiveNode->left = negativeNode;
 
-				negativeNode->right = positiveNode;
-				positiveNode->left = negativeNode;
+			head->up = negativeNode;
+			tail->up = positiveNode;
 
-				head->up = negativeNode;
-				tail->up = positiveNode;
-
-				height++;
-			}
-
-			// We've added a new level if needed, we need to pile on another node now
+			height++;
 		}
+
+		node* pileNode = new node();
+
+		strcpy(pileNode->word, word);
+
+		node* leftNode = p;
+
+		while (leftNode->up == nullptr)
+		{
+			leftNode = p->left;
+		}
+
+		node* rightNode = p;
+
+		while (rightNode->up == nullptr)
+		{
+			rightNode = p->right;
+		}
+
+		pileNode->left = leftNode->up;
+		pileNode->right = rightNode->up;
 	}
 }

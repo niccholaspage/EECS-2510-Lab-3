@@ -17,6 +17,31 @@ SkipList::SkipList()
 	srand(time(NULL));
 }
 
+SkipList::~SkipList()
+{
+	node* p = head;
+
+	while (p != nullptr)
+	{
+		node* q = p->right;
+
+		while (q != nullptr)
+		{
+			node* del = q;
+
+			q = q->right;
+
+			delete del;
+		}
+
+		node* del = p;
+
+		p = p->down;
+
+		delete del;
+	}
+}
+
 SkipList::node* SkipList::createNegativeInfinityNode()
 {
 	node* newNode = new node();

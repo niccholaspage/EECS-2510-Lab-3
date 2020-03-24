@@ -13,6 +13,7 @@ class SkipList
 {
 public:
 	SkipList();
+	~SkipList();
 
 	void insert(const char word[50]);
 

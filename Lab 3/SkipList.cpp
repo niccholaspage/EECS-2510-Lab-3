@@ -147,7 +147,7 @@ void SkipList::list()
 		end = end->down;
 	}
 
-	int index = 1;
+	int index = 0;
 
 	cout << "Set contains: "; // so we print out "Set contains: " as a prefix,
 

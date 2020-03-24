@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <string.h>
+#include <iostream>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ private:
 	{
 		char word[50] = {};
 		int count = 1;
-		bool color; // true is black, false is red
+		bool color = RED; // true is black, false is red
 		node* parent = nullptr;
 		node* leftChild = nullptr;
 		node* rightChild = nullptr;
@@ -32,6 +33,7 @@ private:
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
 	void leftRotate(node* p);
 	void rightRotate(node* p);
+	void insertFixup(node* p);
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 	node* nil = nullptr;

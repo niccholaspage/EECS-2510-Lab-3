@@ -13,9 +13,32 @@ RBT::RBT()
 
 RBT::~RBT()
 {
-	//TODO: Traversal delete of all the nodes
+	traverseDestruct(root);
 
 	delete nil;
+}
+
+void RBT::traverseDestruct(node* p) {
+	// This recursive method can be called on a given node to delete
+	// its children and itself. Doing this recursively ensures that
+	// every node will get deleted as long as this method is initially
+	// called on the root node.
+	//
+	if (p->leftChild != nil) // Check if the left child of the node is not null
+	{
+		traverseDestruct(p->leftChild); // Since the node does have a left child, we will call the traverseDestruct method on the node
+	}
+
+	if (p->rightChild != nil) // Check if the right child is not null
+	{
+		traverseDestruct(p->rightChild); // Since the node does have a right child, we will call the traverseDestruct method on the node
+	}
+
+	// Now that we have properly deleted the children of the given node,
+	// we are safe to delete the node since we have already taken care of
+	// its children.
+	//
+	delete p;
 }
 
 void RBT::leftRotate(node* x)

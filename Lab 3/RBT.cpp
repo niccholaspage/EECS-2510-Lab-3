@@ -11,8 +11,10 @@ RBT::RBT()
 	root = nil;
 }
 
-RBT::RBT()
+RBT::~RBT()
 {
+	//TODO: Traversal delete of all the nodes
+
 	delete nil;
 }
 

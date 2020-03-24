@@ -166,3 +166,33 @@ void SkipList::list()
 		start = start->right;
 	}
 }
+
+void SkipList::larryList()
+{
+	cout << "Height: " << height << ", amount of items: " << amountOfItems << "\n";
+
+	node* p = head;
+
+	while (p->down != nullptr)
+	{
+		p = p->down;
+	}
+
+	p = p->right;
+
+	while (strcmp(p->word, node::POS_INF) != 0)
+	{
+		node* q = p;
+
+		do
+		{
+			cout << q->word << " ";
+
+			q = q->up;
+		} while (q != nullptr);
+
+		cout << endl;
+
+		p = p->right;
+	}
+}

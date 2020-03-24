@@ -121,7 +121,7 @@ void SkipList::insert(const char word[50])
 
 		while (rightNode->up == nullptr)
 		{
-			rightNode = leftNode->right;
+			rightNode = rightNode->right;
 		}
 
 		pileNode->left = leftNode->up;

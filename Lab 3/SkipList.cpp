@@ -108,6 +108,9 @@ void SkipList::insert(const char word[50])
 
 		node* pileNode = new node();
 
+		pileNode->down = newNode;
+		newNode->up = pileNode;
+
 		strcpy(pileNode->word, word);
 
 		node* leftNode = p;

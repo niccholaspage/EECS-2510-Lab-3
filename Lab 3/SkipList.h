@@ -17,6 +17,8 @@ public:
 	void insert(const char word[50]);
 
 	void list();
+	
+	void larryList();
 private:
 	struct node
 	{

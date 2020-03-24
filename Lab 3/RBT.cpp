@@ -148,9 +148,7 @@ void RBT::insert(const char word[50])
 	}
 	else
 	{
-		int compareValue = strcmp(z->word, y->word);
-
-		if (compareValue < 0)
+		if (strcmp(z->word, y->word) < 0)
 		{
 			y->leftChild = z;
 		}
@@ -160,8 +158,7 @@ void RBT::insert(const char word[50])
 		}
 	}
 
-	z->leftChild = nil;
-	z->rightChild = nil;
+	z->leftChild = z->rightChild = nil;
 	z->color = RED;
 
 	insertFixup(z);

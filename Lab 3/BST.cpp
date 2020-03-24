@@ -176,18 +176,18 @@ void BST::print2D()
 	print2DUtil(root, 0);
 }
 
-void BST::print2DUtil(node* root, int space)
+void BST::print2DUtil(node* p, int space)
 {
 	int COUNT = 10;
 
-	if (root == nullptr)
+	if (p == nullptr)
 	{
 		return;
 	}
 
 	space += COUNT;
 
-	print2DUtil(root->rightChild, space);
+	print2DUtil(p->rightChild, space);
 
 	cout << endl;
 
@@ -195,7 +195,7 @@ void BST::print2DUtil(node* root, int space)
 	{
 		cout << " ";
 	}
-	cout << root->word << "\n";
+	cout << p->word << "\n";
 
-	print2DUtil(root->leftChild, space);
+	print2DUtil(p->leftChild, space);
 }

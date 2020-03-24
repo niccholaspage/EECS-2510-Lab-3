@@ -153,7 +153,12 @@ void SkipList::list()
 
 	while (start != end)
 	{
-		cout << "(" << ++index << ") " << start->word << " " << start->count << ", ";
+		cout << "(" << ++index << ") " << start->word << " " << start->count;
+
+		if (index != amountOfItems)
+		{
+			cout << ", ";
+		}
 
 		start = start->right;
 	}

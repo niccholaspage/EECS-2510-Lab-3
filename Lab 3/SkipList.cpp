@@ -92,13 +92,16 @@ void SkipList::insert(const char word[50])
 			node* positiveNode = createPositiveInfinityNode();
 
 			negativeNode->down = head;
+			head->up = negativeNode;
+
 			positiveNode->down = tail;
+			tail->up = positiveNode;
 
 			negativeNode->right = positiveNode;
 			positiveNode->left = negativeNode;
 
-			head->up = negativeNode;
-			tail->up = positiveNode;
+			head = negativeNode;
+			tail = positiveNode;
 
 			height++;
 		}

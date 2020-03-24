@@ -13,9 +13,15 @@ RBT::RBT()
 
 RBT::~RBT()
 {
-	traverseDestruct(root);
+	if (root != nil)
+	{
+		traverseDestruct(root);
+	}
 
 	delete nil;
+
+	nil = nullptr;
+	root = nullptr;
 }
 
 void RBT::traverseDestruct(node* p) {

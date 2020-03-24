@@ -10,7 +10,7 @@ int main()
 {
 	cout << "Hello there!\n";
 
-	BST* tree = new BST();
+	RBT* tree = new RBT();
 
 	tree->insert("b");
 	tree->insert("a");
@@ -46,7 +46,7 @@ int main()
 	tree->insert("o");
 	tree->insert("g");
 
-	tree->list();
+	tree->print2D();
 
 	delete tree;
 

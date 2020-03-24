@@ -170,3 +170,32 @@ void BST::list(int& index, node* p)
 		list(index, p->rightChild); // we now print out the right child node as well, recursively taking care of its children.
 	}
 }
+
+void BST::print2D()
+{
+	print2DUtil(root, 0);
+}
+
+void BST::print2DUtil(node* root, int space)
+{
+	int COUNT = 10;
+
+	if (root == nullptr)
+	{
+		return;
+	}
+
+	space += COUNT;
+
+	print2DUtil(root->rightChild, space);
+
+	cout << endl;
+
+	for (int i = COUNT; i < space; i++)
+	{
+		cout << " ";
+	}
+	cout << root->word << "\n";
+
+	print2DUtil(root->leftChild, space);
+}

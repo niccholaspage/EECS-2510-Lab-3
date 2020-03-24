@@ -279,3 +279,32 @@ void RBT::list(int& index, node* p)
 		list(index, p->rightChild); // we now print out the right child node as well, recursively taking care of its children.
 	}
 }
+
+void RBT::print2D()
+{
+	print2DUtil(root, 0);
+}
+
+void RBT::print2DUtil(node* root, int space)
+{
+	int COUNT = 10;
+
+	if (root == nil)
+	{
+		return;
+	}
+
+	space += COUNT;
+
+	print2DUtil(root->rightChild, space);
+
+	cout << endl;
+
+	for (int i = COUNT; i < space; i++)
+	{
+		cout << " ";
+	}
+	cout << root->word << "\n";
+
+	print2DUtil(root->leftChild, space);
+}

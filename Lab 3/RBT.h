@@ -15,6 +15,7 @@ public:
 
 	void insert(const char word[50]);
 	void list(); // Prints a list of all words in the tree.
+	void print2D();
 private:
 	struct node
 	{
@@ -34,6 +35,7 @@ private:
 	void leftRotate(node* p);
 	void rightRotate(node* p);
 	void insertFixup(node* p);
+	void print2DUtil(node* root, int space);
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 	node* nil = nullptr;

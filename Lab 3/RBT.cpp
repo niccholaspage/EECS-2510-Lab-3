@@ -7,8 +7,6 @@ RBT::RBT()
 	strcpy(nil->word, "");
 	nil->color = BLACK;
 	nil->parent = nil->leftChild = nil->rightChild = nil;
-
-	root = nil;
 }
 
 RBT::~RBT()

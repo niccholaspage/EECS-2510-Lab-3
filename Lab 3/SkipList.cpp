@@ -131,30 +131,30 @@ void SkipList::insert(const char word[50])
 
 void SkipList::list()
 {
-	node* lowestHead = head;
+	node* start = head;
 
-	while (lowestHead->down != nullptr)
+	while (start->down != nullptr)
 	{
-		lowestHead = lowestHead->down;
+		start = start->down;
 	}
 
-	node* lowestTail = tail;
+	start = start->right;
 
-	while (lowestTail->down != nullptr)
+	node* end = tail;
+
+	while (end->down != nullptr)
 	{
-		lowestTail = lowestTail->down;
+		end = end->down;
 	}
 
 	int index = 1;
 
 	cout << "Set contains: "; // so we print out "Set contains: " as a prefix,
 
-	while (lowestHead != lowestTail)
+	while (start != end)
 	{
-		cout << "(" << ++index << ") " << lowestHead->word << " " << lowestHead->count << ", ";
+		cout << "(" << ++index << ") " << start->word << " " << start->count << ", ";
 
-		lowestHead = lowestHead->right;
-
-		index++;
+		start = start->right;
 	}
 }

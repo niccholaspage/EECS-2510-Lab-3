@@ -72,6 +72,9 @@ void SkipList::insert(const char word[50])
 
 	strcpy(newNode->word, word);
 
+	newNode->left = p;
+	newNode->right = p->right;
+
 	p->right->left = newNode;	// We get the node's right link and set its left child to our new node.
 	p->right = newNode;			// We then set p's right child to be the new node.
 

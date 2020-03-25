@@ -68,7 +68,11 @@ int main()
 
 	AVL* tree = new AVL();
 
+	tree->insert("c");
 	tree->insert("b");
+	tree->insert("a");
+
+	/*tree->insert("b");
 	tree->insert("a");
 	tree->insert("c");
 	tree->insert("d");
@@ -100,7 +104,7 @@ int main()
 	tree->insert("i");
 	tree->insert("r");
 	tree->insert("o");
-	tree->insert("g");
+	tree->insert("g");*/
 
 	tree->list();
 

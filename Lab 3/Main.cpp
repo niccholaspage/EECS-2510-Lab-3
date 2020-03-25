@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void readFile()
+void runTests()
 {
 	char c; RBT* RBT_T = new RBT();
 	// instantiate each of the trees

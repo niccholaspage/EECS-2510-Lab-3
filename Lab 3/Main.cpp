@@ -70,7 +70,7 @@ int main()
 
 	tree->insert("c");
 	tree->insert("b");
-	tree->insert("a");
+	tree->insert("d");
 
 	/*tree->insert("b");
 	tree->insert("a");

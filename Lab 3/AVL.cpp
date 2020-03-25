@@ -54,6 +54,11 @@ void AVL::traverseDestruct(node* p) {
 	delete p;
 }
 
+void AVL::insert(const char word[50])
+{
+	// TODO: Implement insert
+}
+
 void AVL::list()
 {
 	// This method traverses through the entire tree and prints out the nodes in a nicely formatted list
@@ -136,4 +141,9 @@ void AVL::print2DUtil(node* p, int space)
 	cout << p->word << "\n";
 
 	print2DUtil(p->leftChild, space);
+}
+
+void AVL::displayStatistics()
+{
+	// TODO: Implement method
 }

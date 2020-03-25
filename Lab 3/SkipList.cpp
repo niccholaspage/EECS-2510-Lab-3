@@ -252,3 +252,8 @@ void SkipList::larryList()
 		p = p->right;
 	}
 }
+
+void SkipList::displayStatistics()
+{
+	// TODO: Implement method
+}

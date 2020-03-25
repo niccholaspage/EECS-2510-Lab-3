@@ -183,6 +183,7 @@ void AVL::insert(const char word[50])
 			switch (c->balanceFactor)
 			{
 			case 0: a->balanceFactor = b->balanceFactor = 0; break;
+			case 1: a->balanceFactor = -1; b->balanceFactor = 0; break;
 			}
 
 			c->balanceFactor = 0;

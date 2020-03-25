@@ -31,8 +31,7 @@ private:
 		node* left = nullptr;
 		node* right = nullptr;
 
-		const static char NEG_INF[50];
-		const static char POS_INF[50];
+		bool isSentinel = false;
 	};
 
 	node* createNegativeInfinityNode();

@@ -1,8 +1,5 @@
 #include "SkipList.h"
 
-const char SkipList::node::NEG_INF[50] = { '.' };
-const char SkipList::node::POS_INF[50] = { ',' };
-
 SkipList::SkipList()
 {
 	head = createNegativeInfinityNode();
@@ -46,7 +43,7 @@ SkipList::node* SkipList::createNegativeInfinityNode()
 {
 	node* newNode = new node();
 
-	strcpy(newNode->word, node::NEG_INF);
+	newNode->isSentinel = true;
 
 	return newNode;
 }
@@ -55,32 +52,55 @@ SkipList::node* SkipList::createPositiveInfinityNode()
 {
 	node* newNode = new node();
 
-	strcpy(newNode->word, node::POS_INF);
+	newNode->isSentinel = true;
 
 	return newNode;
 }
 
 SkipList::node* SkipList::search(const char word[50], bool& found)
 {
+	// This searching code is from an e-mail he sent, check it when doing commenting - email sent on Tuesday, March 24
 	node* p = head;
 
 	while (true)
 	{
-		int compareValue = strcmp(p->right->word, word);
-
-		while (strcmp(p->right->word, node::POS_INF) != 0 && compareValue <= 0)
+		while (!p->right->isSentinel)
 		{
-			p = p->right;
+			int compareValue = strcmp(p->right->word, word);
+
+			if (compareValue < 0)
+			{
+				p = p->right;
+			}
+			else if (compareValue == 0)
+			{
+				p = p->right;
+
+				while (p->down != nullptr)
+				{
+					p = p->down;
+				}
+
+				found = true;
+
+				return p;
+			}
+			else
+			{
+				break;
+			}
 		}
 
 		if (p->down == nullptr)
 		{
-			found = compareValue == 0;
+			found = false;
 
 			return p;
 		}
-
-		p = p->down;
+		else
+		{
+			p = p->down;
+		}
 	}
 }
 
@@ -213,7 +233,7 @@ void SkipList::larryList()
 
 	p = p->right;
 
-	while (strcmp(p->word, node::POS_INF) != 0)
+	while (!p->isSentinel)
 	{
 		node* q = p;
 

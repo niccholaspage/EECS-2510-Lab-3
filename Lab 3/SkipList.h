@@ -20,6 +20,8 @@ public:
 	void list();
 
 	void larryList();
+
+	void displayStatistics();
 private:
 	struct node
 	{

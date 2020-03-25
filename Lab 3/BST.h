@@ -16,6 +16,7 @@ public:
 	void insert(const char word[50]);
 	void list(); // Prints a list of all words in the tree.
 	void print2D();
+	void displayStatistics();
 private:
 	struct node
 	{

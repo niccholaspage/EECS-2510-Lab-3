@@ -95,107 +95,110 @@ void AVL::insert(const char word[50])
 
 		q = p;
 		p = compareValue < 0 ? p->leftChild : p->rightChild; // Potentially change this to a normal if statement?
-
-		y = new node();
-		strcpy(y->word, word);
-		y->leftChild = y->rightChild = nullptr;
-		y->balanceFactor = 0;
-
-		if (strcmp(word, q->word) < 0)
-		{
-			q->leftChild = y;
-		}
-		else
-		{
-			q->rightChild = y;
-		}
-
-		if (strcmp(word, a->word) > 0)
-		{
-			b = p = a->rightChild;
-
-			d = -1;
-		}
-		else
-		{
-			b = p = a->leftChild;
-
-			d = +1;
-		}
-
-		while (p != y)
-		{
-			if (strcmp(word, p->word) > 0)
-			{
-				p->balanceFactor = -1;
-				p = p->rightChild;
-			}
-			else
-			{
-				p->balanceFactor = +1;
-				p = p->leftChild;
-			}
-		}
-
-		if (a->balanceFactor == 0)
-		{
-			a->balanceFactor = d;
-			return;
-		}
-
-		if (a->balanceFactor == -d)
-		{
-			a->balanceFactor = 0;
-			return;
-		}
-
-		if (d == +1)
-		{
-			if (b->balanceFactor == +1)
-			{
-				// TODO: SLIDE 57 LL ROTATION
-			}
-			else
-			{
-				//TODO: SLIDE 57 LR ROTATION!
-				c = b->rightChild;
-				cl = c->leftChild;
-				cr = c->rightChild;
-
-				switch (c->balanceFactor)
-				{
-					// TODO: Slide 58 top
-				}
-
-				c->balanceFactor = 0;
-				b = c;
-			}
-		}
-		else
-		{
-			// TODO: Bottom of slide 58, RR or LL
-		}
-
-		if (f == nullptr)
-		{
-			root = b;
-			return;
-		}
-
-		if (a == f->leftChild)
-		{
-			f->leftChild = b;
-			return;
-		}
-
-		if (a == f->rightChild)
-		{
-			f->rightChild = b;
-			return;
-		}
-
-		cout << "We should never be here!\n";
 	}
+
+	y = new node();
+	strcpy(y->word, word);
+	y->leftChild = y->rightChild = nullptr;
+	y->balanceFactor = 0;
+
+	if (strcmp(word, q->word) < 0)
+	{
+		q->leftChild = y;
+	}
+	else
+	{
+		q->rightChild = y;
+	}
+
+	if (strcmp(word, a->word) > 0)
+	{
+		b = p = a->rightChild;
+
+		d = -1;
+	}
+	else
+	{
+		b = p = a->leftChild;
+
+		d = +1;
+	}
+
+	while (p != y)
+	{
+		if (strcmp(word, p->word) > 0)
+		{
+			p->balanceFactor = -1;
+			p = p->rightChild;
+		}
+		else
+		{
+			p->balanceFactor = +1;
+			p = p->leftChild;
+		}
+	}
+
+	if (a->balanceFactor == 0)
+	{
+		a->balanceFactor = d;
+		return;
+	}
+
+	if (a->balanceFactor == -d)
+	{
+		a->balanceFactor = 0;
+		return;
+	}
+
+	if (d == +1)
+	{
+		if (b->balanceFactor == +1)
+		{
+			// TODO: SLIDE 57 LL ROTATION
+			cout << "Slide 57: Attempting left right rotation";
+		}
+		else
+		{
+			cout << "Slide 57: Attempting LR rotation";
+			//TODO: SLIDE 57 LR ROTATION!
+			c = b->rightChild;
+			cl = c->leftChild;
+			cr = c->rightChild;
+
+			switch (c->balanceFactor)
+			{
+				// TODO: Slide 58 top
+			}
+
+			c->balanceFactor = 0;
+			b = c;
+		}
+	}
+	else
+	{
+		// TODO: Bottom of slide 58, RR or RL
+		cout << "Bottom of Slide 58: RR/RL";
+	}
+
+	if (f == nullptr)
+	{
+		root = b;
+		return;
+	}
+
+	if (a == f->leftChild)
+	{
+		f->leftChild = b;
+		return;
+	}
+
+	if (a == f->rightChild)
+	{
+		f->rightChild = b;
+		return;
+	}
+
+	cout << "We should never be here!\n";
 }
 
 void AVL::list()

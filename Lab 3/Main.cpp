@@ -108,6 +108,8 @@ int main()
 
 	tree->list();
 
+	tree->print2D();
+
 	delete tree;
 
 	return 0;

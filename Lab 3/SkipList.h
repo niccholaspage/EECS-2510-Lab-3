@@ -36,8 +36,7 @@ private:
 		bool isSentinel = false;
 	};
 
-	node* createNegativeInfinityNode();
-	node* createPositiveInfinityNode();
+	node* createSentinelNode();
 
 	node* search(const char word[50], bool& found);
 

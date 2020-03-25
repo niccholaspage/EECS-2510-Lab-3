@@ -2,8 +2,8 @@
 
 SkipList::SkipList()
 {
-	head = createNegativeInfinityNode();
-	tail = createPositiveInfinityNode();
+	head = createSentinelNode();
+	tail = createSentinelNode();
 
 	head->right = tail;
 	tail->left = head;
@@ -40,16 +40,7 @@ SkipList::~SkipList()
 	}
 }
 
-SkipList::node* SkipList::createNegativeInfinityNode()
-{
-	node* newNode = new node();
-
-	newNode->isSentinel = true;
-
-	return newNode;
-}
-
-SkipList::node* SkipList::createPositiveInfinityNode()
+SkipList::node* SkipList::createSentinelNode()
 {
 	node* newNode = new node();
 
@@ -142,8 +133,8 @@ void SkipList::insert(const char word[50])
 
 		if (currentHeight > height)
 		{
-			node* negativeNode = createNegativeInfinityNode();
-			node* positiveNode = createPositiveInfinityNode();
+			node* negativeNode = createSentinelNode();
+			node* positiveNode = createSentinelNode();
 
 			negativeNode->down = head;
 			head->up = negativeNode;

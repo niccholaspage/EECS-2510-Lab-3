@@ -60,19 +60,23 @@ SkipList::node* SkipList::createPositiveInfinityNode()
 	return newNode;
 }
 
-SkipList::node* SkipList::find(const char word[50])
+SkipList::node* SkipList::search(const char word[50], bool& found)
 {
 	node* p = head;
 
 	while (true)
 	{
-		while (strcmp(p->right->word, node::POS_INF) != 0 && strcmp(p->right->word, word) <= 0)
+		int compareValue = strcmp(p->right->word, word);
+
+		while (strcmp(p->right->word, node::POS_INF) != 0 && compareValue <= 0)
 		{
 			p = p->right;
 		}
 
 		if (p->down == nullptr)
 		{
+			found = compareValue == 0;
+
 			return p;
 		}
 
@@ -82,9 +86,11 @@ SkipList::node* SkipList::find(const char word[50])
 
 void SkipList::insert(const char word[50])
 {
-	node* p = find(word);
+	bool found = false;
 
-	if (strcmp(p->word, word) == 0)
+	node* p = search(word, found);
+
+	if (found)
 	{
 		p->count++;
 

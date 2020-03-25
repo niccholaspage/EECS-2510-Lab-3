@@ -18,7 +18,7 @@ public:
 	void insert(const char word[50]);
 
 	void list();
-	
+
 	void larryList();
 private:
 	struct node
@@ -38,7 +38,7 @@ private:
 	node* createNegativeInfinityNode();
 	node* createPositiveInfinityNode();
 
-	node* find(const char word[50]);
+	node* search(const char word[50], bool& foundo);
 
 	node* head;
 	node* tail;

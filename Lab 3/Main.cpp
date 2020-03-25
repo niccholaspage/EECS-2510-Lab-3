@@ -10,7 +10,7 @@ int main()
 {
 	cout << "Hello there!\n";
 
-	RBT* tree = new RBT();
+	SkipList* tree = new SkipList();
 
 	tree->insert("b");
 	tree->insert("a");
@@ -46,7 +46,7 @@ int main()
 	tree->insert("o");
 	tree->insert("g");
 
-	tree->print2D();
+	tree->larryList();
 
 	delete tree;
 

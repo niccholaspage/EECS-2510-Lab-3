@@ -10,6 +10,7 @@ SkipList::SkipList()
 
 	amountOfItems = 0;
 	height = 1;
+	numberOfComparisonsMade = 0;
 
 	srand(time(NULL));
 }
@@ -67,6 +68,8 @@ SkipList::node* SkipList::search(const char word[50], bool& found)
 		while (!p->right->isSentinel)
 		{
 			int compareValue = strcmp(p->right->word, word);
+
+			numberOfComparisonsMade++;
 
 			if (compareValue < 0)
 			{

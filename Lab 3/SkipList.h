@@ -37,11 +37,12 @@ private:
 	node* createNegativeInfinityNode();
 	node* createPositiveInfinityNode();
 
-	node* search(const char word[50], bool& foundo);
+	node* search(const char word[50], bool& found);
 
 	node* head;
 	node* tail;
 
 	int height;
 	int amountOfItems;
+	int numberOfComparisonsMade;
 };

@@ -66,7 +66,7 @@ int main()
 {
 	cout << "Hello there!\n";
 
-	SkipList* tree = new SkipList();
+	AVL* tree = new AVL();
 
 	tree->insert("b");
 	tree->insert("a");
@@ -102,7 +102,7 @@ int main()
 	tree->insert("o");
 	tree->insert("g");
 
-	tree->larryList();
+	tree->list();
 
 	delete tree;
 

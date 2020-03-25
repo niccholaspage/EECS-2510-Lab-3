@@ -20,6 +20,7 @@ private:
 		int count = 1;
 		node* leftChild = nullptr;
 		node* rightChild = nullptr;
+		int balanceFactor = 0;
 	};
 
 	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well as itself

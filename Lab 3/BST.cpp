@@ -207,5 +207,7 @@ void BST::print2DUtil(node* p, int space)
 
 void BST::displayStatistics()
 {
-	// TODO: Implement method
+	cout << "BST Stats:\n";
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
 }

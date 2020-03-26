@@ -164,6 +164,7 @@ void AVL::insert(const char word[50])
 		}
 		else
 		{
+			print2D();
 			cout << "Slide 57: Attempting LR rotation\n";
 			c = b->rightChild;
 			cl = c->leftChild;

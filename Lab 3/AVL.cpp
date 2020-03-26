@@ -154,7 +154,6 @@ void AVL::insert(const char word[50])
 	{
 		if (b->balanceFactor == +1)
 		{
-			// TODO: SLIDE 57 LL ROTATION
 			cout << "Slide 57: Attempting LL rotation:\n";
 			cout << "Node A: " << a->word << endl;
 			cout << "Node B: " << b->word << endl;
@@ -165,7 +164,6 @@ void AVL::insert(const char word[50])
 		}
 		else
 		{
-			//TODO: SLIDE 57 LR ROTATION!
 			cout << "Slide 57: Attempting LR rotation\n";
 			c = b->rightChild;
 			cl = c->leftChild;
@@ -195,7 +193,6 @@ void AVL::insert(const char word[50])
 	{
 		if (b->balanceFactor == -1)
 		{
-			// TODO: SLIDE 57 RR ROTATION
 			cout << "Slide 57: Attempting RR rotation:\n";
 			cout << "Node A: " << a->word << endl;
 			cout << "Node B: " << b->word << endl;

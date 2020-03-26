@@ -178,10 +178,11 @@ void AVL::insert(const char word[50])
 			c->leftChild = b;
 			c->rightChild = a;
 			a->leftChild = b->rightChild = nullptr;
-			b->rightChild = cl;
+			b->rightChild = cr;
 
 			switch (c->balanceFactor)
 			{
+			case -1: break;
 			case 0: a->balanceFactor = b->balanceFactor = 0; break;
 			case 1: a->balanceFactor = -1; b->balanceFactor = 0; break;
 			}

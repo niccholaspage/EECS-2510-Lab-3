@@ -135,6 +135,8 @@ void RBT::insert(const char word[50])
 
 		int compareValue = strcmp(word, x->word);
 
+		numberOfKeyComparisonsMade++;
+
 		if (compareValue < 0)
 		{
 			x = x->leftChild;
@@ -174,6 +176,7 @@ void RBT::insert(const char word[50])
 		}
 
 		numberOfReferenceChanges++;
+		numberOfKeyComparisonsMade++;
 	}
 
 	z->leftChild = z->rightChild = nil;

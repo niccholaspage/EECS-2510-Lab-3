@@ -148,10 +148,10 @@ void SkipList::insert(const char word[50])
 			negativeNode->right = positiveNode;
 			positiveNode->left = negativeNode;
 
-			numberOfReferenceChanges += 4;
-
 			head = negativeNode;
 			tail = positiveNode;
+
+			numberOfReferenceChanges += 8;
 
 			height++;
 		}

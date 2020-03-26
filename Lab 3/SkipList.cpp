@@ -10,7 +10,7 @@ SkipList::SkipList()
 
 	amountOfItems = 0;
 	height = 1;
-	numberOfComparisonsMade = 0;
+	numberOfKeyComparisonsMade = 0;
 	numberOfReferenceChanges = 0;
 
 	srand(time(NULL));
@@ -61,7 +61,7 @@ SkipList::node* SkipList::search(const char word[50], bool& found)
 		{
 			int compareValue = strcmp(p->right->word, word);
 
-			numberOfComparisonsMade++;
+			numberOfKeyComparisonsMade++;
 
 			if (compareValue < 0)
 			{
@@ -255,6 +255,6 @@ void SkipList::larryList()
 
 void SkipList::displayStatistics()
 {
-	cout << "Number of comparisons made: " << numberOfComparisonsMade << "\n";
+	cout << "Number of key comparisons made: " << numberOfKeyComparisonsMade << "\n";
 	cout << "Number of reference changes: " << numberOfReferenceChanges << "\n";
 }

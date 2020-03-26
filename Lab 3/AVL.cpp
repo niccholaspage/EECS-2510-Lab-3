@@ -329,7 +329,7 @@ void AVL::print2DUtil(node* p, int space)
 	{
 		cout << " ";
 	}
-	cout << p->word << "\n";
+	cout << p->word << " (" << p->balanceFactor << ")" << "\n";
 
 	print2DUtil(p->leftChild, space);
 }

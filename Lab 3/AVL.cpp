@@ -177,8 +177,8 @@ void AVL::insert(const char word[50])
 
 			c->leftChild = b;
 			c->rightChild = a;
-			a->leftChild = b->rightChild = nullptr;
-			b->rightChild = cr;
+			b->rightChild = nullptr;
+			a->leftChild = cr;
 
 			switch (c->balanceFactor)
 			{

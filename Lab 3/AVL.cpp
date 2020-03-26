@@ -193,8 +193,6 @@ void AVL::insert(const char word[50])
 	}
 	else
 	{
-		// TODO: Bottom of slide 58, RR or RL
-		cout << "Bottom of Slide 58: RR/RL";
 		if (b->balanceFactor == -1)
 		{
 			// TODO: SLIDE 57 RR ROTATION
@@ -208,7 +206,29 @@ void AVL::insert(const char word[50])
 		}
 		else
 		{
-			// RL ROTATION!
+			cout << "Attempting RL rotation\n";
+			c = b->leftChild;
+			cl = c->leftChild;
+			cr = c->rightChild;
+
+			cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
+			cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
+			cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
+
+			c->rightChild = b;
+			c->leftChild = a;
+			b->leftChild = cr;
+			a->rightChild = cl;
+
+			switch (c->balanceFactor)
+			{
+			case 0: a->balanceFactor = b->balanceFactor = 0; break;
+			case -1: b->balanceFactor = +1; a->balanceFactor = c->balanceFactor = 0; break;
+			case 1: a->balanceFactor = -1; b->balanceFactor = c->balanceFactor = 0; break;
+			}
+
+			c->balanceFactor = 0;
+			b = c;
 		}
 	}
 

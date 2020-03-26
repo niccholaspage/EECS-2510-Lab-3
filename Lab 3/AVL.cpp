@@ -158,8 +158,8 @@ void AVL::insert(const char word[50])
 			cout << "Node A: " << a->word << endl;
 			cout << "Node B: " << b->word << endl;
 
+			a->leftChild = b->rightChild;
 			b->rightChild = a;
-			a->leftChild = nullptr;
 			a->balanceFactor = b->balanceFactor = 0;
 		}
 		else
@@ -198,8 +198,8 @@ void AVL::insert(const char word[50])
 			cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
 			cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
 
+			a->rightChild = b->leftChild;
 			b->leftChild = a;
-			a->rightChild = nullptr;
 			a->balanceFactor = b->balanceFactor = 0;
 		}
 		else

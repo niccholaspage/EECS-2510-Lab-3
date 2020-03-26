@@ -53,13 +53,16 @@ void RBT::leftRotate(node* x)
 	node* y = x->rightChild;
 
 	x->rightChild = y->leftChild;
+	numberOfReferenceChanges++;
 
 	if (y->leftChild != nil)
 	{
 		y->leftChild->parent = x;
+		numberOfReferenceChanges++;
 	}
 
 	y->parent = x->parent;
+	numberOfReferenceChanges++;
 
 	if (x->parent == nil)
 	{
@@ -74,9 +77,13 @@ void RBT::leftRotate(node* x)
 		x->parent->rightChild = y;
 	}
 
+	numberOfReferenceChanges++;
+
 	y->leftChild = x;
 
 	x->parent = y;
+
+	numberOfReferenceChanges += 2;
 }
 
 void RBT::rightRotate(node* x)
@@ -84,13 +91,16 @@ void RBT::rightRotate(node* x)
 	node* y = x->leftChild;
 
 	x->leftChild = y->rightChild;
+	numberOfReferenceChanges++;
 
 	if (y->rightChild != nil)
 	{
 		y->rightChild->parent = x;
+		numberOfReferenceChanges++;
 	}
 
 	y->parent = x->parent;
+	numberOfReferenceChanges++;
 
 	if (x->parent == nil)
 	{
@@ -105,9 +115,13 @@ void RBT::rightRotate(node* x)
 		x->parent->leftChild = y;
 	}
 
+	numberOfReferenceChanges++;
+
 	y->rightChild = x;
 
 	x->parent = y;
+
+	numberOfReferenceChanges += 2;
 }
 
 void RBT::insert(const char word[50])
@@ -141,10 +155,12 @@ void RBT::insert(const char word[50])
 	strcpy(z->word, word);
 
 	z->parent = y;
+	numberOfReferenceChanges++;
 
 	if (y == nil)
 	{
 		root = z;
+		numberOfReferenceChanges++;
 	}
 	else
 	{
@@ -156,9 +172,12 @@ void RBT::insert(const char word[50])
 		{
 			y->rightChild = z;
 		}
+
+		numberOfReferenceChanges++;
 	}
 
 	z->leftChild = z->rightChild = nil;
+	numberOfReferenceChanges += 2;
 	z->color = RED;
 
 	insertFixup(z);

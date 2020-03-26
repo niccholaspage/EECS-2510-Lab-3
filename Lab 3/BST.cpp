@@ -72,6 +72,8 @@ void BST::insert(const char word[50])
 
 		int compareValue = strcmp(word, p->word);
 
+		numberOfKeyComparisonsMade++;
+
 		if (compareValue < 0) // Check if the word we are inserting is less than p's word
 		{
 			p = p->leftChild; // If so, p gets set to old p's left child, so that we can check it.
@@ -113,6 +115,8 @@ void BST::insert(const char word[50])
 		{
 			q->rightChild = newNode; // so we set q's right child to the new node.
 		}
+
+		numberOfKeyComparisonsMade++;
 	}
 }
 

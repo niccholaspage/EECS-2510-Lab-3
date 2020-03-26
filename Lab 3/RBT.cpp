@@ -177,6 +177,7 @@ void RBT::insertFixup(node* z)
 				z->parent->color = BLACK;
 				y->color = BLACK;
 				z->parent->parent->color = RED;
+				numberOfRecolorings += 2;
 				z = z->parent->parent;
 			}
 			else
@@ -190,6 +191,7 @@ void RBT::insertFixup(node* z)
 
 				z->parent->color = BLACK;
 				z->parent->parent->color = RED;
+				numberOfRecolorings += 2;
 
 				rightRotate(z->parent->parent);
 			}
@@ -203,6 +205,7 @@ void RBT::insertFixup(node* z)
 				z->parent->color = BLACK;
 				y->color = BLACK;
 				z->parent->parent->color = RED;
+				numberOfRecolorings += 2;
 				z = z->parent->parent;
 			}
 			else
@@ -217,12 +220,15 @@ void RBT::insertFixup(node* z)
 				z->parent->color = BLACK;
 				z->parent->parent->color = RED;
 
+				numberOfRecolorings += 2;
+
 				leftRotate(z->parent->parent);
 			}
 		}
 	}
 
 	root->color = BLACK;
+	numberOfRecolorings++;
 }
 
 void RBT::list()

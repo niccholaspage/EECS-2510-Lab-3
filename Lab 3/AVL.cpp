@@ -154,9 +154,9 @@ void AVL::insert(const char word[50])
 	{
 		if (b->balanceFactor == +1)
 		{
-			cout << "Slide 57: Attempting LL rotation:\n";
-			cout << "Node A: " << a->word << endl;
-			cout << "Node B: " << b->word << endl;
+			// cout << "Slide 57: Attempting LL rotation:\n";
+			// cout << "Node A: " << a->word << endl;
+			// cout << "Node B: " << b->word << endl;
 
 			a->leftChild = b->rightChild;
 			b->rightChild = a;
@@ -164,15 +164,14 @@ void AVL::insert(const char word[50])
 		}
 		else
 		{
-			print2D();
-			cout << "Slide 57: Attempting LR rotation\n";
+			// cout << "Slide 57: Attempting LR rotation\n";
 			c = b->rightChild;
 			cl = c->leftChild;
 			cr = c->rightChild;
 
-			cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
-			cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
-			cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
+			// cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
+			// cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
+			// cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
 
 			c->leftChild = b;
 			c->rightChild = a;
@@ -194,9 +193,9 @@ void AVL::insert(const char word[50])
 	{
 		if (b->balanceFactor == -1)
 		{
-			cout << "Slide 57: Attempting RR rotation:\n";
-			cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
-			cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
+			// cout << "Slide 57: Attempting RR rotation:\n";
+			// cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
+			// cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
 
 			a->rightChild = b->leftChild;
 			b->leftChild = a;
@@ -204,14 +203,14 @@ void AVL::insert(const char word[50])
 		}
 		else
 		{
-			cout << "Attempting RL rotation\n";
+			// cout << "Attempting RL rotation\n";
 			c = b->leftChild;
 			cl = c->leftChild;
 			cr = c->rightChild;
 
-			cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
-			cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
-			cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
+			// cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
+			// cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
+			// cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
 
 			c->rightChild = b;
 			c->leftChild = a;

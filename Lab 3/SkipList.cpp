@@ -255,5 +255,6 @@ void SkipList::larryList()
 
 void SkipList::displayStatistics()
 {
-	// TODO: Implement method
+	cout << "Number of comparisons made: " << numberOfComparisonsMade << "\n";
+	cout << "Number of reference changes: " << numberOfReferenceChanges << "\n";
 }

@@ -349,5 +349,12 @@ void RBT::print2DUtil(node* p, int space)
 
 void RBT::displayStatistics()
 {
-	// TODO: Implement method
+	cout << "RBT Stats:\n";
+	cout << "Recolorings: " << numberOfRecolorings << "\n";
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
+	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";
+	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n";
+	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n";
+	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n";
 }

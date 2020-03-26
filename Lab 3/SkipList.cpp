@@ -261,6 +261,8 @@ void SkipList::larryList()
 
 void SkipList::displayStatistics()
 {
-	cout << "Number of key comparisons made: " << numberOfKeyComparisonsMade << "\n";
-	cout << "Number of reference changes: " << numberOfReferenceChanges << "\n";
+	cout << "Skip List Stats:\n";
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
+	cout << "Coin Tosses: " << numberOfCoinTosses << "\n";
 }

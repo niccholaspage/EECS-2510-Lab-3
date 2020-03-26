@@ -369,5 +369,13 @@ void AVL::print2DUtil(node* p, int space)
 
 void AVL::displayStatistics()
 {
-	// TODO: Implement method
+	cout << "AVL Stats:\n";
+	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n";
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
+	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n";
+	cout << "LL Rotations: " << numberOfLeftLeftRotations << "\n";
+	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";
+	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";
+	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";
 }

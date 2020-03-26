@@ -113,6 +113,7 @@ void AVL::insert(const char word[50])
 	}
 
 	numberOfKeyComparisonsMade++;
+	numberOfReferenceChanges++;
 
 	if (strcmp(word, a->word) > 0)
 	{
@@ -170,6 +171,7 @@ void AVL::insert(const char word[50])
 
 			a->leftChild = b->rightChild;
 			b->rightChild = a;
+			numberOfReferenceChanges += 2;
 			a->balanceFactor = b->balanceFactor = 0;
 			numberOfBalanceFactorChanges += 2;
 		}
@@ -188,6 +190,8 @@ void AVL::insert(const char word[50])
 			c->rightChild = a;
 			b->rightChild = cl;
 			a->leftChild = cr;
+
+			numberOfReferenceChanges += 4;
 
 			switch (c->balanceFactor)
 			{
@@ -212,6 +216,7 @@ void AVL::insert(const char word[50])
 
 			a->rightChild = b->leftChild;
 			b->leftChild = a;
+			numberOfReferenceChanges += 2;
 			a->balanceFactor = b->balanceFactor = 0;
 			numberOfBalanceFactorChanges += 2;
 		}
@@ -231,6 +236,8 @@ void AVL::insert(const char word[50])
 			b->leftChild = cr;
 			a->rightChild = cl;
 
+			numberOfReferenceChanges += 4;
+
 			switch (c->balanceFactor)
 			{
 			case 0: a->balanceFactor = b->balanceFactor = 0; break;
@@ -248,18 +255,21 @@ void AVL::insert(const char word[50])
 	if (f == nullptr)
 	{
 		root = b;
+		numberOfReferenceChanges++;
 		return;
 	}
 
 	if (a == f->leftChild)
 	{
 		f->leftChild = b;
+		numberOfReferenceChanges++;
 		return;
 	}
 
 	if (a == f->rightChild)
 	{
 		f->rightChild = b;
+		numberOfReferenceChanges++;
 		return;
 	}
 

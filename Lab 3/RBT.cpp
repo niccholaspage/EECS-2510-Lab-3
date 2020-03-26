@@ -199,8 +199,9 @@ void RBT::insertFixup(node* z)
 				z->parent->color = BLACK;
 				y->color = BLACK;
 				z->parent->parent->color = RED;
-				numberOfRecolorings += 2;
+				numberOfRecolorings += 3;
 				z = z->parent->parent;
+				numberOfCase1Fixes++;
 			}
 			else
 			{
@@ -209,6 +210,8 @@ void RBT::insertFixup(node* z)
 					z = z->parent;
 
 					leftRotate(z);
+
+					numberOfCase2Fixes++;
 				}
 
 				z->parent->color = BLACK;
@@ -216,6 +219,8 @@ void RBT::insertFixup(node* z)
 				numberOfRecolorings += 2;
 
 				rightRotate(z->parent->parent);
+
+				numberOfCase3Fixes++;
 			}
 		}
 		else
@@ -227,8 +232,9 @@ void RBT::insertFixup(node* z)
 				z->parent->color = BLACK;
 				y->color = BLACK;
 				z->parent->parent->color = RED;
-				numberOfRecolorings += 2;
+				numberOfRecolorings += 3;
 				z = z->parent->parent;
+				numberOfCase1Fixes++;
 			}
 			else
 			{
@@ -237,6 +243,8 @@ void RBT::insertFixup(node* z)
 					z = z->parent;
 
 					rightRotate(z);
+
+					numberOfCase2Fixes++;
 				}
 
 				z->parent->color = BLACK;
@@ -245,6 +253,8 @@ void RBT::insertFixup(node* z)
 				numberOfRecolorings += 2;
 
 				leftRotate(z->parent->parent);
+
+				numberOfCase3Fixes++;
 			}
 		}
 	}

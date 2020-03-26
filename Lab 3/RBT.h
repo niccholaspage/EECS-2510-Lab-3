@@ -40,4 +40,12 @@ private:
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 	node* nil = nullptr;
+
+	unsigned long long numberOfRecolorings = 0;
+	unsigned long long numberOfReferenceChanges = 0;
+	unsigned long long numberOfKeyComparisonsMade = 0;
+	unsigned long long numberOfNoFixesNeeded = 0;
+	unsigned long long numberOfCase1Fixes = 0;
+	unsigned long long numberOfCase2Fixes = 0;
+	unsigned long long numberOfCase3Fixes = 0;
 };

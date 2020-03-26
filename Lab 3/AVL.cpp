@@ -174,6 +174,8 @@ void AVL::insert(const char word[50])
 			numberOfReferenceChanges += 2;
 			a->balanceFactor = b->balanceFactor = 0;
 			numberOfBalanceFactorChanges += 2;
+
+			numberOfLeftLeftRotations++;
 		}
 		else
 		{
@@ -204,6 +206,7 @@ void AVL::insert(const char word[50])
 			b = c;
 
 			numberOfBalanceFactorChanges += 3;
+			numberOfLeftRightRotations++;
 		}
 	}
 	else
@@ -219,6 +222,8 @@ void AVL::insert(const char word[50])
 			numberOfReferenceChanges += 2;
 			a->balanceFactor = b->balanceFactor = 0;
 			numberOfBalanceFactorChanges += 2;
+
+			numberOfRightRightRotations++;
 		}
 		else
 		{
@@ -249,6 +254,8 @@ void AVL::insert(const char word[50])
 			b = c;
 
 			numberOfBalanceFactorChanges += 3;
+
+			numberOfRightLeftRotations++;
 		}
 	}
 

@@ -79,6 +79,7 @@ void AVL::insert(const char word[50])
 	while (p != nullptr)
 	{
 		int compareValue = strcmp(word, p->word);
+		numberOfKeyComparisonsMade++;
 
 		if (compareValue == 0)
 		{
@@ -111,6 +112,8 @@ void AVL::insert(const char word[50])
 		q->rightChild = y;
 	}
 
+	numberOfKeyComparisonsMade++;
+
 	if (strcmp(word, a->word) > 0)
 	{
 		b = p = a->rightChild;
@@ -124,6 +127,8 @@ void AVL::insert(const char word[50])
 		d = +1;
 	}
 
+	numberOfKeyComparisonsMade++;
+
 	while (p != y)
 	{
 		if (strcmp(word, p->word) > 0)
@@ -136,6 +141,8 @@ void AVL::insert(const char word[50])
 			p->balanceFactor = +1;
 			p = p->leftChild;
 		}
+
+		numberOfKeyComparisonsMade;
 	}
 
 	if (a->balanceFactor == 0)

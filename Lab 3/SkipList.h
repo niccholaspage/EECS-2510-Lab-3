@@ -45,5 +45,6 @@ private:
 
 	int height;
 	int amountOfItems;
-	int numberOfComparisonsMade;
+	unsigned int numberOfComparisonsMade;
+	unsigned int numberOfReferenceChanges;
 };

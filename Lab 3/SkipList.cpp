@@ -11,6 +11,7 @@ SkipList::SkipList()
 	amountOfItems = 0;
 	height = 1;
 	numberOfComparisonsMade = 0;
+	numberOfReferenceChanges = 0;
 
 	srand(time(NULL));
 }
@@ -123,6 +124,8 @@ void SkipList::insert(const char word[50])
 	p->right->left = newNode;	// We get the node's right link and set its left child to our new node.
 	p->right = newNode;			// We then set p's right child to be the new node.
 
+	numberOfReferenceChanges += 4;
+
 	amountOfItems++;
 
 	int currentHeight = 1;
@@ -145,6 +148,8 @@ void SkipList::insert(const char word[50])
 			negativeNode->right = positiveNode;
 			positiveNode->left = negativeNode;
 
+			numberOfReferenceChanges += 4;
+
 			head = negativeNode;
 			tail = positiveNode;
 
@@ -155,6 +160,8 @@ void SkipList::insert(const char word[50])
 
 		pileNode->down = newNode;
 		newNode->up = pileNode;
+
+		numberOfReferenceChanges += 2;
 
 		strcpy(pileNode->word, word);
 
@@ -174,6 +181,8 @@ void SkipList::insert(const char word[50])
 
 		pileNode->left = leftNode->up;
 		pileNode->right = rightNode->up;
+
+		numberOfReferenceChanges += 2;
 
 		newNode = pileNode;
 	}

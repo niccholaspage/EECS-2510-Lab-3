@@ -30,4 +30,13 @@ private:
 	void print2DUtil(node* root, int space);
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
+
+	unsigned long long numberOfBalanceFactorChanges = 0;
+	unsigned long long numberOfReferenceChanges = 0;
+	unsigned long long numberOfKeyComparisonsMade = 0;
+	unsigned long long numberOfNoRotationsNeeded = 0;
+	unsigned long long numberOfLeftLeftRotations = 0;
+	unsigned long long numberOfLeftRightRotations = 0;
+	unsigned long long numberOfRightRightRotations = 0;
+	unsigned long long numberOfRightLeftRotations = 0;
 };

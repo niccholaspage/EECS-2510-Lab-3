@@ -142,6 +142,15 @@ void SkipList::insert(const char word[50])
 		currentHeight++;
 		numberOfCoinTosses++;
 
+		node* pileNode = new node();
+
+		pileNode->down = newNode;
+		newNode->up = pileNode;
+
+		numberOfReferenceChanges += 2;
+
+		strcpy(pileNode->word, word);
+
 		if (currentHeight > height)
 		{
 			node* negativeNode = createSentinelNode();
@@ -155,9 +164,11 @@ void SkipList::insert(const char word[50])
 			tail->up = positiveNode;
 			numberOfReferenceChanges += 2;
 
-			negativeNode->right = positiveNode;
-			positiveNode->left = negativeNode;
-			numberOfReferenceChanges += 2;
+			negativeNode->right = pileNode;
+			pileNode->left = negativeNode;
+			positiveNode->left = pileNode;
+			pileNode->right = positiveNode;
+			numberOfReferenceChanges += 4;
 
 			head = negativeNode;
 			tail = positiveNode;
@@ -165,34 +176,29 @@ void SkipList::insert(const char word[50])
 
 			height++;
 		}
-
-		node* pileNode = new node();
-
-		pileNode->down = newNode;
-		newNode->up = pileNode;
-
-		numberOfReferenceChanges += 2;
-
-		strcpy(pileNode->word, word);
-
-		node* leftNode = p;
-
-		while (leftNode->up == nullptr)
+		else
 		{
-			leftNode = leftNode->left;
+			node* leftNode = newNode->left;
+
+			while (leftNode->up == nullptr)
+			{
+				leftNode = leftNode->left;
+			}
+
+			node* rightNode = newNode->right;
+
+			while (rightNode->up == nullptr)
+			{
+				rightNode = rightNode->right;
+			}
+
+			pileNode->left = leftNode->up;
+			pileNode->right = rightNode->up;
+			leftNode->up->right = pileNode;
+			rightNode->up->left = pileNode;
+
+			numberOfReferenceChanges += 4;
 		}
-
-		node* rightNode = p;
-
-		while (rightNode->up == nullptr)
-		{
-			rightNode = rightNode->right;
-		}
-
-		pileNode->left = leftNode->up;
-		pileNode->right = rightNode->up;
-
-		numberOfReferenceChanges += 2;
 
 		newNode = pileNode;
 	}
@@ -231,6 +237,8 @@ void SkipList::list()
 
 		start = start->right;
 	}
+
+	cout << endl;
 }
 
 void SkipList::larryList()

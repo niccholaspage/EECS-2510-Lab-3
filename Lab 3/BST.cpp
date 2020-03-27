@@ -208,10 +208,25 @@ void BST::print2DUtil(node* p, int space)
 	print2DUtil(p->leftChild, space);
 }
 
+void BST::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
+{
+	numWords = 0;
+	numUniqueWords = 0;
+}
+
 void BST::displayStatistics()
 {
+	double elapsedTime = (clock() - startTime) / 1000.0;
+
 	cout << "BST Stats:\n";
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
-	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
+
+	unsigned int numWords, numUniqueWords;
+
+	calculateNumWords(numWords, numUniqueWords);
+
+	cout << "Words: " << numWords << "\n";
+	cout << "Unique Words: " << numUniqueWords << "\n";
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

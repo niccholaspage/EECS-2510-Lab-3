@@ -2,6 +2,8 @@
 
 RBT::RBT()
 {
+	startTime = clock();
+
 	nil = new node();
 
 	strcpy(nil->word, "");
@@ -357,4 +359,5 @@ void RBT::displayStatistics()
 	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n";
 	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n";
 	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n";
+	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
 }

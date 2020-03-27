@@ -47,4 +47,6 @@ private:
 	unsigned long long numberOfKeyComparisonsMade;
 	unsigned long long numberOfReferenceChanges;
 	unsigned long long numberOfCoinTosses;
+
+	clock_t startTime;
 };

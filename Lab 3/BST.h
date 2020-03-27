@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
+#include "time.h"
 
 using namespace std;
 
@@ -33,4 +34,6 @@ private:
 
 	unsigned long long numberOfReferenceChanges = 0;
 	unsigned long long numberOfKeyComparisonsMade = 0;
+
+	clock_t startTime;
 };

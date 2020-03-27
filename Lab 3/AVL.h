@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
+#include "time.h"
 
 using namespace std;
 
@@ -39,4 +40,6 @@ private:
 	unsigned long long numberOfLeftRightRotations = 0;
 	unsigned long long numberOfRightRightRotations = 0;
 	unsigned long long numberOfRightLeftRotations = 0;
+
+	clock_t startTime;
 };

@@ -2,6 +2,8 @@
 
 BST::BST()
 {
+	startTime = clock();
+
 	// constructor -- there's nothing to do other then making sure
 	// the root pointer is a nullptr. The default value is in the
 	// header, but I am doing it again for redundancy and clarity.
@@ -210,4 +212,5 @@ void BST::displayStatistics()
 	cout << "BST Stats:\n";
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
+	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
 }

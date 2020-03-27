@@ -2,6 +2,8 @@
 
 AVL::AVL()
 {
+	startTime = clock();
+
 	// constructor -- there's nothing to do other then making sure
 	// the root pointer is a nullptr. The default value is in the
 	// header, but I am doing it again for redundancy and clarity.
@@ -378,4 +380,5 @@ void AVL::displayStatistics()
 	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";
 	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";
 	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";
+	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
 }

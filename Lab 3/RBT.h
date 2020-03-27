@@ -3,6 +3,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <iostream>
+#include "time.h"
 
 using namespace std;
 
@@ -47,4 +48,6 @@ private:
 	unsigned long long numberOfCase1Fixes = 0;
 	unsigned long long numberOfCase2Fixes = 0;
 	unsigned long long numberOfCase3Fixes = 0;
+
+	clock_t startTime;
 };

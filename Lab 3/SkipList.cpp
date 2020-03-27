@@ -133,6 +133,8 @@ void SkipList::insert(const char word[50])
 
 	int currentHeight = 1;
 
+	numberOfCoinTosses++;
+
 	while (rand() & 1)
 	{
 		currentHeight++;

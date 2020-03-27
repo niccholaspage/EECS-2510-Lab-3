@@ -277,5 +277,6 @@ void SkipList::displayStatistics()
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
 	cout << "Coin Tosses: " << numberOfCoinTosses << "\n";
+	cout << "Height: " << height << "\n";
 	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
 }

@@ -369,8 +369,34 @@ void AVL::print2DUtil(node* p, int space)
 	print2DUtil(p->leftChild, space);
 }
 
+void AVL::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
+{
+	numWords = 0;
+	numUniqueWords = 0;
+
+	calculateNumWords(root, numWords, numUniqueWords);
+}
+
+void AVL::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords)
+{
+	if (p->leftChild != nullptr)
+	{
+		calculateNumWords(p->leftChild, numWords, numUniqueWords);
+	}
+
+	if (p->rightChild != nullptr)
+	{
+		calculateNumWords(p->rightChild, numWords, numUniqueWords);
+	}
+
+	numWords += p->count;
+	numUniqueWords += 1;
+}
+
 void AVL::displayStatistics()
 {
+	double elapsedTime = (clock() - startTime) / 1000.0;
+
 	cout << "AVL Stats:\n";
 	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n";
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
@@ -380,5 +406,12 @@ void AVL::displayStatistics()
 	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";
 	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";
 	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";
-	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
+
+	unsigned int numWords, numUniqueWords;
+
+	calculateNumWords(numWords, numUniqueWords);
+
+	cout << "Words: " << numWords << "\n";
+	cout << "Unique Words: " << numUniqueWords << "\n";
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

@@ -119,8 +119,9 @@ void BST::insert(const char word[50])
 		}
 
 		numberOfKeyComparisonsMade++;
-		numberOfReferenceChanges++;
 	}
+
+	numberOfReferenceChanges++;
 }
 
 void BST::list()

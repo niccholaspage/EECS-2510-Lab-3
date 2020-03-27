@@ -43,7 +43,7 @@ private:
 	node* tail;
 
 	int height;
-	int amountOfItems;
+	int numberOfItems;
 	unsigned long long numberOfKeyComparisonsMade;
 	unsigned long long numberOfReferenceChanges;
 	unsigned long long numberOfCoinTosses;

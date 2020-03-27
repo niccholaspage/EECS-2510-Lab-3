@@ -10,7 +10,7 @@ SkipList::SkipList()
 	head->right = tail;
 	tail->left = head;
 
-	amountOfItems = 0;
+	numberOfItems = 0;
 	height = 1;
 	numberOfKeyComparisonsMade = 0;
 	numberOfReferenceChanges = 0;
@@ -131,7 +131,7 @@ void SkipList::insert(const char word[50])
 
 	numberOfReferenceChanges += 2;
 
-	amountOfItems++;
+	numberOfItems++;
 
 	int currentHeight = 1;
 
@@ -230,7 +230,7 @@ void SkipList::list()
 	{
 		cout << "(" << ++index << ") " << start->word << " " << start->count;
 
-		if (index != amountOfItems)
+		if (index != numberOfItems)
 		{
 			cout << ", ";
 		}
@@ -243,7 +243,7 @@ void SkipList::list()
 
 void SkipList::larryList()
 {
-	cout << "Height: " << height << ", amount of items: " << amountOfItems << "\n";
+	cout << "Height: " << height << ", amount of items: " << numberOfItems << "\n";
 
 	node* p = head;
 
@@ -278,5 +278,6 @@ void SkipList::displayStatistics()
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
 	cout << "Coin Tosses: " << numberOfCoinTosses << "\n";
 	cout << "Height: " << height << "\n";
+	cout << "Number of Items: " << numberOfItems << "\n";
 	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
 }

@@ -39,6 +39,8 @@ private:
 
 	node* search(const char word[50], bool& found);
 
+	unsigned int getNumberOfSlowLaneNodes();
+
 	node* head;
 	node* tail;
 

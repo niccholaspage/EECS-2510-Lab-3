@@ -271,13 +271,37 @@ void SkipList::larryList()
 	}
 }
 
+unsigned int SkipList::getNumberOfSlowLaneNodes()
+{
+	unsigned int numberOfSlowLaneNodes = 0;
+
+	node* p = head;
+
+	while (p->down != nullptr)
+	{
+		p = p->down;
+	}
+
+	while (p != nullptr)
+	{
+		numberOfSlowLaneNodes++;
+
+		p = p->right;
+	}
+
+	return numberOfSlowLaneNodes;
+}
+
 void SkipList::displayStatistics()
 {
+	double elapsedTime = (clock() - startTime) / 1000.0;
+
 	cout << "Skip List Stats:\n";
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
 	cout << "Coin Tosses: " << numberOfCoinTosses << "\n";
 	cout << "Height: " << height << "\n";
 	cout << "Number of Items: " << numberOfItems << "\n";
-	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
+	cout << "Number of Slow Lane Nodes: " << getNumberOfSlowLaneNodes() << "\n";
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

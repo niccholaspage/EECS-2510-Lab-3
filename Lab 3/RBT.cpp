@@ -349,8 +349,34 @@ void RBT::print2DUtil(node* p, int space)
 	print2DUtil(p->leftChild, space);
 }
 
+void RBT::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
+{
+	numWords = 0;
+	numUniqueWords = 0;
+
+	calculateNumWords(root, numWords, numUniqueWords);
+}
+
+void RBT::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords)
+{
+	if (p->leftChild != nil)
+	{
+		calculateNumWords(p->leftChild, numWords, numUniqueWords);
+	}
+
+	if (p->rightChild != nil)
+	{
+		calculateNumWords(p->rightChild, numWords, numUniqueWords);
+	}
+
+	numWords += p->count;
+	numUniqueWords += 1;
+}
+
 void RBT::displayStatistics()
 {
+	double elapsedTime = (clock() - startTime) / 1000.0;
+
 	cout << "RBT Stats:\n";
 	cout << "Recolorings: " << numberOfRecolorings << "\n";
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
@@ -359,5 +385,12 @@ void RBT::displayStatistics()
 	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n";
 	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n";
 	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n";
-	cout << "Elapsed Time: " << (clock() - startTime) / 1000.0 << " seconds\n";
+
+	unsigned int numWords, numUniqueWords;
+
+	calculateNumWords(numWords, numUniqueWords);
+
+	cout << "Words: " << numWords << "\n";
+	cout << "Unique Words: " << numUniqueWords << "\n";
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

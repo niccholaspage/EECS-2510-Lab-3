@@ -32,6 +32,8 @@ private:
 	const static bool RED = false;
 
 	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well as itself
+	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
+	void calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords);
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
 	void leftRotate(node* p);
 	void rightRotate(node* p);

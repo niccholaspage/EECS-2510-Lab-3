@@ -145,7 +145,7 @@ void AVL::insert(const char word[50])
 			p = p->leftChild;
 		}
 
-		numberOfKeyComparisonsMade;
+		numberOfKeyComparisonsMade++;
 		numberOfBalanceFactorChanges++;
 	}
 

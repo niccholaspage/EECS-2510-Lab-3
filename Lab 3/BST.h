@@ -28,6 +28,7 @@ private:
 
 	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well as itself
 	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
+	void calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords);
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
 	void print2DUtil(node* root, int space);
 

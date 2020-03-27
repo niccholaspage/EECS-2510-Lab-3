@@ -212,6 +212,24 @@ void BST::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords
 {
 	numWords = 0;
 	numUniqueWords = 0;
+
+	calculateNumWords(root, numWords, numUniqueWords);
+}
+
+void BST::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords)
+{
+	if (p->leftChild != nullptr)
+	{
+		calculateNumWords(p->leftChild, numWords, numUniqueWords);
+	}
+
+	if (p->rightChild != nullptr)
+	{
+		calculateNumWords(p->rightChild, numWords, numUniqueWords);
+	}
+
+	numWords += p->count;
+	numUniqueWords += 1;
 }
 
 void BST::displayStatistics()

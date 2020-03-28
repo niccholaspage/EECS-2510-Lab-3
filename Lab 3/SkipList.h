@@ -40,6 +40,7 @@ private:
 	node* search(const char word[50], bool& found);
 
 	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
+	unsigned int getTotalNodes();
 
 	node* head;
 	node* tail;

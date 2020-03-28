@@ -290,6 +290,29 @@ void SkipList::calculateNumWords(unsigned int& numWords, unsigned int& numUnique
 	}
 }
 
+unsigned int SkipList::getTotalNodes()
+{
+	unsigned int totalNodes = 0;
+
+	node* p = head;
+
+	while (p != nullptr)
+	{
+		node* q = p;
+
+		while (!q->right->isSentinel)
+		{
+			totalNodes++;
+
+			q = q->right;
+		}
+
+		p = p->down;
+	}
+
+	return totalNodes;
+}
+
 void SkipList::displayStatistics()
 {
 	double elapsedTime = (clock() - startTime) / 1000.0;
@@ -300,6 +323,7 @@ void SkipList::displayStatistics()
 	cout << "Coin Tosses that were heads: " << numberOfHeadsCoinTosses << "\n";
 	cout << "Height: " << height << "\n";
 	cout << "Number of Items: " << numberOfItems << "\n";
+	cout << "Total Nodes: " << getTotalNodes() << "\n";
 
 	unsigned int numWords, numUniqueWords;
 

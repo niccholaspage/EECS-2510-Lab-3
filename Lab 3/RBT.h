@@ -1,3 +1,12 @@
+//==============================================================================================
+// File: RBT.h - Red-Black tree
+//
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:       Mar 31, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #pragma once
 
 #define _CRT_SECURE_NO_WARNINGS

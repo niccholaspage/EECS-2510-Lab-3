@@ -1,5 +1,6 @@
 //==============================================================================================
 // File: SkipList.h - Skip list
+// Header for SkipList.cpp
 //
 // Author:     Nicholas Nassar, University of Toledo
 // Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020

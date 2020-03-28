@@ -25,6 +25,10 @@ using namespace std;
 
 void runTests()
 {
+	// This method utilizes the file parser code given by Dr. Thomas in listing 2
+	// of the lab PDF. It opens an input file and reads each word and inserts it into
+	// newly constructed RBT, AVL, BST, and Skip list datatypes.
+	//
 	char c;
 	RBT* RBT_T = new RBT();			// instantiate each of the trees
 	AVL* AVL_T = new AVL();			//
@@ -84,6 +88,9 @@ void runTests()
 
 int main()
 {
+	// This is a very simple entrypoint to the program which just
+	// calls the runTests method to start testing the datatypes.
+	//
 	runTests();
 
 	return 0;

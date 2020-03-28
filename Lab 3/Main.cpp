@@ -84,6 +84,11 @@ void runTests()
 		else if (pass == 4) { if (strlen(chari)) BST_T->insert(chari);  BST_T->displayStatistics(); } // BST
 		else if (pass == 5) { if (strlen(chari))    SL->insert(chari);     SL->displayStatistics(); } // skip list
 	}
+
+	delete RBT_T;
+	delete AVL_T;
+	delete BST_T;
+	delete SL;
 }
 
 int main()

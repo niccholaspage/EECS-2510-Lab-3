@@ -23,16 +23,16 @@ public:
 	BST();
 	~BST();
 
-	void insert(const char word[50]); // adds a word to the binary search tree
+	void insert(const char word[50]); // adds a word to the tree
 	void list(); // Prints a list of all words in the tree.
 	void displayStatistics(); // Displays statistics about the tree operations performed.
 private:
 	struct node
 	{
-		char word[50] = {};
-		int count = 1;
-		node* leftChild = nullptr;
-		node* rightChild = nullptr;
+		char word[50] = {}; // The word of the node
+		int count = 1; // The amount of times the word has been inserted into the binary search tree
+		node* leftChild = nullptr; // A pointer to the left child of the node
+		node* rightChild = nullptr; // A pointer to the right child of the node
 	};
 
 	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well as itself

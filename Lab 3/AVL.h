@@ -22,9 +22,10 @@ class AVL
 public:
 	AVL();
 	~AVL();
-	void insert(const char word[50]);
-	void list();
-	void displayStatistics();
+
+	void insert(const char word[50]); // adds a word to the tree
+	void list(); // Prints a list of all words in the tree.
+	void displayStatistics(); // Displays statistics about the tree operations performed.
 private:
 	struct node
 	{

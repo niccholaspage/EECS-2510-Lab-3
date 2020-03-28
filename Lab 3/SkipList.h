@@ -24,13 +24,10 @@ public:
 	SkipList();
 	~SkipList();
 
-	void insert(const char word[50]);
-
-	void list();
-
+	void insert(const char word[50]); // adds a word to the skip list
+	void list(); // Prints a list of all words in the skip list.
+	void displayStatistics(); // Displays statistics about the skip list operations performed.
 	void larryList();
-
-	void displayStatistics();
 private:
 	struct node
 	{

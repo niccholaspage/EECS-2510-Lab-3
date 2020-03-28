@@ -23,9 +23,9 @@ public:
 	RBT();
 	~RBT();
 
-	void insert(const char word[50]);
+	void insert(const char word[50]); // adds a word to the tree
 	void list(); // Prints a list of all words in the tree.
-	void displayStatistics();
+	void displayStatistics(); // Displays statistics about the tree operations performed.
 private:
 	struct node
 	{

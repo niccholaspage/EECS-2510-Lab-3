@@ -19,12 +19,12 @@
 
 AVL::AVL()
 {
+	// constructor -- there's nothing to do other then setting our start
+	// time and making sure the root pointer is a nullptr. The default value
+	// is in the header, but I am doing it again for redundancy and clarity.
+	//
 	startTime = clock();
 
-	// constructor -- there's nothing to do other then making sure
-	// the root pointer is a nullptr. The default value is in the
-	// header, but I am doing it again for redundancy and clarity.
-	//
 	root = nullptr; // When a new binary search tree is constructed, there is no root node.
 }
 
@@ -76,54 +76,66 @@ void AVL::traverseDestruct(node* p) {
 void AVL::insert(const char word[50])
 {
 	// TODO: Place comments. This pseudocode is found in slide 51 of Lecture 12
-	node* y;
-	node* a, * b, * f;
-	node* p, * q;
-	node* c, * cl, * cr;
-	int d;
+	node* y;				// The new node we will be inserting
+	node* a, * b, * f;		// see below...
+	node* p, * q;			// ...
+	node* c, * cl, * cr;	// ... for description
+	int d;					// displacement, used to adjust balance factors
 
-	if (root == nullptr)
+	if (root == nullptr)	// If the three is empty, then we just need to make a root node and we're done!
 	{
-		y = new node();
-		strcpy(y->word, word);
-		y->leftChild = y->rightChild = nullptr;
-		y->balanceFactor = 0;
-		root = y;
-		numberOfReferenceChanges++;
-		numberOfNoRotationsNeeded++;
+		y = new node();			// construct a root node
+		strcpy(y->word, word);	// copy the word we are inserting into y's word array
+		y->leftChild = y->rightChild = nullptr;	// since this new node is a leaf, it has no children
+		y->balanceFactor = 0; // a leaf has no children so it has to be balanced!
+		root = y; // root was null, so Y is the new root
+		numberOfReferenceChanges++;		// increment the number of reference changes since we changed the root
+		numberOfNoRotationsNeeded++;	// increment the number of no rotations needed since we didn't perform a rotation
 		return;
 	}
 
+	// We now need to locate the insertion point for x.
+	// Pointer p will scan through the tree until it falls off the bottom.
+	// Pointer q is p's parent, lagging on step behind p.
+	// The new node y will be added as a left or right child of q.
+	// A is the last parent above y with a balance factor of -/+ 1 before the insert.
+	// Pointer f is a's parent, lagging one step behind A.
 	f = q = nullptr;
 	a = p = root;
 
-	while (p != nullptr)
+	while (p != nullptr) // lets search the tree for our insertion point
 	{
-		int compareValue = strcmp(word, p->word);
-		numberOfKeyComparisonsMade++;
+		int compareValue = strcmp(word, p->word); // compare the word we are inserting to p's word
+		numberOfKeyComparisonsMade++; // increment the number of key comparisons since we just made one
 
-		if (compareValue == 0)
+		if (compareValue == 0)	// if word equals p->word...
 		{
-			p->count++;
+			p->count++;			// increment p's count by one,
 
-			return;
+			return;				// and return because we are done here!
 		}
 
-		if (p->balanceFactor != 0)
+		if (p->balanceFactor != 0)	// remember the last place we saw
 		{
-			a = p;
-			f = q;
+			a = p;					// a non-zero balance factor
+			f = q;					// and its parent
 		}
 
-		q = p;
-		p = compareValue < 0 ? p->leftChild : p->rightChild; // Potentially change this to a normal if statement?
+		q = p; // we now bring q up to where p is,
+
+		// and advance p to either its left or right child based on if the word is less than or greater than p's word.
+		p = compareValue < 0 ? p->leftChild : p->rightChild;
 	}
 
-	y = new node();
-	strcpy(y->word, word);
-	y->leftChild = y->rightChild = nullptr;
-	y->balanceFactor = 0;
+	// At this point, p is nullptr, but q points at the last node where x
+	// belongs (either as q's left child or right child, and q points to an existing leaf)
+	//
+	y = new node();			// construct a new node,
+	strcpy(y->word, word);	// copy the word we are inserting into y's word array
+	y->leftChild = y->rightChild = nullptr;	// since this new node is a leaf, it has no children
+	y->balanceFactor = 0; // a leaf has no children so it has to be balanced!
 
+	// Pointer y will be q's new left or right child based on a comparison between its word and q's word
 	if (strcmp(word, q->word) < 0)
 	{
 		q->leftChild = y;
@@ -133,54 +145,68 @@ void AVL::insert(const char word[50])
 		q->rightChild = y;
 	}
 
-	numberOfKeyComparisonsMade++;
-	numberOfReferenceChanges++;
+	numberOfKeyComparisonsMade++;	// increment the number of key comparisons since we just made one,
+	numberOfReferenceChanges++;		// and increment the number of reference changes since we changed q's left or right child.
 
-	if (strcmp(word, a->word) > 0)
+	// At this point, we have just done the same BST insert that we've done before. Now, we do the AVL
+	// specific operations to detect and fix an imbalance if we have one.
+
+	// Now we need to adjust the balance factors from pointers a to q.
+	// A was the last ancestor with a balance factor of -/+ 1, (or is still the root, because we never found
+	// a balance factor of -/+ 1), so all nodes between a and q must have a balance factor of 0,
+	// and will therefore become -/+ 1.
+	//
+
+	// If x is inserted into the left subtree of a, then displacement becomes +1.
+	// Displacement becoming -1 means we inserted x in the right subtree of a.
+	if (strcmp(word, a->word) > 0) // compare word and a's word so we can determine which way the displacement is
 	{
-		b = p = a->rightChild;
+		b = p = a->rightChild;	// b becomes a's right child
 
 		d = -1;
 	}
 	else
 	{
-		b = p = a->leftChild;
+		b = p = a->leftChild;	// b become's a's left child
 
 		d = +1;
 	}
 
-	numberOfKeyComparisonsMade++;
+	numberOfKeyComparisonsMade++; // increment number of key comparisons since we just compared word and a's word
 
-	while (p != y)
-	{
-		if (strcmp(word, p->word) > 0)
+	while (p != y)	// pointer p is now one node below a. We adjust from here
+	{				// to the insertion point, and don't touch our new node (y).
+		if (strcmp(word, p->word) > 0)	// we compare the word to p's word,
 		{
-			p->balanceFactor = -1;
-			p = p->rightChild;
+			p->balanceFactor = -1;		// and adjust the balance factor to -1,
+			p = p->rightChild;			// and move forward,
 		}
 		else
 		{
-			p->balanceFactor = +1;
-			p = p->leftChild;
+			p->balanceFactor = +1;		// or adjust the balance factor to +1,
+			p = p->leftChild;			// and move forward.
 		}
 
-		numberOfKeyComparisonsMade++;
-		numberOfBalanceFactorChanges++;
+		numberOfKeyComparisonsMade++;	// we increment the number of key comparisons made since we compared the word to p's word,
+		numberOfBalanceFactorChanges++;	// and we increment our balance factor changes since we just changed p's balance factor.
 	}
 
-	if (a->balanceFactor == 0)
-	{
-		a->balanceFactor = d;
-		numberOfBalanceFactorChanges++;
-		numberOfNoRotationsNeeded++;
-		return;
+	// Now we check the balance factor at a and see if we just pushed the tree into balance,
+	// into an "unacceptable imbalance," or if it is still balanced enough.
+
+	if (a->balanceFactor == 0)	// The tree was completely balanced before the insert.
+	{							// The insert pushed it to a (slight) acceptable imbalance.
+		a->balanceFactor = d;	// We set the balance factor to either -/+ 1, based on the displacement direction.
+		numberOfBalanceFactorChanges++; // We increment the balance factor changes since we just adjusted a's balance factor.
+		numberOfNoRotationsNeeded++;	// Since we are about to return, we haven't made any rotations!
+		return;							// This is close enough to live with so we exit now.
 	}
 
-	if (a->balanceFactor == -d)
-	{
-		a->balanceFactor = 0;
-		numberOfBalanceFactorChanges++;
-		numberOfNoRotationsNeeded++;
+	if (a->balanceFactor == -d) // If the tree had a slight imbalance the other way,
+	{							// then did the insertion throw the tree into complete balance?
+		a->balanceFactor = 0;	// If it did, then we set the balance factor to zero!
+		numberOfBalanceFactorChanges++; // We increment the balance factor changes since we adjusted a's balance factor.
+		numberOfNoRotationsNeeded++;	// Since we are about to return, we haven't made any rotations!
 		return;
 	}
 

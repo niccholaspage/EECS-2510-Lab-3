@@ -36,16 +36,24 @@ private:
 	};
 
 	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well as itself
+
+	// Calculates the number of words and unique words in the skip list.
 	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
+
+	// Recursively calculates the number of words and unique words by counting the given node's words and its two children.
 	void calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords);
+
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
-	unsigned int getHeight();
+
+	unsigned int getHeight(); // Returns the height of the tree
+
+	// Recursively calculates the height of the tree by traversing through the given node and its children
 	void calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight);
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 
-	unsigned long long numberOfReferenceChanges = 0;
-	unsigned long long numberOfKeyComparisonsMade = 0;
+	unsigned long long numberOfReferenceChanges = 0;	// Keeps track of the number of times the root pointer or child pointers change.
+	unsigned long long numberOfKeyComparisonsMade = 0;	// Keeps track of the number of word key comparisons during tree inserts.
 
-	clock_t startTime;
+	clock_t startTime; // A variable that represents the time at very beginning of tree construction
 };

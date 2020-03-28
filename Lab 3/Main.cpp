@@ -1,3 +1,18 @@
+//==============================================================================================
+// Main.cpp - BST / AVL / RBT / SL Comparison Program
+//
+// This program implements the AVL, BST, RBT, and Skip list datatypes and benchmarks them
+// by timing how long inserting each word of an input file takes. Once each datatype has finished,
+// stats are printed out that are relevant to each datatype, including how many words and unique
+// words are in the datatype, and specific stats for each type, like the number of left-right
+// rotations of an AVL tree.
+//
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:       Mar 31, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #include <iostream>
 #include <fstream>
 

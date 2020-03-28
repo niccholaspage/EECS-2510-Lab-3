@@ -14,7 +14,7 @@ SkipList::SkipList()
 	height = 1;
 	numberOfKeyComparisonsMade = 0;
 	numberOfReferenceChanges = 0;
-	numberOfCoinTosses = 0;
+	numberOfHeadsCoinTosses = 0;
 
 	srand(time(NULL));
 }
@@ -135,12 +135,10 @@ void SkipList::insert(const char word[50])
 
 	int currentHeight = 1;
 
-	numberOfCoinTosses++;
-
 	while (rand() & 1)
 	{
 		currentHeight++;
-		numberOfCoinTosses++;
+		numberOfHeadsCoinTosses++;
 
 		node* pileNode = new node();
 
@@ -299,7 +297,7 @@ void SkipList::displayStatistics()
 	cout << "Skip List Stats:\n";
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
-	cout << "Coin Tosses: " << numberOfCoinTosses << "\n";
+	cout << "Coin Tosses that were heads: " << numberOfHeadsCoinTosses << "\n";
 	cout << "Height: " << height << "\n";
 	cout << "Number of Items: " << numberOfItems << "\n";
 

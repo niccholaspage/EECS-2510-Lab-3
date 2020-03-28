@@ -48,7 +48,7 @@ private:
 	int numberOfItems;
 	unsigned long long numberOfKeyComparisonsMade;
 	unsigned long long numberOfReferenceChanges;
-	unsigned long long numberOfCoinTosses;
+	unsigned long long numberOfHeadsCoinTosses;
 
 	clock_t startTime;
 };

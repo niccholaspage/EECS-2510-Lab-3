@@ -25,19 +25,21 @@ using namespace std;
 
 void runTests()
 {
-	char c; RBT* RBT_T = new RBT();
-	// instantiate each of the trees
-	AVL* AVL_T = new AVL();
-	BST* BST_T = new BST();
-	SkipList* SL = new SkipList();
-	// and the skip list
+	char c;
+	RBT* RBT_T = new RBT();			// instantiate each of the trees
+	AVL* AVL_T = new AVL();			//
+	BST* BST_T = new BST();			//
+	SkipList* SL = new SkipList();	// and the skip list
+
 	char chari[50]; // assumes no word is longer than 49 characters
 	memset(chari, 0, 50); // zero the word buffer
 	int iPtr;
 	ifstream inFile;
 
-	for (int pass = 0; pass < 6; pass++) {
+	for (int pass = 0; pass < 6; pass++)
+	{
 		bool IsDelimiter = false, WasDelimiter = false;
+
 		inFile.open("C:\\Users\\nicch\\OneDrive\\Documents\\College\\Spring 2020\\EECS 2510\\Lab 2\\Sample Files\\Shakespeare.txt", ios::binary);
 		if (inFile.fail())
 		{
@@ -52,17 +54,20 @@ void runTests()
 			IsDelimiter = (c == ' ' || c == 10 || c == 13 || c == ',' || c == '.' || c == '\'' ||
 				c == ':' || c == ';' || c == '"' || c == '?' || c == '!' || c == '-' ||
 				c == '(' || c == ')' || c == '[' || c == ']' || c == '_' || c == '*' || c == 9);
-			if (IsDelimiter && !WasDelimiter)   // if THIS character IS a delimiter, and the // last one WASN’T, it’s the end of a word
+			if (IsDelimiter && !WasDelimiter)   // if THIS character IS a delimiter,and the
+												// last one WASN’T, it’s the end of a word
 			{
 				WasDelimiter = true;
-				if (pass == 2) RBT_T->insert(chari);  // insert this word in the RBT
-				else if (pass == 3) AVL_T->insert(chari);  // insert it in the AVL Tree
-				else if (pass == 4) BST_T->insert(chari);  // insert it in the BST
-				else if (pass == 5)    SL->insert(chari);  // insert it in the skip list
+				if (pass == 2) RBT_T->insert(chari);		// insert this word in the RBT
+				else if (pass == 3) AVL_T->insert(chari);	// insert it in the AVL Tree
+				else if (pass == 4) BST_T->insert(chari);	// insert it in the BST
+				else if (pass == 5)    SL->insert(chari);	// insert it in the skip list
+
 				memset(chari, 0, 50); // zero the word buffer
 				iPtr = 0;
 			}
 			else if (!IsDelimiter)  chari[iPtr++] = c;  // if this isn’t a delimiter, keep going
+
 			WasDelimiter = IsDelimiter;   // forthe NEXT iteration
 			inFile.get(c);
 		}

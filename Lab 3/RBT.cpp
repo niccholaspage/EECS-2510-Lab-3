@@ -190,6 +190,11 @@ void RBT::insert(const char word[50])
 
 void RBT::insertFixup(node* z)
 {
+	if (z->parent->color == BLACK)
+	{
+		numberOfNoFixesNeeded++;
+	}
+
 	while (z->parent->color == RED)
 	{
 		if (z->parent == z->parent->parent->leftChild)

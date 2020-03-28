@@ -330,6 +330,6 @@ void SkipList::displayStatistics()
 	calculateNumWords(numWords, numUniqueWords);
 
 	cout << "Words: " << numWords << "\n";
-	cout << "Unique Words: " << numUniqueWords << "\n";
+	cout << "Unique Words / Slow Lane Nodes: " << numUniqueWords << "\n";
 	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

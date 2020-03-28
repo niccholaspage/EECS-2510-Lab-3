@@ -30,7 +30,7 @@ private:
 	struct node
 	{
 		char word[50] = {};
-		int count = 1;
+		unsigned int count = 1;
 		bool color = RED; // true is black, false is red
 		node* parent = nullptr;
 		node* leftChild = nullptr;

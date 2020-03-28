@@ -30,7 +30,7 @@ private:
 	struct node
 	{
 		char word[50] = {}; // The word of the node
-		int count = 1; // The amount of times the word has been inserted into the binary search tree
+		unsigned int count = 1; // The amount of times the word has been inserted into the binary search tree
 		node* leftChild = nullptr; // A pointer to the left child of the node
 		node* rightChild = nullptr; // A pointer to the right child of the node
 	};

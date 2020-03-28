@@ -32,7 +32,7 @@ private:
 	struct node
 	{
 		char word[50] = {};
-		int count = 1;
+		unsigned int count = 1;
 
 		node* up = nullptr;
 		node* down = nullptr;

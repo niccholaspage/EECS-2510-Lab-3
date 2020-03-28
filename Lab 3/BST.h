@@ -23,10 +23,10 @@ public:
 	BST();
 	~BST();
 
-	void insert(const char word[50]);
+	void insert(const char word[50]); // adds a word to the binary search tree
 	void list(); // Prints a list of all words in the tree.
 	void print2D();
-	void displayStatistics();
+	void displayStatistics(); // Displays statistics about the tree operations performed.
 private:
 	struct node
 	{

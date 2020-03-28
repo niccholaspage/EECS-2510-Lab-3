@@ -341,35 +341,6 @@ void RBT::list(int& index, node* p)
 	}
 }
 
-void RBT::print2D()
-{
-	print2DUtil(root, 0);
-}
-
-void RBT::print2DUtil(node* p, int space)
-{
-	int COUNT = 10;
-
-	if (p == nil)
-	{
-		return;
-	}
-
-	space += COUNT;
-
-	print2DUtil(p->rightChild, space);
-
-	cout << endl;
-
-	for (int i = COUNT; i < space; i++)
-	{
-		cout << " ";
-	}
-	cout << p->word << "\n";
-
-	print2DUtil(p->leftChild, space);
-}
-
 void RBT::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
 {
 	numWords = 0;

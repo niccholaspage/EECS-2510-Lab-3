@@ -25,7 +25,6 @@ public:
 
 	void insert(const char word[50]);
 	void list(); // Prints a list of all words in the tree.
-	void print2D();
 	void displayStatistics();
 private:
 	struct node
@@ -48,7 +47,6 @@ private:
 	void leftRotate(node* p);
 	void rightRotate(node* p);
 	void insertFixup(node* p);
-	void print2DUtil(node* root, int space);
 	unsigned int getHeight();
 	void calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight);
 

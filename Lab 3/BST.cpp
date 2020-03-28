@@ -194,35 +194,6 @@ void BST::list(int& index, node* p)
 	}
 }
 
-void BST::print2D()
-{
-	print2DUtil(root, 0);
-}
-
-void BST::print2DUtil(node* p, int space)
-{
-	int COUNT = 10;
-
-	if (p == nullptr)
-	{
-		return;
-	}
-
-	space += COUNT;
-
-	print2DUtil(p->rightChild, space);
-
-	cout << endl;
-
-	for (int i = COUNT; i < space; i++)
-	{
-		cout << " ";
-	}
-	cout << p->word << "\n";
-
-	print2DUtil(p->leftChild, space);
-}
-
 void BST::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
 {
 	numWords = 0;

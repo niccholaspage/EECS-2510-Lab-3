@@ -25,7 +25,6 @@ public:
 
 	void insert(const char word[50]); // adds a word to the binary search tree
 	void list(); // Prints a list of all words in the tree.
-	void print2D();
 	void displayStatistics(); // Displays statistics about the tree operations performed.
 private:
 	struct node
@@ -40,7 +39,6 @@ private:
 	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
 	void calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords);
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
-	void print2DUtil(node* root, int space);
 	unsigned int getHeight();
 	void calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight);
 

@@ -72,6 +72,7 @@ void AVL::insert(const char word[50])
 		y->leftChild = y->rightChild = nullptr;
 		y->balanceFactor = 0;
 		root = y;
+		numberOfReferenceChanges++;
 		numberOfNoRotationsNeeded++;
 		return;
 	}

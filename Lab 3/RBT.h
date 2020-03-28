@@ -39,6 +39,8 @@ private:
 	void rightRotate(node* p);
 	void insertFixup(node* p);
 	void print2DUtil(node* root, int space);
+	unsigned int getHeight();
+	void calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight);
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 	node* nil = nullptr;

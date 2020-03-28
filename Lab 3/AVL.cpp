@@ -82,7 +82,7 @@ void AVL::insert(const char word[50])
 	node* c, * cl, * cr;	// ... for description
 	int d;					// displacement, used to adjust balance factors
 
-	if (root == nullptr)	// If the three is empty, then we just need to make a root node and we're done!
+	if (root == nullptr)	// If the tree is empty, then we just need to make a root node and we're done!
 	{
 		y = new node();			// construct a root node
 		strcpy(y->word, word);	// copy the word we are inserting into y's word array

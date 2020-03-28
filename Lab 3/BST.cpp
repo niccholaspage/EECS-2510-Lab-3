@@ -232,6 +232,34 @@ void BST::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUn
 	numUniqueWords += 1;
 }
 
+unsigned int BST::getHeight()
+{
+	// This assumes that there is at least one node in the tree
+	unsigned int height = 1;
+
+	calculateHeight(root, height, height);
+
+	return height;
+}
+
+void BST::calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight)
+{
+	if (p->leftChild != nullptr)
+	{
+		calculateHeight(p->leftChild, height, traversalHeight + 1);
+	}
+
+	if (p->rightChild != nullptr)
+	{
+		calculateHeight(p->rightChild, height, traversalHeight + 1);
+	}
+
+	if (height < traversalHeight)
+	{
+		height = traversalHeight;
+	}
+}
+
 void BST::displayStatistics()
 {
 	double elapsedTime = (clock() - startTime) / 1000.0;
@@ -246,5 +274,6 @@ void BST::displayStatistics()
 
 	cout << "Words: " << numWords << "\n";
 	cout << "Unique Words: " << numUniqueWords << "\n";
+	cout << "Height: " << getHeight() << "\n";
 	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

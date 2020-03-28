@@ -31,6 +31,8 @@ private:
 	void calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords);
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
 	void print2DUtil(node* root, int space);
+	unsigned int getHeight();
+	void calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight);
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 

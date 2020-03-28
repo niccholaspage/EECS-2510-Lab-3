@@ -271,7 +271,7 @@ void SkipList::larryList()
 	}
 }
 
-void SkipList::calculateNumWordsAndSlowLaneNodes(unsigned int& numWords, unsigned int& numUniqueWords)
+void SkipList::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
 {
 	numWords = 0;
 	numUniqueWords = 0;
@@ -303,9 +303,9 @@ void SkipList::displayStatistics()
 	cout << "Height: " << height << "\n";
 	cout << "Number of Items: " << numberOfItems << "\n";
 
-	unsigned int numWords, numUniqueWords, numSlowLaneNodes;
+	unsigned int numWords, numUniqueWords;
 
-	calculateNumWordsAndSlowLaneNodes(numWords, numUniqueWords);
+	calculateNumWords(numWords, numUniqueWords);
 
 	cout << "Words: " << numWords << "\n";
 	cout << "Unique Words: " << numUniqueWords << "\n";

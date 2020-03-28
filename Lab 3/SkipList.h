@@ -39,7 +39,7 @@ private:
 
 	node* search(const char word[50], bool& found);
 
-	void calculateNumWordsAndSlowLaneNodes(unsigned int& numWords, unsigned int& numUniqueWords);
+	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
 
 	node* head;
 	node* tail;

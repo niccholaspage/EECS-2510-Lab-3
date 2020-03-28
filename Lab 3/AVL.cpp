@@ -72,6 +72,7 @@ void AVL::insert(const char word[50])
 		y->leftChild = y->rightChild = nullptr;
 		y->balanceFactor = 0;
 		root = y;
+		numberOfNoRotationsNeeded++;
 		return;
 	}
 
@@ -153,6 +154,7 @@ void AVL::insert(const char word[50])
 	{
 		a->balanceFactor = d;
 		numberOfBalanceFactorChanges++;
+		numberOfNoRotationsNeeded++;
 		return;
 	}
 
@@ -160,6 +162,7 @@ void AVL::insert(const char word[50])
 	{
 		a->balanceFactor = 0;
 		numberOfBalanceFactorChanges++;
+		numberOfNoRotationsNeeded++;
 		return;
 	}
 

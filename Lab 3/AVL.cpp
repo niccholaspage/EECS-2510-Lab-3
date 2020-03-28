@@ -210,123 +210,143 @@ void AVL::insert(const char word[50])
 		return;
 	}
 
-	if (d == +1)
-	{
-		if (b->balanceFactor == +1)
+	// If we took neither of the two returns above, then the tree was acceptably imbalanced, and is now
+	// unacceptably imbalanced, so we have to detrmine which rotation type we need to apply.
+
+	if (d == +1)	// this is a left imbalance (the left subtree is too tall)
+	{				// Is it a LL or LR rotation?
+		if (b->balanceFactor == +1) // LL rotation
 		{
+			// At this point, we need to change the child pointers of nodes
+			// a and b to reflect the rotation.
+
 			// cout << "Slide 57: Attempting LL rotation:\n";
 			// cout << "Node A: " << a->word << endl;
 			// cout << "Node B: " << b->word << endl;
+			
+			a->leftChild = b->rightChild;	// We set A's left child to be b's right child,
+			b->rightChild = a;				// and set b's right child to be a.
+			numberOfReferenceChanges += 2;	// since we've changed two references, we increment the count by two.
+			a->balanceFactor = b->balanceFactor = 0;	// since nodes a and b are both balanced now, we set their balance factors to 0,
+			numberOfBalanceFactorChanges += 2;			// and increment the balance factor changes by two.
 
-			a->leftChild = b->rightChild;
-			b->rightChild = a;
-			numberOfReferenceChanges += 2;
-			a->balanceFactor = b->balanceFactor = 0;
-			numberOfBalanceFactorChanges += 2;
-
-			numberOfLeftLeftRotations++;
+			numberOfLeftLeftRotations++;				// since we've performed a left left rotation, we increment the count by one.
 		}
-		else
+		else // LR rotation: we have three different cases to handle in terms of the balance factors
 		{
+			// At this point, we need to adjust the child pointers of nodes
+			// a, b, and c to reflect the new post-rotation structure.
 			// cout << "Slide 57: Attempting LR rotation\n";
-			c = b->rightChild;
-			cl = c->leftChild;
+			c = b->rightChild; // c is b's right child
+			cl = c->leftChild; // cl and cr are c's left and right children.
 			cr = c->rightChild;
 
 			// cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
 			// cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
 			// cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
 
-			c->leftChild = b;
-			c->rightChild = a;
-			b->rightChild = cl;
-			a->leftChild = cr;
+			c->leftChild = b;	// We set c's left child to be b,
+			c->rightChild = a;	// set c's right child to be a,
+			b->rightChild = cl;	// set b's right child to be c's old left child,
+			a->leftChild = cr;	// and set a's left child to be c's old right child.
 
-			numberOfReferenceChanges += 4;
+			numberOfReferenceChanges += 4;	// since we've changed four references, we increment this count by 4.
 
-			switch (c->balanceFactor)
+			switch (c->balanceFactor) // at this point, we need to adjust a and b's balance factors based on c's current balance factor.
 			{
-			case 0: a->balanceFactor = b->balanceFactor = 0; break;
-			case -1: b->balanceFactor = +1; a->balanceFactor = 0; break;
-			case 1: a->balanceFactor = -1; b->balanceFactor = 0; break;
+			case 0: a->balanceFactor = b->balanceFactor = 0; break;			// if c's balance factor is 0, than a and b are now both balanced.
+			case -1: b->balanceFactor = +1; a->balanceFactor = 0; break;	// if c's balance factor is -1, b has a balance factor of 1, and a is completely balanced.
+			case 1: a->balanceFactor = -1; b->balanceFactor = 0; break;		// if c's balance factor is 1, a has a balance factor of -1, and b is completely balanced.
 			}
 
-			c->balanceFactor = 0;
-			b = c;
+			c->balanceFactor = 0;	// regardless of what's happened, c is now balanced.
+			b = c;					// b is the root of the now-rebalanced subtree.
 
-			numberOfBalanceFactorChanges += 3;
-			numberOfLeftRightRotations++;
+			numberOfBalanceFactorChanges += 3;	// we've changed a, b, and c's balance factors, so we increment this count by three.
+			numberOfLeftRightRotations++;		// since we've performed a left right rotation, we increment the count by one.
 		}
 	}
-	else
+	else // d = -1 at this point, so this is a right imbalance.
 	{
 		if (b->balanceFactor == -1)
 		{
+			// At this point, we need to change the child pointers of nodes
+			// a and b to reflect the rotation.
+
 			// cout << "Slide 57: Attempting RR rotation:\n";
 			// cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
 			// cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
 
-			a->rightChild = b->leftChild;
-			b->leftChild = a;
-			numberOfReferenceChanges += 2;
-			a->balanceFactor = b->balanceFactor = 0;
-			numberOfBalanceFactorChanges += 2;
+			a->rightChild = b->leftChild;	// We set a's right child to be b's right child,
+			b->leftChild = a;				// and set b's left child to be a.
+			numberOfReferenceChanges += 2;	// since we've changed two references, we increment the count by two.
+			a->balanceFactor = b->balanceFactor = 0;	// since nodes a and b are both balanced now, we set their balance factors to 0,
+			numberOfBalanceFactorChanges += 2;			// and increment the balance factor changes by two.
 
-			numberOfRightRightRotations++;
+			numberOfRightRightRotations++;				// since we've performed a left left rotation, we increment the count by one.
 		}
-		else
+		else // RL rotation: we have three different cases to handle in terms of the balance factors
 		{
+			// At this point, we need to adjust the child pointers of nodes
+			// a, b, and c to reflect the new post-rotation structure.
 			// cout << "Attempting RL rotation\n";
-			c = b->leftChild;
-			cl = c->leftChild;
+			c = b->leftChild;	// c is b's left child
+			cl = c->leftChild;	// cl and cr are c's left and right children.
 			cr = c->rightChild;
 
 			// cout << "Node A: " << a->word << ", balance factor: " << a->balanceFactor << endl;
 			// cout << "Node B: " << b->word << ", balance factor: " << b->balanceFactor << endl;
 			// cout << "Node C: " << c->word << ", balance factor: " << c->balanceFactor << endl;
 
-			c->rightChild = b;
-			c->leftChild = a;
-			b->leftChild = cr;
-			a->rightChild = cl;
+			c->rightChild = b;	// We set c's right child to be b,
+			c->leftChild = a;	// set c's left child to be a,
+			b->leftChild = cr;	// set b's left child to be c's old right child,
+			a->rightChild = cl;	// and set a's right child to be c's old left child.
 
-			numberOfReferenceChanges += 4;
+			numberOfReferenceChanges += 4;	// since we've changed four references, we increment this count by 4.
 
-			switch (c->balanceFactor)
+			switch (c->balanceFactor) // at this point, we need to adjust a and b's balance factors based on c's current balance factor.
 			{
-			case 0: a->balanceFactor = b->balanceFactor = 0; break;
-			case -1: a->balanceFactor = +1; b->balanceFactor = 0; break;
-			case 1: b->balanceFactor = -1; a->balanceFactor = 0; break;
+			case 0: a->balanceFactor = b->balanceFactor = 0; break;			// if c's balance factor is 0, than a and b are now both balanced.
+			case -1: a->balanceFactor = +1; b->balanceFactor = 0; break;	// if c's balance factor is -1, a has a balance factor of 1, and b is completely balanced.
+			case 1: b->balanceFactor = -1; a->balanceFactor = 0; break;		// if c's balance factor is 1, b has a balance factor of -1, and a is completely balanced.
 			}
 
-			c->balanceFactor = 0;
-			b = c;
+			c->balanceFactor = 0;	// regardless of what's happened, c is now balanced.
+			b = c;					// b is the root of the now-rebalanced subtree.
 
-			numberOfBalanceFactorChanges += 3;
+			numberOfBalanceFactorChanges += 3;	// we've changed a, b, and c's balance factors, so we increment this count by three.
 
-			numberOfRightLeftRotations++;
+			numberOfRightLeftRotations++;		// since we've performed a right left rotation, we increment the count by one.
 		}
 	}
 
+	// Now we finish up. The subtree rooted at a has been rebalanced, and needs to be
+	// the new child of f. The original subtree of f had root a.
+
+	// Did we rebalance the whole tree's root?
 	if (f == nullptr)
 	{
-		root = b;
-		numberOfReferenceChanges++;
-		return;
+		root = b; // We set the root to pointer b - we are done.
+		numberOfReferenceChanges++; // increment the number of reference changes since we just changed the root,
+		return;						// and exit.
 	}
 
+	/// The root of what we rebalanced was a; now it's b. If the subtree we rebalanced was left of f,
+	// then b needs to be left of f; if a was right of f, then b now needs to be right of f.
+	//
 	if (a == f->leftChild)
 	{
 		f->leftChild = b;
-		numberOfReferenceChanges++;
-		return;
+		numberOfReferenceChanges++; // we increment the number of reference changes since we just changed f's left child,
+		return;						// and exit.
 	}
 
 	if (a == f->rightChild)
 	{
 		f->rightChild = b;
-		numberOfReferenceChanges++;
-		return;
+		numberOfReferenceChanges++; // we increment the number of reference changes since we just changed f's left child,
+		return;						// and exit.
 	}
 
 	cout << "We should never be here!\n";

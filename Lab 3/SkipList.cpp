@@ -271,11 +271,10 @@ void SkipList::larryList()
 	}
 }
 
-void SkipList::calculateNumWordsAndSlowLaneNodes(unsigned int& numWords, unsigned int& numUniqueWords, unsigned int& numSlowLaneNodes)
+void SkipList::calculateNumWordsAndSlowLaneNodes(unsigned int& numWords, unsigned int& numUniqueWords)
 {
 	numWords = 0;
 	numUniqueWords = 0;
-	numSlowLaneNodes = 0;
 
 	node* p = head;
 
@@ -284,15 +283,10 @@ void SkipList::calculateNumWordsAndSlowLaneNodes(unsigned int& numWords, unsigne
 		p = p->down;
 	}
 
-	while (p != nullptr)
+	while (!p->right->isSentinel)
 	{
-		if (!p->isSentinel)
-		{
-			numWords += p->count;
-			numUniqueWords += 1;
-		}
-
-		numSlowLaneNodes++;
+		numWords += p->count;
+		numUniqueWords += 1;
 
 		p = p->right;
 	}
@@ -311,10 +305,9 @@ void SkipList::displayStatistics()
 
 	unsigned int numWords, numUniqueWords, numSlowLaneNodes;
 
-	calculateNumWordsAndSlowLaneNodes(numWords, numUniqueWords, numSlowLaneNodes);
+	calculateNumWordsAndSlowLaneNodes(numWords, numUniqueWords);
 
 	cout << "Words: " << numWords << "\n";
 	cout << "Unique Words: " << numUniqueWords << "\n";
-	cout << "Slow lane Nodes: " << numSlowLaneNodes << "\n";
 	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
 }

@@ -61,5 +61,5 @@ private:
 	unsigned long long numberOfRightRightRotations = 0;		// Keeps track of the number of times a right right rotation is performed on node insert
 	unsigned long long numberOfRightLeftRotations = 0;		// Keeps track of the number of times a right left rotation is performed on node insert
 
-	clock_t startTime;
+	clock_t startTime; // A variable that represents the time at very beginning of tree construction
 };

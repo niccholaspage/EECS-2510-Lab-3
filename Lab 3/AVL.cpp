@@ -1,4 +1,21 @@
+//==============================================================================================
+// File: AVL.cpp - Adelson-Velsky and Landis tree implementation
+// c.f.: AVL.h
+//
+// This class implements an AVL tree, filled with nodes as declared in AVL.h.  
+// Each node contains a word, the number of times the word has appeared, pointers to 
+// the left and right child of the node, and the balance factor of the node. This tree
+// performs different types of rotations based on the balance factors of nodes in the tree
+// as nodes are inserted into it.
+//
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:       Mar 31, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #include "AVL.h"
+
 
 AVL::AVL()
 {

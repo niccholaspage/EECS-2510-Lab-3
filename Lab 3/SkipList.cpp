@@ -1,3 +1,19 @@
+//==============================================================================================
+// File: SkipList.cpp - Skip list implementation
+// c.f.: SkipList.h
+//
+// This class implements a Skip list, filled with nodes as declared in SkipList.h.  
+// Each node contains a word, the number of times the word has appeared, pointers to 
+// the left, right, up and down nodes, and a boolean representing whether a node is sentinel.
+// This datatype does not perform any rotations like the trees in this project, but instead is
+// a lane system where nodes are inserted into fast lanes above the slow lane based on a coin flip.
+//
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:       Mar 31, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #include "SkipList.h"
 
 SkipList::SkipList()

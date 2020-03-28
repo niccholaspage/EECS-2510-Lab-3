@@ -1,3 +1,18 @@
+//==============================================================================================
+// File: BST.cpp - Binary search tree implementation
+// c.f.: BST.h
+//
+// This class implements a binary search tree, filled with nodes as declared in BST.h.  
+// Each node contains a word, the number of times the word has appeared, and pointers to 
+// the left and right child of the node. This tree does not perform any rotations or fix-ups
+// of the nodes inserted into it, meaning that no rebalancing is done.
+//
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:       Mar 31, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #include "BST.h"
 
 BST::BST()

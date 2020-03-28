@@ -1,3 +1,19 @@
+//==============================================================================================
+// File: RBT.cpp - Red-Black tree implementation
+// c.f.: RBT.h
+//
+// This class implements an RBT tree, filled with nodes as declared in RBT.h.  
+// Each node contains a word, the number of times the word has appeared, pointers to 
+// the left and right child of the node, and the color of the node, which is either red or black.
+// This tree performs different types of rotations based on the color of nodes in the tree as nodes
+// are inserted into it.
+//
+// Author:     Nicholas Nassar, University of Toledo
+// Class:      EECS 2510-001 Non-Linear Data Structures, Spring 2020
+// Instructor: Dr.Thomas
+// Date:       Mar 31, 2020
+// Copyright:  Copyright 2020 by Nicholas Nassar. All rights reserved.
+
 #include "RBT.h"
 
 RBT::RBT()

@@ -18,7 +18,10 @@
 
 RBT::RBT()
 {
-	startTime = clock();
+	// constructor -- there's nothing to do other then setting our start
+	// time, initializing our nil node, and making sure the root pointer is nil.
+	//
+	startTime = clock(); // We set the starting time position to the current time.
 
 	nil = new node();
 
@@ -343,26 +346,35 @@ void RBT::list(int& index, node* p)
 
 void RBT::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
 {
+	// This method calculates the number of words and unique words in the tree.
+	// The method takes two unsigned integer references that it initializes to zero.
+	// It then calls the recursive form of this function on the root node. This will
+	// go through each node in the tree and increment both word counters in each call.
+	//
 	numWords = 0;
 	numUniqueWords = 0;
 
-	calculateNumWords(root, numWords, numUniqueWords);
+	calculateNumWords(root, numWords, numUniqueWords); // We call the calculation method at the root node so we can count the whole tree.
 }
 
 void RBT::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords)
 {
-	if (p->leftChild != nil)
+	// This method does a recursive traversal through all of the nodes in the tree
+	// and increments the references to the number of words and unique words through
+	// each call.
+	//
+	if (p->leftChild != nullptr) // If the left child of the node is not null,
 	{
-		calculateNumWords(p->leftChild, numWords, numUniqueWords);
+		calculateNumWords(p->leftChild, numWords, numUniqueWords); // we call the method on the left child of the node.
 	}
 
-	if (p->rightChild != nil)
+	if (p->rightChild != nullptr) // If the right child of the node is not null,
 	{
-		calculateNumWords(p->rightChild, numWords, numUniqueWords);
+		calculateNumWords(p->rightChild, numWords, numUniqueWords); // we call the method on the left child of the node.
 	}
 
-	numWords += p->count;
-	numUniqueWords += 1;
+	numWords += p->count;	// We increment the number of words by the node's count,
+	numUniqueWords += 1;	// and the number of unique words by one, as each node represents a unique word.
 }
 
 unsigned int RBT::getHeight()

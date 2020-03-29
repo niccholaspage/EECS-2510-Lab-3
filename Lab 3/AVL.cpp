@@ -496,24 +496,33 @@ void AVL::calculateHeight(node* p, unsigned int& height, unsigned int traversalH
 
 void AVL::displayStatistics()
 {
+	// This method displays statistics related to the number of words in the tree and
+	// insertion statistics as nodes are inserted into the AVL tree. It also
+	// displays the elapsed time since the construction of the AVL tree.
+	//
+	// We get the current time, subtract the start time from it, and divide by 1000
+	// to get the elapsed time in seconds. We calculate the elapsed time here since
+	// we don't want our printing and calculating of stats to be included in the elapsed
+	// time.
 	double elapsedTime = (clock() - startTime) / 1000.0;
 
-	cout << "AVL Stats:\n";
-	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n";
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
-	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n";
-	cout << "LL Rotations: " << numberOfLeftLeftRotations << "\n";
-	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";
-	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";
-	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";
+	cout << "AVL Stats:\n"; // Print out a header specifying that these are AVL stats
+	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
+	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n"; // Print out the total number of isertions without any rotations needed
+	cout << "LL Rotations: " << numberOfLeftLeftRotations << "\n";		// Print out the total number of left left rotations made
+	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";		// Print out the total number of left right rotations made
+	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";	// Print out the total number of right right rotations made
+	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";		// Print out the total number of right left rotations made
 
-	unsigned int numWords, numUniqueWords;
+	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and uique words in the tree
 
+	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n";
-	cout << "Unique Words: " << numUniqueWords << "\n";
-	cout << "Height: " << getHeight() << "\n";
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
+	cout << "Words: " << numWords << "\n"; // Print out the total number of words
+	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

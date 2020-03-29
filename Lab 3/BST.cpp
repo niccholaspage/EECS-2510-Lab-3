@@ -250,19 +250,26 @@ unsigned int BST::getHeight()
 
 void BST::calculateHeight(node* p, unsigned int& height, unsigned int traversalHeight)
 {
-	if (p->leftChild != nullptr)
+	// This method does a recursive traversal of the given node and gets called on every node
+	// underneath it. As it traverses through each node, the traversal height gets incremented
+	// by one, and the height gets changed to the traversal height if the traversal height is greater
+	// than it.
+	//
+	if (p->leftChild != nullptr) // If p has a left child,
 	{
+		// we recursively call calculateHeight on it, incrementing the traversal height by one since we have gone down a level of the tree.
 		calculateHeight(p->leftChild, height, traversalHeight + 1);
 	}
 
-	if (p->rightChild != nullptr)
+	if (p->rightChild != nullptr) // If p has a right child,
 	{
+		// we recursively call calculateHeight on it, incrementing the traversal height by one since we have gone down a level of the tree.
 		calculateHeight(p->rightChild, height, traversalHeight + 1);
 	}
 
-	if (height < traversalHeight)
+	if (height < traversalHeight)	// If the height is less than the traversal height,
 	{
-		height = traversalHeight;
+		height = traversalHeight;	// than we set the height to the traversal height, as we now have a new height of the tree.
 	}
 }
 

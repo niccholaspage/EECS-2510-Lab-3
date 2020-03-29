@@ -379,9 +379,20 @@ void RBT::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUn
 
 unsigned int RBT::getHeight()
 {
-	// This assumes that there is at least one node in the tree
-	unsigned int height = 1;
+	// This method returns the height of the tree. In this program, the height is NOT
+	// the number of child pointer links required to get from the rot to the deepest leaf. Instead,
+	// it is the amount of levels of a tree. For example, a tree with no nodes has a height of zero,
+	// and a tree with only a root node has a height of 1.
+	//
+	if (root == nil)
+	{
+		return 0;
+	}
 
+	unsigned int height = 1; // Since we have at least a root node, we start at a height of one.
+
+	// We call our calculate height method on the root node, which will recursively go through
+	// each node in the tree, and properly update our height variable with the height of the entire tree.
 	calculateHeight(root, height, height);
 
 	return height;

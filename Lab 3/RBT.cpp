@@ -363,12 +363,12 @@ void RBT::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUn
 	// and increments the references to the number of words and unique words through
 	// each call.
 	//
-	if (p->leftChild != nullptr) // If the left child of the node is not null,
+	if (p->leftChild != nil) // If the left child of the node is not null,
 	{
 		calculateNumWords(p->leftChild, numWords, numUniqueWords); // we call the method on the left child of the node.
 	}
 
-	if (p->rightChild != nullptr) // If the right child of the node is not null,
+	if (p->rightChild != nil) // If the right child of the node is not null,
 	{
 		calculateNumWords(p->rightChild, numWords, numUniqueWords); // we call the method on the left child of the node.
 	}

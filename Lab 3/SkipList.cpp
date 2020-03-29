@@ -18,7 +18,12 @@
 
 SkipList::SkipList()
 {
-	startTime = clock();
+	// constructor -- we set our start time and initialize the head and
+	// tail nodes of our skip list. We also intialize the number of items
+	// to zero and the height of the list to one because we only have one
+	// lane so far.
+	//
+	startTime = clock();  // We set the starting time position to the current time.
 
 	head = createSentinelNode();
 	tail = createSentinelNode();
@@ -28,9 +33,6 @@ SkipList::SkipList()
 
 	numberOfItems = 0;
 	height = 1;
-	numberOfKeyComparisonsMade = 0;
-	numberOfReferenceChanges = 0;
-	numberOfHeadsCoinTosses = 0;
 
 	coin = mt19937(time(NULL));
 }

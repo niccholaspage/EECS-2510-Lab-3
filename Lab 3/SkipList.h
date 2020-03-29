@@ -56,9 +56,9 @@ private:
 
 	int height;
 	int numberOfItems;
-	unsigned long long numberOfKeyComparisonsMade;
-	unsigned long long numberOfReferenceChanges;
-	unsigned long long numberOfHeadsCoinTosses;
+	unsigned long long numberOfKeyComparisonsMade = 0;
+	unsigned long long numberOfReferenceChanges = 0;
+	unsigned long long numberOfHeadsCoinTosses = 0;
 
 	clock_t startTime;
 };

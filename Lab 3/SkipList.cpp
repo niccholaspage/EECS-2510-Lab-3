@@ -332,21 +332,30 @@ unsigned int SkipList::getTotalNodes()
 
 void SkipList::displayStatistics()
 {
+	// This method displays statistics related to the number of words in the list and
+	// insertion statistics as nodes are inserted into the skip list. It also
+	// displays the elapsed time since the construction of the skip list.
+	//
+	// We get the current time, subtract the start time from it, and divide by 1000
+	// to get the elapsed time in seconds. We calculate the elapsed time here since
+	// we don't want our printing and calculating of stats to be included in the elapsed
+	// time.
 	double elapsedTime = (clock() - startTime) / 1000.0;
 
-	cout << "Skip List Stats:\n";
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
-	cout << "Coin Tosses that were heads: " << numberOfHeadsCoinTosses << "\n";
-	cout << "Height: " << height << "\n";
-	cout << "Number of Items: " << numberOfItems << "\n";
-	cout << "Total Nodes: " << getTotalNodes() << "\n";
+	cout << "Skip List Stats:\n"; // Print out a header specifying that these are skip list stats
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
+	cout << "Coin Tosses that were heads: " << numberOfHeadsCoinTosses << "\n"; // Print out the number of coin tosses that resulted in heads
+	cout << "Number of Items: " << numberOfItems << "\n"; // Print out the number of items in the skip list
+	cout << "Total Nodes: " << getTotalNodes() << "\n"; // Print out the total number of nodes in the list (meaning every node in every lane)
 
-	unsigned int numWords, numUniqueWords;
+	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the list
 
+	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n";
-	cout << "Unique Words / Slow Lane Nodes: " << numUniqueWords << "\n";
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
+	cout << "Words: " << numWords << "\n"; // Print out the total number of words
+	cout << "Unique Words / Slow Lane Nodes: " << numUniqueWords << "\n"; // Print out the total number of unique words / slow lane nodes
+	cout << "Height: " << height << "\n"; // Print out the height of the skip list
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

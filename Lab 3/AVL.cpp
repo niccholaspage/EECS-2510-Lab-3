@@ -23,7 +23,7 @@ AVL::AVL()
 	// time and making sure the root pointer is a nullptr. The default value
 	// is in the header, but I am doing it again for redundancy and clarity.
 	//
-	startTime = clock();
+	startTime = clock(); // We set the starting time position to the current time.
 
 	root = nullptr; // When a new binary search tree is constructed, there is no root node.
 }
@@ -75,7 +75,15 @@ void AVL::traverseDestruct(node* p) {
 
 void AVL::insert(const char word[50])
 {
-	// TODO: Place comments. This pseudocode is found in slide 51 of Lecture 12
+	// To add a word to the tree, we need to traverse through the nodes of the tree,
+	// looking for the word. If we find it, we increment the node's counter and exit;
+	// otherwise, we continue traversing through the node's children, going through the
+	// left child if the word is less than the node's word that we are traversing, or
+	// the right child if the word is greater than the node's word we are traversing.
+	// If it is not found, we just make a new node and attach it to the tree. After
+	// we have inserted the node, we check if we have an unacceptable imbalance in the
+	// tree and fix it if needs be.
+	//
 	node* y;				// The new node we will be inserting
 	node* a, * b, * f;		// see below...
 	node* p, * q;			// ...
@@ -409,26 +417,35 @@ void AVL::list(int& index, node* p)
 
 void AVL::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
 {
+	// This method calculates the number of words and unique words in the tree.
+	// The method takes two unsigned integer references that it initializes to zero.
+	// It then calls the recursive form of this function on the root node. This will
+	// go through each node in the tree and increment both word counters in each call.
+	//
 	numWords = 0;
 	numUniqueWords = 0;
 
-	calculateNumWords(root, numWords, numUniqueWords);
+	calculateNumWords(root, numWords, numUniqueWords); // We call the calculation method at the root node so we can count the whole tree.
 }
 
 void AVL::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords)
 {
-	if (p->leftChild != nullptr)
+	// This method does a recursive traversal through all of the nodes in the tree
+	// and increments the references to the number of words and unique words through
+	// each call.
+	//
+	if (p->leftChild != nullptr) // If the left child of the node is not null,
 	{
-		calculateNumWords(p->leftChild, numWords, numUniqueWords);
+		calculateNumWords(p->leftChild, numWords, numUniqueWords); // we call the method on the left child of the node.
 	}
 
-	if (p->rightChild != nullptr)
+	if (p->rightChild != nullptr) // If the right child of the node is not null,
 	{
-		calculateNumWords(p->rightChild, numWords, numUniqueWords);
+		calculateNumWords(p->rightChild, numWords, numUniqueWords); // we call the method on the left child of the node.
 	}
 
-	numWords += p->count;
-	numUniqueWords += 1;
+	numWords += p->count;	// We increment the number of words by the node's count,
+	numUniqueWords += 1;	// and the number of unique words by one, as each node represents a unique word.
 }
 
 unsigned int AVL::getHeight()

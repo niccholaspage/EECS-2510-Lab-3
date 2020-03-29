@@ -27,7 +27,7 @@ public:
 	void insert(const char word[50]); // adds a word to the skip list
 	void list(); // Prints a list of all words in the skip list.
 	void displayStatistics(); // Displays statistics about the skip list operations performed.
-	void larryList();
+	void larryList(); // Displays the skip list sideways so that all of the nodes and lanes can be seen
 private:
 	struct node
 	{

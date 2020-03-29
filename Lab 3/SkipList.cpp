@@ -257,31 +257,32 @@ void SkipList::list()
 
 void SkipList::larryList()
 {
-	cout << "Height: " << height << ", amount of items: " << numberOfItems << "\n";
+	// This method displays the nodes in the skip list sideways so that we can
+	// easily view each lane and node in the skip list.
+	//
+	node* p = head; // Set our pointer p to the head. We will use this to get to the slowest lane's head.
 
-	node* p = head;
-
-	while (p->down != nullptr)
+	while (p->down != nullptr)	// While the pointer below p isn't null,
 	{
-		p = p->down;
+		p = p->down;			// we set p to it.
 	}
 
-	p = p->right;
+	p = p->right; // We don't want to print the head, so we set to p to p's right node.
 
-	while (!p->isSentinel)
+	while (!p->isSentinel) // While p isn't a sentinel node,
 	{
-		node* q = p;
+		node* q = p; // We will set a new pointer q to p.
 
 		do
 		{
-			cout << q->word << " ";
+			cout << q->word << " ";	// Print node q's word,
 
-			q = q->up;
-		} while (q != nullptr);
+			q = q->up;				// and set q to q's upper node
+		} while (q != nullptr);		// while q isn't null.
 
-		cout << endl;
+		cout << endl; // We've finished printing this column of nodes, we print out a newline.
 
-		p = p->right;
+		p = p->right; // Set p to p's right because we are now going to repeat this with the next column of nodes.
 	}
 }
 

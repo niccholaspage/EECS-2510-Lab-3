@@ -275,18 +275,25 @@ void BST::calculateHeight(node* p, unsigned int& height, unsigned int traversalH
 
 void BST::displayStatistics()
 {
+	// This method displays statistics related to the number of words in the tree and
+	// insertion statistics as nodes are inserted into the binary search tree. It also
+	// displays the elapsed time since the construction of the binary search tree.
+	//
+	// We get the current time, subtract the start time from it, and divide by 1000
+	// to get the elapsed time in seconds.
 	double elapsedTime = (clock() - startTime) / 1000.0;
 
-	cout << "BST Stats:\n";
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
+	cout << "BST Stats:\n"; // Print out a header specifying that these are BST stats
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
 
-	unsigned int numWords, numUniqueWords;
+	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and uique words in the tree
 
+	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n";
-	cout << "Unique Words: " << numUniqueWords << "\n";
-	cout << "Height: " << getHeight() << "\n";
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
+	cout << "Words: " << numWords << "\n"; // Print out the total number of words
+	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

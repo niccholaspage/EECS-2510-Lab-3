@@ -38,7 +38,7 @@ private:
 
 	void traverseDestruct(node* p); // Traverses through the given node and deletes its children recursively as well as itself
 
-	// Calculates the number of words and unique words in the skip list.
+	// Calculates the number of words and unique words in the AVL tree.
 	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
 
 	// Recursively calculates the number of words and unique words by counting the given node's words and its two children.

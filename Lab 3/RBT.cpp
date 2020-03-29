@@ -425,23 +425,32 @@ void RBT::calculateHeight(node* p, unsigned int& height, unsigned int traversalH
 
 void RBT::displayStatistics()
 {
+	// This method displays statistics related to the number of words in the tree and
+	// insertion statistics as nodes are inserted into the RBT tree. It also
+	// displays the elapsed time since the construction of the RBT tree.
+	//
+	// We get the current time, subtract the start time from it, and divide by 1000
+	// to get the elapsed time in seconds. We calculate the elapsed time here since
+	// we don't want our printing and calculating of stats to be included in the elapsed
+	// time.
 	double elapsedTime = (clock() - startTime) / 1000.0;
 
-	cout << "RBT Stats:\n";
-	cout << "Recolorings: " << numberOfRecolorings << "\n";
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n";
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n";
-	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";
-	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n";
-	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n";
-	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n";
+	cout << "RBT Stats:\n"; // Print out a header specifying that these are RBT stats
+	cout << "Recolorings: " << numberOfRecolorings << "\n"; // Print out the number of recolorings made
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
+	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";  // Print out the total number of insertions without any fixes needed
+	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n"; // Print out the number of case 1 fixes performed
+	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n"; // Print out the number of case 2 fixes performed
+	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n"; // Print out the number of case 3 fixes performed
 
-	unsigned int numWords, numUniqueWords;
+	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and uique words in the tree
 
+	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n";
-	cout << "Unique Words: " << numUniqueWords << "\n";
-	cout << "Height: " << getHeight() << "\n";
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n";
+	cout << "Words: " << numWords << "\n"; // Print out the total number of words
+	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

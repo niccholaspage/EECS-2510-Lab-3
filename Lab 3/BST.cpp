@@ -280,7 +280,9 @@ void BST::displayStatistics()
 	// displays the elapsed time since the construction of the binary search tree.
 	//
 	// We get the current time, subtract the start time from it, and divide by 1000
-	// to get the elapsed time in seconds.
+	// to get the elapsed time in seconds. We calculate the elapsed time here since
+	// we don't want our printing and calculating of stats to be included in the elapsed
+	// time.
 	double elapsedTime = (clock() - startTime) / 1000.0;
 
 	cout << "BST Stats:\n"; // Print out a header specifying that these are BST stats

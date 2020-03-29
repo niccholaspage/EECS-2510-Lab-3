@@ -32,7 +32,7 @@ SkipList::SkipList()
 	numberOfReferenceChanges = 0;
 	numberOfHeadsCoinTosses = 0;
 
-	srand(time(NULL));
+	coin = mt19937(time(NULL));
 }
 
 SkipList::~SkipList()
@@ -151,7 +151,7 @@ void SkipList::insert(const char word[50])
 
 	int currentHeight = 1;
 
-	while (rand() & 1)
+	while (coin() & 1)
 	{
 		currentHeight++;
 		numberOfHeadsCoinTosses++;

@@ -12,8 +12,8 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-#include <stdlib.h>
 #include <time.h>
+#include <random>
 #include <iostream>
 
 using namespace std;
@@ -48,6 +48,8 @@ private:
 
 	void calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords);
 	unsigned int getTotalNodes();
+
+	mt19937 coin;
 
 	node* head;
 	node* tail;

@@ -45,6 +45,7 @@ private:
 	void calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUniqueWords);
 
 	void list(int& index, node* p); // Traverses through the children of a node as well as the node and prints
+
 	unsigned int getHeight(); // Returns the height of the tree
 
 	// Recursively calculates the height of the tree by traversing through the given node and its children

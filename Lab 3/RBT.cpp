@@ -444,7 +444,7 @@ void RBT::displayStatistics()
 	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n"; // Print out the number of case 2 fixes performed
 	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n"; // Print out the number of case 3 fixes performed
 
-	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and uique words in the tree
+	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the tree
 
 	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);

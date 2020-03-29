@@ -510,7 +510,7 @@ void AVL::displayStatistics()
 	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
-	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n"; // Print out the total number of isertions without any rotations needed
+	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n"; // Print out the total number of insertions without any rotations needed
 	cout << "LL Rotations: " << numberOfLeftLeftRotations << "\n";		// Print out the total number of left left rotations made
 	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";		// Print out the total number of left right rotations made
 	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";	// Print out the total number of right right rotations made

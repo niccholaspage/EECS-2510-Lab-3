@@ -239,7 +239,7 @@ unsigned int BST::getHeight()
 		return 0; // we have no nodes in the tree, so the height is 0.
 	}
 
-	unsigned int height = 1; // Since we have at least a root node, we start at a height of one.
+	unsigned int height = 0; // We start at a height of zero, as a root node with no children has a height of 0.
 
 	// We call our calculate height method on the root node, which will recursively go through
 	// each node in the tree, and properly update our height variable with the height of the entire tree.

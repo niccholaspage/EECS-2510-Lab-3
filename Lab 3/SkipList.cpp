@@ -82,6 +82,11 @@ SkipList::node* SkipList::createSentinelNode()
 
 SkipList::node* SkipList::search(const char word[50], bool& found)
 {
+	// This method searches through the skip list for a node in the slow lane with
+	// the given word. If a node with the word is found, it is returned and the
+	// boolean found will be set to true. If it is not found, the method will return
+	// the node just before where the one we are looking for would be if it was in the
+	// list.
 	// This searching code is from an e-mail he sent, check it when doing commenting - email sent on Tuesday, March 24
 	node* p = head;
 

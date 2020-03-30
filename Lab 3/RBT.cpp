@@ -105,6 +105,8 @@ void RBT::leftRotate(node* x)
 	x->parent = y;
 
 	numberOfReferenceChanges += 2;
+
+	numberOfLeftRotations++;
 }
 
 void RBT::rightRotate(node* x)
@@ -143,6 +145,8 @@ void RBT::rightRotate(node* x)
 	x->parent = y;
 
 	numberOfReferenceChanges += 2;
+
+	numberOfRightRotations++;
 }
 
 void RBT::insert(const char word[50])
@@ -439,6 +443,8 @@ void RBT::displayStatistics()
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
 	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";  // Print out the total number of insertions without any fixes needed
+	cout << "Left Rotations: " << numberOfLeftRotations << "\n"; // Print out the number of left rotations performed
+	cout << "Right Rotations: " << numberOfRightRotations << "\n"; // Print out the number of right rotations performed
 	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n"; // Print out the number of case 1 fixes performed
 	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n"; // Print out the number of case 2 fixes performed
 	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n"; // Print out the number of case 3 fixes performed

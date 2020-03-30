@@ -74,6 +74,8 @@ private:
 	unsigned long long numberOfReferenceChanges = 0;	// Keeps track of the number of times the root pointer or child pointers change.
 	unsigned long long numberOfKeyComparisonsMade = 0;	// Keeps track of the number of word key comparisons during tree inserts.
 	unsigned long long numberOfNoFixesNeeded = 0;		// Keeps track of the number of times a new node is inserted without a fix performed on the tree.
+	unsigned long long numberOfLeftRotations = 0;		// Keeps track of the number of left rotations made on new node insertion.
+	unsigned long long numberOfRightRotations = 0;		// Keeps track of the number of right rotations made on new node insertion.
 	unsigned long long numberOfCase1Fixes = 0;			// Keeps track of the number of times a case 1 fix is performed on new node insertion.
 	unsigned long long numberOfCase2Fixes = 0;			// Keeps track of the number of times a case 2 fix is performed on new node insertion.
 	unsigned long long numberOfCase3Fixes = 0;			// Keeps track of the number of times a case 3 fix is performed on new node insertion.

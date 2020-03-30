@@ -451,13 +451,13 @@ void AVL::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUn
 unsigned int AVL::getHeight()
 {
 	// This method returns the height of the tree. In this program, the height is NOT
-	// the number of child pointer links required to get from the rot to the deepest leaf. Instead,
+	// the number of child pointer links required to get from the root to the deepest leaf. Instead,
 	// it is the amount of levels of a tree. For example, a tree with no nodes has a height of zero,
 	// and a tree with only a root node has a height of 1.
 	//
-	if (root == nullptr)
+	if (root == nullptr) // If there is no root,
 	{
-		return 0;
+		return 0; // we have no nodes in the tree, so the height is 0.
 	}
 
 	unsigned int height = 1; // Since we have at least a root node, we start at a height of one.

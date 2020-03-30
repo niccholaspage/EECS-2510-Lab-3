@@ -87,9 +87,9 @@ void BST::insert(const char word[50])
 	{
 		q = p; // Set our lagging pointer to q
 
-		int compareValue = strcmp(word, p->word);
+		int compareValue = strcmp(word, p->word); // Compare the word we are inserting to p's word
 
-		numberOfKeyComparisonsMade++;
+		numberOfKeyComparisonsMade++; // Increment our number of key comparisons as we just made one
 
 		if (compareValue < 0) // Check if the word we are inserting is less than p's word
 		{
@@ -133,10 +133,10 @@ void BST::insert(const char word[50])
 			q->rightChild = newNode; // so we set q's right child to the new node.
 		}
 
-		numberOfKeyComparisonsMade++;
+		numberOfKeyComparisonsMade++; // Since we did another key comparison, we increment our counter
 	}
 
-	numberOfReferenceChanges++;
+	numberOfReferenceChanges++; // We have changed a single reference above so we increment our reference change coutner
 }
 
 void BST::list()
@@ -230,13 +230,13 @@ void BST::calculateNumWords(node* p, unsigned int& numWords, unsigned int& numUn
 unsigned int BST::getHeight()
 {
 	// This method returns the height of the tree. In this program, the height is NOT
-	// the number of child pointer links required to get from the rot to the deepest leaf. Instead,
+	// the number of child pointer links required to get from the root to the deepest leaf. Instead,
 	// it is the amount of levels of a tree. For example, a tree with no nodes has a height of zero,
 	// and a tree with only a root node has a height of 1.
 	//
-	if (root == nullptr)
+	if (root == nullptr) // If there is no root,
 	{
-		return 0;
+		return 0; // we have no nodes in the tree, so the height is 0.
 	}
 
 	unsigned int height = 1; // Since we have at least a root node, we start at a height of one.

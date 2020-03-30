@@ -25,50 +25,59 @@ SkipList::SkipList()
 	//
 	startTime = clock();  // We set the starting time position to the current time.
 
-	head = createSentinelNode();
+	head = createSentinelNode(); // We set our head and tail pointers to new sentinel nodes
 	tail = createSentinelNode();
 
-	head->right = tail;
-	tail->left = head;
+	head->right = tail; // Our tail node is to the right of our head node, so we set head's right
+	tail->left = head;	// aswell as tail's left.
 
-	numberOfItems = 0;
-	height = 1;
+	numberOfItems = 0;	// We start with zero items in the list.
+	height = 1;			// We also start with a height of 1, as we only have one lane in the skip list in the beginning.
 
+	// We construct a Mersenne Twister Engine to handle our
+	// random number generation, seeding it with the current time.
 	coin = mt19937(time(NULL));
 }
 
 SkipList::~SkipList()
 {
-	node* p = head;
+	// On deconstruction, we have to delete the entire list by
+	// deleting each node in the list, one by one.
+	//
+	node* p = head; // We start at the head of the list.
 
-	while (p != nullptr)
+	while (p != nullptr) // While p is not nullptr,
 	{
-		node* q = p->right;
+		node* q = p->right;		// We set q to refer to p's right so we can delete the entire row.
 
-		while (q != nullptr)
+		while (q != nullptr)	// While q is not nullptr,
 		{
-			node* del = q;
+			node* del = q;	// We set a deletion pointer so we can go to the right of q before we delete it,
 
-			q = q->right;
+			q = q->right;	// we set q to q's right,
 
-			delete del;
+			delete del;		// and we delete our deletion pointer.
 		}
 
-		node* del = p;
+		node* del = p;	// We set a deletion pointer so we can go below p before we delete it,
 
-		p = p->down;
+		p = p->down;	// set p to be p's down pointer,
 
-		delete del;
+		delete del;		// and delete our deletion pointer.
 	}
 }
 
 SkipList::node* SkipList::createSentinelNode()
 {
-	node* newNode = new node();
+	// This method is a convenience method to create a sentinel node,
+	// so that we don't have to repeatedly set isSentinel on construction
+	// of a sentinel node.
+	//
+	node* newNode = new node(); // We construct a new node,
 
-	newNode->isSentinel = true;
+	newNode->isSentinel = true;	// mark it as sentinel,
 
-	return newNode;
+	return newNode;				// and return the node pointer.
 }
 
 SkipList::node* SkipList::search(const char word[50], bool& found)

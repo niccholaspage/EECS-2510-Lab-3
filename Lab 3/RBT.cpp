@@ -201,7 +201,6 @@ void RBT::insert(const char word[50])
 	}
 
 	z->leftChild = z->rightChild = nil;
-	numberOfReferenceChanges += 2;
 	z->color = RED;
 
 	insertFixup(z);

@@ -88,48 +88,49 @@ SkipList::node* SkipList::search(const char word[50], bool& found)
 	// the node just before where the one we are looking for would be if it was in the
 	// list.
 	// This searching code is from an e-mail he sent, check it when doing commenting - email sent on Tuesday, March 24
-	node* p = head;
+	node* p = head; // Start at the head since we will be searching from the beginning of the list
 
-	while (true)
+	while (true) // We want to loop until we find a node.
 	{
-		while (!p->right->isSentinel)
+		while (!p->right->isSentinel) // While the node to the right of p is not a sentinel node,
 		{
-			int compareValue = strcmp(p->right->word, word);
+			int compareValue = strcmp(p->right->word, word); // compare the right pointer's word to the word we are looking for.
 
-			numberOfKeyComparisonsMade++;
+			numberOfKeyComparisonsMade++; // Increment our key comparisons since we just made one
 
-			if (compareValue < 0)
+			if (compareValue < 0)	// If the right pointer's word is less than our word,
 			{
-				p = p->right;
+				p = p->right;		// we advance on to the next pointer.
 			}
-			else if (compareValue == 0)
+			else if (compareValue == 0) // If the right pointer's word is equal to our word, we found it!
 			{
-				p = p->right;
+				p = p->right; // We advance to p's right node.
 
-				while (p->down != nullptr)
+				// Since this method only returns nodes in the slow lane, we have to go to the slow lane.
+				while (p->down != nullptr)	// While a node below p exists,
 				{
-					p = p->down;
+					p = p->down;			// p becomes the node under p.
 				}
 
-				found = true;
+				found = true; // Since we've successfully found a pointer with the exact word, we set found to true.
 
-				return p;
+				return p; // Now that we have the node, we simply return it.
 			}
-			else
+			else		// At this point, the right pointer's word is greater than our word,
 			{
-				break;
+				break;	// so we break.
 			}
 		}
 
-		if (p->down == nullptr)
+		if (p->down == nullptr) // We can't go down any further, so there are no other lanes to check.
 		{
-			found = false;
+			found = false;	// We know there is no node with the word in it at this point, so we set found to false.
 
-			return p;
+			return p;		// We now return p, the node just before the one we are looking for if it was in the list.
 		}
-		else
+		else				// Otherwise, we can go down a node,
 		{
-			p = p->down;
+			p = p->down;	// so we set p to the node below p.
 		}
 	}
 }

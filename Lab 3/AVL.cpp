@@ -111,9 +111,14 @@ void AVL::insert(const char word[50])
 	f = q = nullptr;
 	a = p = root;
 
+	// We define this to keep track of the compare value between our new node's word
+	// and p's word so that we can use it twice below to avoid a redundant strcmp call.
+	int compareValue;
+
 	while (p != nullptr) // lets search the tree for our insertion point
 	{
-		int compareValue = strcmp(word, p->word); // compare the word we are inserting to p's word
+		compareValue = strcmp(word, p->word); // compare the word we are inserting to p's word
+
 		numberOfKeyComparisonsMade++; // increment the number of key comparisons since we just made one
 
 		if (compareValue == 0)	// if word equals p->word...
@@ -143,8 +148,9 @@ void AVL::insert(const char word[50])
 	y->leftChild = y->rightChild = nullptr;	// since this new node is a leaf, it has no children
 	y->balanceFactor = 0; // a leaf has no children so it has to be balanced!
 
-	// Pointer y will be q's new left or right child based on a comparison between its word and q's word
-	if (strcmp(y->word, q->word) < 0)
+	// If our new node's word is less than q's word (compareValue refers to a comparison
+	// between the new node's word and q's word which at this point is the same as p's word)
+	if (compareValue < 0)
 	{
 		q->leftChild = y;
 	}
@@ -153,8 +159,6 @@ void AVL::insert(const char word[50])
 		q->rightChild = y;
 	}
 
-	// This seems like it shouldn't be commented out, since we are comparing the key
-	// numberOfKeyComparisonsMade++;	// increment the number of key comparisons since we just made one,
 	numberOfReferenceChanges++;		// and increment the number of reference changes since we changed q's left or right child.
 
 	// At this point, we have just done the same BST insert that we've done before. Now, we do the AVL

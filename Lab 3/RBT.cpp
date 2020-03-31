@@ -185,8 +185,8 @@ void RBT::insert(const char word[50])
 	node* x = root; // x will search for where we are going to insert our node,
 	node* y = nil;	// and y will lag one step behind x.
 
-	// We define this to keep track of the compare value between our new node word and x's word
-	// so that we can use it twice below to avoid a redundant strcmp call.
+	// We define this to keep track of the compare value between our new node's word
+	// and x's word so that we can use it twice below to avoid a redundant strcmp call.
 	int compareValue;
 
 	while (x != nil)	// While x isn't nil,

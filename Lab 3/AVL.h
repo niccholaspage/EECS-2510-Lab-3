@@ -53,14 +53,16 @@ private:
 
 	node* root = nullptr; // A pointer to the root of the binary search tree. If this is nullptr, no nodes exist in the tree.
 
-	unsigned long long numberOfBalanceFactorChanges = 0;	// Keeps track of the number of times a node's balance factor was changed
-	unsigned long long numberOfReferenceChanges = 0;		// Keeps track of the number of times the root pointer or child pointers change.
-	unsigned long long numberOfKeyComparisonsMade = 0;		// Keeps track of the number of word key comparisons during tree inserts.
-	unsigned long long numberOfNoRotationsNeeded = 0;		// Keeps track of the number of times a new node is inserted and no rotation was performed.
-	unsigned long long numberOfLeftLeftRotations = 0;		// Keeps track of the number of times a left left rotation is performed on node insert
-	unsigned long long numberOfLeftRightRotations = 0;		// Keeps track of the number of times a left right rotation is performed on node insert
-	unsigned long long numberOfRightRightRotations = 0;		// Keeps track of the number of times a right right rotation is performed on node insert
-	unsigned long long numberOfRightLeftRotations = 0;		// Keeps track of the number of times a right left rotation is performed on node insert
+	unsigned long long numberOfBalanceFactorChanges = 0;		// Keeps track of the number of times a node's balance factor was changed
+	unsigned long long numberOfReferenceChanges = 0;			// Keeps track of the number of times the root pointer or child pointers change.
+	unsigned long long numberOfKeyComparisonsMade = 0;			// Keeps track of the number of word key comparisons during tree inserts.
+	unsigned long long numberOfNoRotationsNeeded = 0;			// Keeps track of the number of times a new node is inserted and no rotation was performed.
+	unsigned long long numberOfLeftLeftRotations = 0;			// Keeps track of the number of times a left left rotation is performed on node insert
+	unsigned long long numberOfLeftRightRotations = 0;			// Keeps track of the number of times a left right rotation is performed on node insert
+	unsigned long long numberOfRightRightRotations = 0;			// Keeps track of the number of times a right right rotation is performed on node insert
+	unsigned long long numberOfRightLeftRotations = 0;			// Keeps track of the number of times a right left rotation is performed on node insert
+	unsigned long long numberOfAToYPasses = 0;					// Keeps track of the number of times we go from A to Y
+	unsigned long long numberOfAToYBalanceFactorChanges = 0;	// Keeps track of the number of times we change balance factors from A to Y
 
 	clock_t startTime; // A variable that represents the time at very beginning of tree construction
 };

@@ -181,6 +181,8 @@ void AVL::insert(const char word[50])
 		d = +1;
 	}
 
+	numberOfAToYPasses++; // Increment our number of A to Y passes since we just passed through A to Y
+
 	numberOfKeyComparisonsMade++; // increment number of key comparisons since we just compared word and a's word
 
 	while (p != y)	// pointer p is now one node below a. We adjust from here
@@ -196,8 +198,9 @@ void AVL::insert(const char word[50])
 			p = p->leftChild;			// and move forward.
 		}
 
-		numberOfKeyComparisonsMade++;	// we increment the number of key comparisons made since we compared the word to p's word,
-		numberOfBalanceFactorChanges++;	// and we increment our balance factor changes since we just changed p's balance factor.
+		numberOfKeyComparisonsMade++;		// we increment the number of key comparisons made since we compared the word to p's word,
+		numberOfAToYBalanceFactorChanges++;	// Increment the number of A to Y balance factor changes since we just updated one
+		numberOfBalanceFactorChanges++;		// and we increment our balance factor changes since we just changed p's balance factor.
 	}
 
 	// Now we check the balance factor at a and see if we just pushed the tree into balance,
@@ -534,6 +537,8 @@ void AVL::displayStatistics()
 
 	cout << "AVL Stats:\n"; // Print out a header specifying that these are AVL stats
 	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
+	cout << "A to Y Balance Factor Changes: " << numberOfAToYBalanceFactorChanges << "\n"; // Print out the total number of A to Y balance factor changes
+	cout << "A to Y Passes: " << numberOfAToYPasses << "\n"; // Print out the total number of A to Y passes
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
 	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n"; // Print out the total number of insertions without any rotations needed

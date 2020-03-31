@@ -201,7 +201,7 @@ void RBT::insert(const char word[50])
 		}
 
 		numberOfReferenceChanges++;
-		numberOfKeyComparisonsMade++;
+		// numberOfKeyComparisonsMade++; - Probably unnecessary since this isn't comparing the key we are inserting
 	}
 
 	z->leftChild = z->rightChild = nil;

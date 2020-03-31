@@ -173,63 +173,72 @@ void RBT::rightRotate(node* x)
 
 void RBT::insert(const char word[50])
 {
-	node* y = nil;
-	node* x = root;
+	// To add a word to the tree, we need to traverse through the nodes of the tree,
+	// looking for the word. If we find it, we increment the node's counter and exit;
+	// otherwise, we continue traversing through the node's children, going through the
+	// left child if the word is less than the node's word that we are traversing, or
+	// the right child if the word is greater than the node's word we are traversing.
+	// If it is not found, we just make a new node and attach it to the tree. After
+	// we have inserted the node, we have to see if we need to perform a fixup of our
+	// tree and fix it if needs be.
+	//
+	node* x = root; // x will search for where we are going to insert our node,
+	node* y = nil;	// and y will lag one step behind x.
 
-	while (x != nil)
+	while (x != nil)	// While x isn't nil,
 	{
-		y = x;
+		y = x;			// we set y to x.
 
-		int compareValue = strcmp(word, x->word);
+		int compareValue = strcmp(word, x->word); // We compare our word to x's word,
 
-		numberOfKeyComparisonsMade++;
+		numberOfKeyComparisonsMade++; // and increment our key comparisons since we just made one.
 
-		if (compareValue < 0)
+		if (compareValue < 0) // If word is less than x's word,
 		{
-			x = x->leftChild;
+			x = x->leftChild; // we go down to x's left child.
 		}
-		else if (compareValue > 0)
+		else if (compareValue > 0)	// otherwise, if word is greather than x's word,
 		{
-			x = x->rightChild;
+			x = x->rightChild;		// we go down to x's right child.
 		}
 		else
 		{
-			x->count++;
+			x->count++; // We increment our count by one since we found the node,
 
-			return;
+			return;		// then we are done!
 		}
 	}
 
-	node* z = new node();
-	strcpy(z->word, word);
+	node* z = new node();	// We didn't find the node in the tree, so we make a new node.
+	strcpy(z->word, word);	// We copy the word we are going to insert into z's word array.
 
-	z->parent = y;
-	numberOfReferenceChanges++;
+	z->parent = y;				// Z's parent becomes y, as y lagged behind x.
+	numberOfReferenceChanges++; // We just updated z's parent so we increment our reference change counter.
 
-	if (y == nil)
+	if (y == nil)	// If the tree was empty, our new node z becomes the new root.
 	{
 		root = z;
-		numberOfReferenceChanges++;
+		numberOfReferenceChanges++; // We increment our reference change counter since we adjusted our root.
 	}
-	else
+	else // Otherwise, z has to be either y's new left or right child due to the BST property.
 	{
-		if (strcmp(z->word, y->word) < 0)
+		if (strcmp(z->word, y->word) < 0) // If z's word is less than y's word,
 		{
-			y->leftChild = z;
+			y->leftChild = z;	// y's left child becomes z.
 		}
-		else
+		else // otherwise,
 		{
-			y->rightChild = z;
+			y->rightChild = z;	// y's right child becomes z.
 		}
 
-		numberOfReferenceChanges++;
+		numberOfReferenceChanges++; // We just changed one of y's children, so we increment our reference change counter.
 		// numberOfKeyComparisonsMade++; - Probably unnecessary since this isn't comparing the key we are inserting
 	}
 
-	z->leftChild = z->rightChild = nil;
-	z->color = RED;
+	z->leftChild = z->rightChild = nil; // Our new node is at the bottom of the tree, so its children are nil.
+	z->color = RED; // We color this node red for now.
 
-	insertFixup(z);
+	insertFixup(z); // We fix anything we broke due to the insert.
 }
 
 void RBT::insertFixup(node* z)

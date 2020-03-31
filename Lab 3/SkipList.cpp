@@ -346,25 +346,30 @@ void SkipList::calculateNumWords(unsigned int& numWords, unsigned int& numUnique
 
 unsigned int SkipList::getTotalNodes()
 {
-	unsigned int totalNodes = 0;
+	// This method returns the total number of nodes in
+	// every single lane of the skip list by starting at the
+	// head of the list and counting every single node in each
+	// lane of the skip list.
+	//
+	unsigned int totalNodes = 0; // We declare a counter of total nodes.
 
-	node* p = head;
+	node* p = head; // Let's start at the head of the list.
 
-	while (p != nullptr)
+	while (p != nullptr)	// While p isn't null,
 	{
-		node* q = p;
+		node* q = p;		// we set up a pointer q which we will use to go to the right.
 
-		while (!q->right->isSentinel)
+		while (!q->right->isSentinel) // While the node to the right of q is not a sentinel node,
 		{
-			totalNodes++;
+			totalNodes++; // we increment our total node count,
 
-			q = q->right;
+			q = q->right; // and go to the right of q.
 		}
 
-		p = p->down;
+		p = p->down; // At this point, we've finished counting a lane, so we go down to the next one.
 	}
 
-	return totalNodes;
+	return totalNodes; // We've counted each node in each lane so we return the value.
 }
 
 void SkipList::displayStatistics()

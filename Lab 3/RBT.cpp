@@ -243,84 +243,90 @@ void RBT::insert(const char word[50])
 
 void RBT::insertFixup(node* z)
 {
-	if (z->parent->color == BLACK)
+	// This method fixes anything that broken to an insertion of node
+	// z into our tree by recoloring nodes and performing left and
+	// right rotations.
+	//
+	if (z->parent->color == BLACK)	// If z's parent is black,
 	{
-		numberOfNoFixesNeeded++;
+		numberOfNoFixesNeeded++;	// the while loop below will never be entered, so no fixes are needed!
 	}
 
-	while (z->parent->color == RED)
+	while (z->parent->color == RED) // While z's parent's color is red,
 	{
-		if (z->parent == z->parent->parent->leftChild)
+		if (z->parent == z->parent->parent->leftChild)	// check if z's parent is its parent's left child.
 		{
-			node* y = z->parent->parent->rightChild;
+			node* y = z->parent->parent->rightChild;	// We set y to be z's right uncle.
 
-			if (y->color == RED)
+			if (y->color == RED)			// If y is red,
 			{
-				z->parent->color = BLACK;
+				z->parent->color = BLACK;	// We perform a case 1 where we recolor nodes.
 				y->color = BLACK;
 				z->parent->parent->color = RED;
-				numberOfRecolorings += 3;
+				numberOfRecolorings += 3;	// We increment our recolorings counter by three since we adjusted two node colors.
 				z = z->parent->parent;
-				numberOfCase1Fixes++;
+				numberOfCase1Fixes++;		// We increment our case 1 counter since we just performed a case 1 fix.
 			}
-			else
+			else // We need to potentially perform a case 2 fix and a case 3 for sure.
 			{
-				if (z == z->parent->rightChild)
+				if (z == z->parent->rightChild) // if z is its parent's right child, perform a case 2.
 				{
-					z = z->parent;
+					z = z->parent;			// z become z's parent,
 
-					leftRotate(z);
+					leftRotate(z);			// and we perform a left rotation on z.
 
-					numberOfCase2Fixes++;
+					numberOfCase2Fixes++;	// We increment our case 2 counter since we just performed a case 2 fix.
 				}
 
+				// A case 2 leads into a case 3, so we need to perform one regardless of what happened.
 				z->parent->color = BLACK;
 				z->parent->parent->color = RED;
-				numberOfRecolorings += 2;
+				numberOfRecolorings += 2; // We increment our recolorings counter by two since we adjusted two node colors.
 
 				rightRotate(z->parent->parent);
 
-				numberOfCase3Fixes++;
+				numberOfCase3Fixes++; // We increment our case 3 counter since we just performed a case 2 fix.
 			}
 		}
-		else
+		else // This else cause is symmetrical to the if statement above, with "left" and "right" swapped.
 		{
-			node* y = z->parent->parent->leftChild;
+			node* y = z->parent->parent->leftChild;	// We set y to be z's left uncle.
 
-			if (y->color == RED)
+			if (y->color == RED)				// If y is red,
 			{
-				z->parent->color = BLACK;
+				z->parent->color = BLACK;		// We perform a case 1 where we recolor nodes.
 				y->color = BLACK;
 				z->parent->parent->color = RED;
-				numberOfRecolorings += 3;
+				numberOfRecolorings += 3;		// We increment our recolorings counter by three since we adjusted two node colors.
 				z = z->parent->parent;
-				numberOfCase1Fixes++;
+				numberOfCase1Fixes++;			// We increment our case 1 counter since we just performed a case 1 fix.
 			}
-			else
+			else // We need to potentially perform a case 2 fix and a case 3 for sure.
 			{
-				if (z == z->parent->leftChild)
+				if (z == z->parent->leftChild) // if z is its parent's left child, perform a case 2.
 				{
-					z = z->parent;
+					z = z->parent;				// z become z's parent,
 
-					rightRotate(z);
+					rightRotate(z);				// and we perform a right rotation on z.
 
-					numberOfCase2Fixes++;
+					numberOfCase2Fixes++;		// We increment our case 2 counter since we just performed a case 2 fix.
 				}
 
+				// A case 2 leads into a case 3, so we need to perform one regardless of what happened.
 				z->parent->color = BLACK;
 				z->parent->parent->color = RED;
 
-				numberOfRecolorings += 2;
+				numberOfRecolorings += 2; // We increment our recolorings counter by two since we adjusted two node colors.
 
 				leftRotate(z->parent->parent);
 
-				numberOfCase3Fixes++;
+				numberOfCase3Fixes++; // We increment our case 3 counter since we just performed a case 2 fix.
 			}
 		}
 	}
 
-	root->color = BLACK;
-	numberOfRecolorings++;
+	root->color = BLACK; // We take care of a potential "rule 2" violation by fixing the root's color.
+	numberOfRecolorings++; // Since we just recolored our root, we increment the number of recolorings by one.
 }
 
 void RBT::list()

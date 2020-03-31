@@ -252,39 +252,34 @@ void SkipList::insert(const char word[50])
 
 void SkipList::list()
 {
-	node* start = head;
+	// This method simply prints our skip list in a nice indexed list
+	// by going down to the slow lane and printing each node inside of it.
+	node* p = head; // We start at the head of the list.
 
-	while (start->down != nullptr)
+	while (p->down != nullptr)	// While our start pointer has a node below it,
 	{
-		start = start->down;
+		p = p->down;		// we set our start node to be the node underneath it.
 	}
 
-	start = start->right;
+	p = p->right; // We want to ignore the negative infinity node, so we set start to start's right node.
 
-	node* end = tail;
+	int index = 0; // We get a counter ready to print out the index of each node.
 
-	while (end->down != nullptr)
+	cout << "Set contains: "; // We print out "Set contains: " as a prefix.
+
+	while (!p->isSentinel) // While p is not a sentinel node,
 	{
-		end = end->down;
-	}
+		cout << "(" << ++index << ") " << p->word << " " << p->count; // we increment and print out our index, word, and count.
 
-	int index = 0;
-
-	cout << "Set contains: "; // so we print out "Set contains: " as a prefix,
-
-	while (start != end)
-	{
-		cout << "(" << ++index << ") " << start->word << " " << start->count;
-
-		if (index != numberOfItems)
+		if (index != numberOfItems)	// If we are not at the last item in our list,
 		{
-			cout << ", ";
+			cout << ", ";			// we print out a comma separator.
 		}
 
-		start = start->right;
+		p = p->right; // We go to the next node in the lane.
 	}
 
-	cout << endl;
+	cout << endl; // Print out a newline.
 }
 
 void SkipList::larryList()

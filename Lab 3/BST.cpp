@@ -133,7 +133,7 @@ void BST::insert(const char word[50])
 			q->rightChild = newNode; // so we set q's right child to the new node.
 		}
 
-		numberOfKeyComparisonsMade++; // Since we did another key comparison, we increment our counter
+		// numberOfKeyComparisonsMade++; // Technically we are comparing new node's word, not the word we are inserting, so this doesn't count.
 	}
 
 	numberOfReferenceChanges++; // We have changed a single reference above so we increment our reference change coutner

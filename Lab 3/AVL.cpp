@@ -153,7 +153,8 @@ void AVL::insert(const char word[50])
 		q->rightChild = y;
 	}
 
-	numberOfKeyComparisonsMade++;	// increment the number of key comparisons since we just made one,
+	// This seems like it shouldn't be commented out, since we are comparing the key
+	// numberOfKeyComparisonsMade++;	// increment the number of key comparisons since we just made one,
 	numberOfReferenceChanges++;		// and increment the number of reference changes since we changed q's left or right child.
 
 	// At this point, we have just done the same BST insert that we've done before. Now, we do the AVL

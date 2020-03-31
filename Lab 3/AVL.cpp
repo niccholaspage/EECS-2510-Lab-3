@@ -144,7 +144,7 @@ void AVL::insert(const char word[50])
 	y->balanceFactor = 0; // a leaf has no children so it has to be balanced!
 
 	// Pointer y will be q's new left or right child based on a comparison between its word and q's word
-	if (strcmp(word, q->word) < 0)
+	if (strcmp(y->word, q->word) < 0)
 	{
 		q->leftChild = y;
 	}

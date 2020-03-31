@@ -83,26 +83,29 @@ void RBT::traverseDestruct(node* p) {
 
 void RBT::leftRotate(node* x)
 {
-	// The pseudocode for this can be found in Lecture 11, slide 18. Comments are provided.
-	node* y = x->rightChild;
+	// This method left rotates certain nodes of our tree by changing
+	// node children and parent pointers. This is needed to maintain
+	// RBT trees as balanced binary search trees.
+	//
+	node* y = x->rightChild;		// We set y to be x's right child.
 
-	x->rightChild = y->leftChild;
-	numberOfReferenceChanges++;
+	x->rightChild = y->leftChild;	// x's right child becomes y's left child.
+	numberOfReferenceChanges++;		// We increment our reference change counter since we just changed one.
 
-	if (y->leftChild != nil)
+	if (y->leftChild != nil)		// If y's left child isn't nil,
 	{
-		y->leftChild->parent = x;
-		numberOfReferenceChanges++;
+		y->leftChild->parent = x;	// we update its parent to be x.
+		numberOfReferenceChanges++;	// We increment our reference changes since we just made another.
 	}
 
-	y->parent = x->parent;
-	numberOfReferenceChanges++;
+	y->parent = x->parent;		// We link x's parent to y.
+	numberOfReferenceChanges++;	// We increment our reference change counter again!
 
-	if (x->parent == nil)
+	if (x->parent == nil) // If x has no parent, then x was the root, so y becomes the new root.
 	{
 		root = y;
 	}
-	else if (x == x->parent->leftChild)
+	else if (x == x->parent->leftChild) // Otherwise, the spot x used to occupy becomes y.
 	{
 		x->parent->leftChild = y;
 	}
@@ -111,38 +114,44 @@ void RBT::leftRotate(node* x)
 		x->parent->rightChild = y;
 	}
 
-	numberOfReferenceChanges++;
+	numberOfReferenceChanges++; // We've changed a reference in one of our if branches, so we increment our counter.
 
-	y->leftChild = x;
+	y->leftChild = x;	// We put x on y's left, which
 
-	x->parent = y;
+	x->parent = y;		// makes x's parent become y.
 
-	numberOfReferenceChanges += 2;
+	numberOfReferenceChanges += 2;	// We've changed two references so we increment our counter by two.
 
-	numberOfLeftRotations++;
+	numberOfLeftRotations++;		// We've performed a left rotation so we increment our counter.
 }
 
 void RBT::rightRotate(node* x)
 {
-	node* y = x->leftChild;
+	// This method right rotates certain nodes of our tree by changing
+	// node children and parent pointers. This is needed to maintain
+	// RBT trees as balanced binary search trees. This method is symmetrical
+	// to our left rotation, so we just exchange all occurrences of "left"
+	// and "right."
+	//
+	node* y = x->leftChild;			// We set y to be x's left child.
 
-	x->leftChild = y->rightChild;
-	numberOfReferenceChanges++;
+	x->leftChild = y->rightChild;	// x's left child becomes y's right child.
+	numberOfReferenceChanges++;		// We increment our reference change counter since we just changed one.
 
-	if (y->rightChild != nil)
+	if (y->rightChild != nil)		// If y's right child isn't nil,
 	{
-		y->rightChild->parent = x;
-		numberOfReferenceChanges++;
+		y->rightChild->parent = x;	// we update its parent to be x.
+		numberOfReferenceChanges++;	// We increment our reference changes since we just made another.
 	}
 
-	y->parent = x->parent;
-	numberOfReferenceChanges++;
+	y->parent = x->parent;		// We link x's parent to y.
+	numberOfReferenceChanges++;	// We increment our reference change counter again!
 
-	if (x->parent == nil)
+	if (x->parent == nil) // If x has no parent, then x was the root, so y becomes the new root.
 	{
 		root = y;
 	}
-	else if (x == x->parent->rightChild)
+	else if (x == x->parent->rightChild) // Otherwise, the spot x used to occupy becomes y.
 	{
 		x->parent->rightChild = y;
 	}
@@ -151,15 +160,15 @@ void RBT::rightRotate(node* x)
 		x->parent->leftChild = y;
 	}
 
-	numberOfReferenceChanges++;
+	numberOfReferenceChanges++; // We've changed a reference in one of our if branches, so we increment our counter.
 
-	y->rightChild = x;
+	y->rightChild = x;	// We put x on y's right, which
 
-	x->parent = y;
+	x->parent = y;		// makes x's parent become y.
 
-	numberOfReferenceChanges += 2;
+	numberOfReferenceChanges += 2;	// We've changed two references so we increment our counter by two.
 
-	numberOfRightRotations++;
+	numberOfRightRotations++;		// We've performed a right rotation so we increment our counter.
 }
 
 void RBT::insert(const char word[50])

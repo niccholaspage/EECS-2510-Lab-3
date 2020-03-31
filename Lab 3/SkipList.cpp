@@ -320,22 +320,27 @@ void SkipList::larryList()
 
 void SkipList::calculateNumWords(unsigned int& numWords, unsigned int& numUniqueWords)
 {
+	// This method calculates the number of words and unique words in the list.
+	// The method takes two unsigned integer references that it initializes to zero.
+	// It then traverses through each node in the slow lane of our list, incrementing our
+	// two counters of words and unique words.
+	//
 	numWords = 0;
 	numUniqueWords = 0;
 
-	node* p = head;
+	node* p = head; // We start at the head of our list.
 
-	while (p->down != nullptr)
+	while (p->down != nullptr)	// While the node below p is not null,
 	{
-		p = p->down;
+		p = p->down;			// we set p to the node below it.
 	}
 
-	while (!p->right->isSentinel)
+	while (!p->right->isSentinel)	// While the node to the right of p is not a sentinel node,
 	{
-		numWords += p->count;
-		numUniqueWords += 1;
+		numWords += p->count;		// we increment the number of words by the node's count,
+		numUniqueWords += 1;		// and the number of unique words by one, as each node represents a unique word.
 
-		p = p->right;
+		p = p->right;				// We then go to the right of p.
 	}
 }
 

@@ -83,11 +83,15 @@ void BST::insert(const char word[50])
 	node* p = root; // traverses the tree, starting at the root node
 	node* q = nullptr; // lags one step behind p; used to update q's child to a new node if it was made.
 
+	// We define this to keep track of the compare value between our new node's word
+	// and p's word so that we can use it twice below to avoid a redundant strcmp call.
+	int compareValue;
+
 	while (p != nullptr) // as long as there are more nodes:
 	{
 		q = p; // Set our lagging pointer to q
 
-		int compareValue = strcmp(word, p->word); // Compare the word we are inserting to p's word
+		compareValue = strcmp(word, p->word); // Compare the word we are inserting to p's word
 
 		numberOfKeyComparisonsMade++; // Increment our number of key comparisons as we just made one
 
@@ -124,7 +128,9 @@ void BST::insert(const char word[50])
 	}
 	else
 	{
-		if (strcmp(newNode->word, q->word) < 0) // Since the new node is not the root, we check if its word is less than its parent's.
+		// If our new node's word is less than q's word (compareValue refers to a comparison
+		// between the new node's word and q's word which at this point is the same as p's word)
+		if (compareValue < 0)
 		{
 			q->leftChild = newNode; // If so, we set q's left child to the new node.
 		}
@@ -132,8 +138,6 @@ void BST::insert(const char word[50])
 		{
 			q->rightChild = newNode; // so we set q's right child to the new node.
 		}
-
-		// numberOfKeyComparisonsMade++; // Technically we are comparing new node's word, not the word we are inserting, so this doesn't count.
 	}
 
 	numberOfReferenceChanges++; // We have changed a single reference above so we increment our reference change coutner

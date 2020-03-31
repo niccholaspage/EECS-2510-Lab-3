@@ -185,11 +185,15 @@ void RBT::insert(const char word[50])
 	node* x = root; // x will search for where we are going to insert our node,
 	node* y = nil;	// and y will lag one step behind x.
 
+	// We define this to keep track of the compare value between our new node word and x's word
+	// so that we can use it twice below to avoid a redundant strcmp call.
+	int compareValue;
+
 	while (x != nil)	// While x isn't nil,
 	{
 		y = x;			// we set y to x.
 
-		int compareValue = strcmp(word, x->word); // We compare our word to x's word,
+		compareValue = strcmp(word, x->word); // We compare our word to x's word,
 
 		numberOfKeyComparisonsMade++; // and increment our key comparisons since we just made one.
 
@@ -222,7 +226,9 @@ void RBT::insert(const char word[50])
 	}
 	else // Otherwise, z has to be either y's new left or right child due to the BST property.
 	{
-		if (strcmp(z->word, y->word) < 0) // If z's word is less than y's word,
+		// If z's word is less than y's word (compareValue refers to a comparison
+		// between z's word and x's word which at this point is the same as y's word)
+		if (compareValue < 0)
 		{
 			y->leftChild = z;	// y's left child becomes z.
 		}
@@ -232,7 +238,6 @@ void RBT::insert(const char word[50])
 		}
 
 		numberOfReferenceChanges++; // We just changed one of y's children, so we increment our reference change counter.
-		// numberOfKeyComparisonsMade++; - Probably unnecessary since this isn't comparing the key we are inserting
 	}
 
 	z->leftChild = z->rightChild = nil; // Our new node is at the bottom of the tree, so its children are nil.

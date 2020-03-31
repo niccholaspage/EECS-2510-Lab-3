@@ -23,24 +23,37 @@ RBT::RBT()
 	//
 	startTime = clock(); // We set the starting time position to the current time.
 
+	// We need to set up our special nil node. Nil's parent, left child, and right child
+	// are all nil. It is used instead of nullptr for null roots, left children, and right
+	// children to make rotations and recoloring easier to implement.
 	nil = new node();
 
-	strcpy(nil->word, "");
-	nil->color = BLACK;
-	nil->parent = nil->leftChild = nil->rightChild = nil;
+	strcpy(nil->word, "");	// We copy an empty string into nil's word just to give it a blank value.
+	nil->color = BLACK;		// We set up nil's color to be black to follow the rules.
+	nil->parent = nil->leftChild = nil->rightChild = nil; // Nil's parent and children are all nil.
 
-	root = nil;
+	root = nil; // Since we have no nodes in the tree yet, our root is also nil.
 }
 
 RBT::~RBT()
 {
-	if (root != nil)
+	// On deconstruction, we have to delete the entire tree by
+	// deleting each node in the tree except nil, one by one.
+	//
+	if (root != nil) // Check if the root node is not nil
 	{
+		// Destroying the tree is done by doing a traversal through all
+		// of the nodes and their children.
 		traverseDestruct(root);
 	}
 
+	// We also need to delete our special nil node.
 	delete nil;
 
+	// After the traverseDestruct method and deletion of nil, we will
+	// have deleted all of the nodes we made. By setting root and nil
+	// to nullptr, we make sure we don't have an old reference to the
+	// now non-existent root and nil nodes.
 	nil = nullptr;
 	root = nullptr;
 }

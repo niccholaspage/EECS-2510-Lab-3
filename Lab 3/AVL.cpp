@@ -262,15 +262,29 @@ void AVL::insert(const char word[50])
 
 			switch (c->balanceFactor) // at this point, we need to adjust a and b's balance factors based on c's current balance factor.
 			{
-			case 0: a->balanceFactor = b->balanceFactor = 0; break;			// if c's balance factor is 0, than a and b are now both balanced.
-			case -1: b->balanceFactor = +1; a->balanceFactor = 0; break;	// if c's balance factor is -1, b has a balance factor of 1, and a is completely balanced.
-			case 1: a->balanceFactor = -1; b->balanceFactor = 0; break;		// if c's balance factor is 1, a has a balance factor of -1, and b is completely balanced.
+			case 0:
+				// if c's balance factor was 0, than a and b are now both balanced.
+				a->balanceFactor = b->balanceFactor = 0;
+				numberOfBalanceFactorChanges += 2; // We increment our balance factor changes by two since we only changed a and b.
+				break;
+			case -1:
+				// if c's balance factor was -1, b has a balance factor of 1, and a is completely balanced.
+				b->balanceFactor = +1;
+				a->balanceFactor = 0;
+				c->balanceFactor = 0; // c is also in balance now as well.
+				numberOfBalanceFactorChanges += 3; // We increment our balance factor changes by three since we changed a, b, and c.
+				break;
+			case 1:
+				// if c's balance factor was 1, a has a balance factor of -1, and b is completely balanced.
+				a->balanceFactor = -1;
+				b->balanceFactor = 0;
+				c->balanceFactor = 0; // c is also in balance now as well.
+				numberOfBalanceFactorChanges += 3; // We increment our balance factor changes by three since we changed a, b, and c.
+				break;
 			}
 
-			c->balanceFactor = 0;	// regardless of what's happened, c is now balanced.
 			b = c;					// b is the root of the now-rebalanced subtree.
 
-			numberOfBalanceFactorChanges += 3;	// we've changed a, b, and c's balance factors, so we increment this count by three.
 			numberOfLeftRightRotations++;		// since we've performed a left right rotation, we increment the count by one.
 		}
 	}
@@ -315,15 +329,26 @@ void AVL::insert(const char word[50])
 
 			switch (c->balanceFactor) // at this point, we need to adjust a and b's balance factors based on c's current balance factor.
 			{
-			case 0: a->balanceFactor = b->balanceFactor = 0; break;			// if c's balance factor is 0, than a and b are now both balanced.
-			case -1: a->balanceFactor = +1; b->balanceFactor = 0; break;	// if c's balance factor is -1, a has a balance factor of 1, and b is completely balanced.
-			case 1: b->balanceFactor = -1; a->balanceFactor = 0; break;		// if c's balance factor is 1, b has a balance factor of -1, and a is completely balanced.
+			case 0:
+				// if c's balance factor was 0, than a and b are now both balanced.
+				a->balanceFactor = b->balanceFactor = 0;
+				numberOfBalanceFactorChanges += 2; // We increment our balance factor changes by two since we only changed a and b.
+				break;
+			case -1:
+				// if c's balance factor was -1, a has a balance factor of 1, and b is completely balanced.
+				a->balanceFactor = +1; b->balanceFactor = 0;
+				c->balanceFactor = 0; // c is also in balance now as well.
+				numberOfBalanceFactorChanges += 3; // We increment our balance factor changes by three since we changed a, b, and c.
+				break;
+			case 1:
+				// if c's balance factor is 1, b has a balance factor of -1, and a is completely balanced.
+				b->balanceFactor = -1; a->balanceFactor = 0;
+				c->balanceFactor = 0; // c is also in balance now as well.
+				numberOfBalanceFactorChanges += 3; // We increment our balance factor changes by three since we changed a, b, and c.
+				break;
 			}
 
-			c->balanceFactor = 0;	// regardless of what's happened, c is now balanced.
 			b = c;					// b is the root of the now-rebalanced subtree.
-
-			numberOfBalanceFactorChanges += 3;	// we've changed a, b, and c's balance factors, so we increment this count by three.
 
 			numberOfRightLeftRotations++;		// since we've performed a right left rotation, we increment the count by one.
 		}

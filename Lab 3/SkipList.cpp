@@ -137,101 +137,116 @@ SkipList::node* SkipList::search(const char word[50], bool& found)
 
 void SkipList::insert(const char word[50])
 {
-	bool found = false;
+	// To add a word to the list, we need to traverse through each lane looking for node,
+	// with the given word. If we find it, we increment the node's counter and exit;
+	// otherwise, we find the node with the closest word less than the given word and
+	// insert our new node to the right of it. Afterwards, we fix up the left and right
+	// pointers for the nodes around it so that it is properly inserted into the list.
+	//
+	// Define a variable that we can pass by reference that represents if a node with
+	// the given word was found in the list or not
+	bool found;
 
+	// Finds a node with the given word, returning either that node or the node right before where it would be
 	node* p = search(word, found);
 
-	if (found)
+	if (found)		// If we found the word in the list,
 	{
-		p->count++;
+		p->count++;	// we can just increment our count
 
-		return;
+		return;		// and that's it!
 	}
 
-	node* newNode = new node();
+	node* newNode = new node(); // We didn't find a node with the word so we need to create one.
 
-	// Specify defaults if you want because Dr. Thomas for some reason likes to be super redundant and uncool
+	strcpy(newNode->word, word); // Copy the word we are inserting into the new node's word
 
-	strcpy(newNode->word, word);
+	// Since node p is the node with the word right before where our new node should go,
+	// we need to update our new node's pointers.
+	newNode->left = p;			// We set the new node's left pointer to p,
+	newNode->right = p->right;	// and set its right pointer to p's right pointer.
 
-	newNode->left = p;
-	newNode->right = p->right;
-
-	numberOfReferenceChanges += 2;
-
-	p->right->left = newNode;	// We get the node's right link and set its left child to our new node.
+	// We now need to update p's node pointers as well as p's right node's left pointer.
+	p->right->left = newNode;	// We now get p's right link and set its left child to our new node.
 	p->right = newNode;			// We then set p's right child to be the new node.
 
-	numberOfReferenceChanges += 2;
+	numberOfReferenceChanges += 4; // We've changed four references so we increment our counter by four.
 
-	numberOfItems++;
+	numberOfItems++; // We've added a new item to the list, so we increment this by one.
 
-	int currentHeight = 1;
+	int currentHeight = 1; // We declare a variable to keep track of which lane we are adding a node to.
 
-	while (coin() & 1)
+	while (coin() & 1) // Get a random value and check if its odd, simulating a coin flip.
 	{
+		// We increment our current height by one, since we now need to add a node to the lane above our previous one.
 		currentHeight++;
-		numberOfHeadsCoinTosses++;
+		numberOfHeadsCoinTosses++;		// We increment our counter of coin tosses that resulted in heads.
 
-		node* pileNode = new node();
+		node* pileNode = new node();	// Construct a node that we will pile on top of our new node.
 
-		pileNode->down = newNode;
-		newNode->up = pileNode;
+		pileNode->down = newNode;		// Since our pile node is above our new node, we set its down pointer
+		newNode->up = pileNode;			// and new node's up pointer to the pile node.
 
-		numberOfReferenceChanges += 2;
+		numberOfReferenceChanges += 2;	// We've changed two references so we increment our counter by two.
 
-		strcpy(pileNode->word, word);
+		strcpy(pileNode->word, word);	// We copy our word into pile node's word.
 
+		// If our current height is bigger than our tree's total height, we
+		// need to create a new top lane before we can add anything to it!
 		if (currentHeight > height)
 		{
+			// We create new sentinel nodes to represent our head and tail of the new lane.
 			node* negativeNode = createSentinelNode();
 			node* positiveNode = createSentinelNode();
 
-			negativeNode->down = head;
-			head->up = negativeNode;
-			numberOfReferenceChanges += 2;
+			negativeNode->down = head;		// Our negative node is above our current head node, so we set its down pointer.
+			head->up = negativeNode;		// Our head node is below our negative node, so we set its up pointer.
+			numberOfReferenceChanges += 2;	// Since we've changed two references, we increment our counter by two.
 
-			positiveNode->down = tail;
-			tail->up = positiveNode;
-			numberOfReferenceChanges += 2;
+			positiveNode->down = tail;		// Our positive node is above our current tail node, so we set its down pointer.
+			tail->up = positiveNode;		// Our tail node is below our positive node, so we set its up pointer.
+			numberOfReferenceChanges += 2;	// Since we've changed two references, we increment our counter by two.
 
-			negativeNode->right = pileNode;
-			pileNode->left = negativeNode;
-			positiveNode->left = pileNode;
-			pileNode->right = positiveNode;
-			numberOfReferenceChanges += 4;
+			negativeNode->right = pileNode;	// Our negative node is to the left of our pile node, so we  set its right pointer.
+			pileNode->left = negativeNode;	// Our pile node is to the right of our negative node, so we set its left pointer.
+			positiveNode->left = pileNode;	// Our positive node is to the right of our pile node, so we set its left pointer.
+			pileNode->right = positiveNode;	// Our pile node is to the left of our positive node, so we set its right pointer.
+			numberOfReferenceChanges += 4;	// We've changed four references, so we increment our count by 4.
 
+			// Since we've added a new lane, we set our list's head and tail pointers to be our new negative and positive nodes.
 			head = negativeNode;
 			tail = positiveNode;
-			numberOfReferenceChanges += 2;
+			numberOfReferenceChanges += 2; // We increment our reference change counter by two since we changed our head and tail.
 
-			height++;
+			height++; // We have added a lane, so we increment our height by one.
 		}
-		else
+		else // if our current height is not bigger than our tree's height, the lane we are adding to already exists!
 		{
+			// We declare a left node that will be the first node to the left of our new node with an upper node pointer.
 			node* leftNode = newNode->left;
 
-			while (leftNode->up == nullptr)
+			while (leftNode->up == nullptr)	// While our left node does not have an upper node,
 			{
-				leftNode = leftNode->left;
+				leftNode = leftNode->left;	// we go further to the left.
 			}
 
+			// We also declare a right node that will be the first node to the right of our new node with an upper node pointer.
 			node* rightNode = newNode->right;
 
-			while (rightNode->up == nullptr)
+			while (rightNode->up == nullptr)	// While our right node does not have an upper node,
 			{
-				rightNode = rightNode->right;
+				rightNode = rightNode->right;	// we go further to the right.
 			}
 
-			pileNode->left = leftNode->up;
-			pileNode->right = rightNode->up;
-			leftNode->up->right = pileNode;
-			rightNode->up->left = pileNode;
+			pileNode->left = leftNode->up;		// Our pile node is to the right of the node above our left node.
+			pileNode->right = rightNode->up;	// Our pile node is to the left of the node above our right node.
+			leftNode->up->right = pileNode;		// The node above our left node's right node becomes the pile node,
+			rightNode->up->left = pileNode;		// and the node above our right node's left node becomes the pile node as well.
 
-			numberOfReferenceChanges += 4;
+			numberOfReferenceChanges += 4;		// We've changed four references, so we increment our counter.
 		}
 
-		newNode = pileNode;
+		newNode = pileNode; // We set our new node to the pile node so that the next node we construct properly stacks on top of it.
 	}
 }
 

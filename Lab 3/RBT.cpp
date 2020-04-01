@@ -477,7 +477,6 @@ void RBT::displayStatistics()
 	calculateNumWords(numWords, numUniqueWords);
 
 	cout << "RBT Stats:\n"; // Print out a header specifying that these are RBT stats
-
 	cout << "Distinct Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
 	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Tree Height: " << getHeight() << "\n"; // Print out the height of the tree

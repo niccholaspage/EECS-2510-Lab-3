@@ -59,6 +59,4 @@ private:
 	unsigned long long numberOfKeyComparisonsMade = 0;
 	unsigned long long numberOfReferenceChanges = 0;
 	unsigned long long numberOfHeadsCoinTosses = 0;
-
-	clock_t startTime;
 };

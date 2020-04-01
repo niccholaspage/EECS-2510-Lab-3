@@ -54,6 +54,4 @@ private:
 
 	unsigned long long numberOfReferenceChanges = 0;	// Keeps track of the number of times the root pointer or child pointers change.
 	unsigned long long numberOfKeyComparisonsMade = 0;	// Keeps track of the number of word key comparisons during tree inserts.
-
-	clock_t startTime; // A variable that represents the time at very beginning of tree construction
 };

@@ -42,6 +42,9 @@ void runTests()
 
 	for (int pass = 0; pass < 6; pass++)
 	{
+		// The time at the very beginning of our pass of the file
+		clock_t startTime = clock();
+
 		bool IsDelimiter = false, WasDelimiter = false;
 
 		inFile.open("C:\\Users\\nicch\\OneDrive\\Documents\\College\\Spring 2020\\EECS 2510\\Lab 2\\Sample Files\\Shakespeare.txt", ios::binary);
@@ -77,12 +80,23 @@ void runTests()
 		}
 		inFile.close();
 		// If the file doesn't end with a delimiter, it will leave the last word unprocessed.
-		// Insert once more, and display the statistics for this structure...
+		// Calculate the elapsed time, insert once more, and display the statistics for this structure...
 		//
+		clock_t endTime = clock();
+
+		// We get the current time, subtract the start time from it, and divide by 1000
+		// to get the elapsed time in seconds. We calculate the elapsed time here since
+		// we don't want our printing and calculating of stats to be included in the elapsed
+		// time.
+		double elapsedTime = (endTime - startTime) / 1000.0;
+
 		if (pass == 2) { if (strlen(chari)) RBT_T->insert(chari); RBT_T->displayStatistics(); } // RBT
 		else if (pass == 3) { if (strlen(chari)) AVL_T->insert(chari);  AVL_T->displayStatistics(); } // AVL
 		else if (pass == 4) { if (strlen(chari)) BST_T->insert(chari);  BST_T->displayStatistics(); } // BST
 		else if (pass == 5) { if (strlen(chari))    SL->insert(chari);     SL->displayStatistics(); } // skip list
+
+		cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated above.
+		
 	}
 
 	delete RBT_T;

@@ -18,12 +18,10 @@
 
 SkipList::SkipList()
 {
-	// constructor -- we set our start time and initialize the head and
-	// tail nodes of our skip list. We also intialize the number of items
-	// to zero and the height of the list to one because we only have one
-	// lane so far.
+	// constructor -- we initialize the head and tail nodes of our skip list.
+	// We also intialize the number of items to zero and the height of the list
+	// to one because we only have one lane so far.
 	//
-	startTime = clock();  // We set the starting time position to the current time.
 
 	head = createSentinelNode(); // We set our head and tail pointers to new sentinel nodes
 	tail = createSentinelNode();
@@ -373,11 +371,6 @@ void SkipList::displayStatistics()
 	// insertion statistics as nodes are inserted into the skip list. It also
 	// displays the elapsed time since the construction of the skip list.
 	//
-	// We get the current time, subtract the start time from it, and divide by 1000
-	// to get the elapsed time in seconds. We calculate the elapsed time here since
-	// we don't want our printing and calculating of stats to be included in the elapsed
-	// time.
-	double elapsedTime = (clock() - startTime) / 1000.0;
 
 	cout << "Skip List Stats:\n"; // Print out a header specifying that these are skip list stats
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
@@ -394,5 +387,4 @@ void SkipList::displayStatistics()
 	cout << "Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Unique Words / Slow Lane Nodes: " << numUniqueWords << "\n"; // Print out the total number of unique words / slow lane nodes
 	cout << "Height: " << height << "\n"; // Print out the height of the skip list
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

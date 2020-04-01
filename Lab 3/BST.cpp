@@ -17,12 +17,10 @@
 
 BST::BST()
 {
-	// constructor -- there's nothing to do other then setting our start
-	// time and making sure the root pointer is a nullptr. The default value
-	// is in the header, but I am doing it again for redundancy and clarity.
+	// constructor -- there's nothing to do other then making sure the root
+	// pointer is a nullptr. The default value is in the header, but I am
+	// doing it again for redundancy and clarity.
 	//
-	startTime = clock(); // We set the starting time position to the current time.
-
 	root = nullptr; // When a new binary search tree is constructed, there is no root node.
 }
 
@@ -280,15 +278,8 @@ void BST::calculateHeight(node* p, unsigned int& height, unsigned int traversalH
 void BST::displayStatistics()
 {
 	// This method displays statistics related to the number of words in the tree and
-	// insertion statistics as nodes are inserted into the binary search tree. It also
-	// displays the elapsed time since the construction of the binary search tree.
+	// insertion statistics as nodes are inserted into the binary search tree.
 	//
-	// We get the current time, subtract the start time from it, and divide by 1000
-	// to get the elapsed time in seconds. We calculate the elapsed time here since
-	// we don't want our printing and calculating of stats to be included in the elapsed
-	// time.
-	double elapsedTime = (clock() - startTime) / 1000.0;
-
 	cout << "BST Stats:\n"; // Print out a header specifying that these are BST stats
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
@@ -301,5 +292,4 @@ void BST::displayStatistics()
 	cout << "Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
 	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

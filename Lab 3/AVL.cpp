@@ -19,12 +19,10 @@
 
 AVL::AVL()
 {
-	// constructor -- there's nothing to do other then setting our start
-	// time and making sure the root pointer is a nullptr. The default value
-	// is in the header, but I am doing it again for redundancy and clarity.
+	// constructor -- there's nothing to do other then making sure the root
+	// pointer is a nullptr. The default value is in the header, but I am
+	// doing it again for redundancy and clarity.
 	//
-	startTime = clock(); // We set the starting time position to the current time.
-
 	root = nullptr; // When a new binary search tree is constructed, there is no root node.
 }
 
@@ -530,15 +528,8 @@ void AVL::calculateHeight(node* p, unsigned int& height, unsigned int traversalH
 void AVL::displayStatistics()
 {
 	// This method displays statistics related to the number of words in the tree and
-	// insertion statistics as nodes are inserted into the AVL tree. It also
-	// displays the elapsed time since the construction of the AVL tree.
+	// insertion statistics as nodes are inserted into the AVL tree.
 	//
-	// We get the current time, subtract the start time from it, and divide by 1000
-	// to get the elapsed time in seconds. We calculate the elapsed time here since
-	// we don't want our printing and calculating of stats to be included in the elapsed
-	// time.
-	double elapsedTime = (clock() - startTime) / 1000.0;
-
 	cout << "AVL Stats:\n"; // Print out a header specifying that these are AVL stats
 	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
 	cout << "A to Y Balance Factor Changes: " << numberOfAToYBalanceFactorChanges << "\n"; // Print out the total number of A to Y balance factor changes
@@ -559,5 +550,4 @@ void AVL::displayStatistics()
 	cout << "Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
 	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

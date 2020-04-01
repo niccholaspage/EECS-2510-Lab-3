@@ -79,6 +79,4 @@ private:
 	unsigned long long numberOfCase1Fixes = 0;			// Keeps track of the number of times a case 1 fix is performed on new node insertion.
 	unsigned long long numberOfCase2Fixes = 0;			// Keeps track of the number of times a case 2 fix is performed on new node insertion.
 	unsigned long long numberOfCase3Fixes = 0;			// Keeps track of the number of times a case 3 fix is performed on new node insertion.
-
-	clock_t startTime; // A variable that represents the time at very beginning of tree construction
 };

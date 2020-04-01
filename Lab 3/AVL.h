@@ -63,6 +63,4 @@ private:
 	unsigned long long numberOfRightLeftRotations = 0;			// Keeps track of the number of times a right left rotation is performed on node insert
 	unsigned long long numberOfAToYPasses = 0;					// Keeps track of the number of times we go from A to Y
 	unsigned long long numberOfAToYBalanceFactorChanges = 0;	// Keeps track of the number of times we change balance factors from A to Y
-
-	clock_t startTime; // A variable that represents the time at very beginning of tree construction
 };

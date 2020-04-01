@@ -18,14 +18,12 @@
 
 RBT::RBT()
 {
-	// constructor -- there's nothing to do other then setting our start
-	// time, initializing our nil node, and making sure the root pointer is nil.
+	// constructor -- there's nothing to do other then initializing our nil node, and
+	// making sure the root pointer is nil. We need to set up our special nil node.
+	// Nil's parent, left child, and right child are all nil. It is used instead of
+	// nullptr for null roots, left children, and right children to make rotations
+	// and recoloring easier to implement.
 	//
-	startTime = clock(); // We set the starting time position to the current time.
-
-	// We need to set up our special nil node. Nil's parent, left child, and right child
-	// are all nil. It is used instead of nullptr for null roots, left children, and right
-	// children to make rotations and recoloring easier to implement.
 	nil = new node();
 
 	strcpy(nil->word, "");	// We copy an empty string into nil's word just to give it a blank value.
@@ -471,14 +469,8 @@ void RBT::calculateHeight(node* p, unsigned int& height, unsigned int traversalH
 void RBT::displayStatistics()
 {
 	// This method displays statistics related to the number of words in the tree and
-	// insertion statistics as nodes are inserted into the RBT tree. It also
-	// displays the elapsed time since the construction of the RBT tree.
+	// insertion statistics as nodes are inserted into the RBT tree.
 	//
-	// We get the current time, subtract the start time from it, and divide by 1000
-	// to get the elapsed time in seconds. We calculate the elapsed time here since
-	// we don't want our printing and calculating of stats to be included in the elapsed
-	// time.
-	double elapsedTime = (clock() - startTime) / 1000.0;
 
 	cout << "RBT Stats:\n"; // Print out a header specifying that these are RBT stats
 	cout << "Recolorings: " << numberOfRecolorings << "\n"; // Print out the number of recolorings made
@@ -499,5 +491,4 @@ void RBT::displayStatistics()
 	cout << "Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
 	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
-	cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated at the beginning of the method.
 }

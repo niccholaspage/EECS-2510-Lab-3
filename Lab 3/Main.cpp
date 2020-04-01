@@ -23,11 +23,12 @@
 
 using namespace std;
 
-void runTests()
+void runTests(char* file_path)
 {
 	// This method utilizes the file parser code given by Dr. Thomas in listing 2
-	// of the lab PDF. It opens an input file and reads each word and inserts it into
-	// newly constructed RBT, AVL, BST, and Skip list datatypes.
+	// of the lab PDF. It opens an input file at the given file path and reads
+	// each word and inserts it into newly constructed RBT, AVL, BST, and Skip
+	// list datatypes, than prints out statistics about each datatype.
 	//
 	char c;
 	RBT* RBT_T = new RBT();			// instantiate each of the trees
@@ -49,7 +50,7 @@ void runTests()
 
 		bool IsDelimiter = false, WasDelimiter = false;
 
-		inFile.open("C:\\Users\\nicch\\OneDrive\\Documents\\College\\Spring 2020\\EECS 2510\\Lab 2\\Sample Files\\Shakespeare.txt", ios::binary);
+		inFile.open(file_path, ios::binary);
 		if (inFile.fail())
 		{
 			cout << "Unable to open input file\n\n" << "Program Exiting\n\nPress ENTER to exit\n";
@@ -100,11 +101,12 @@ void runTests()
 		if (pass == 1)
 		{
 			dryRunElapsedTime = elapsedTime;
-		} else if (pass > 1)
+		}
+		else if (pass > 1)
 		{
 			cout << "Elapsed Time: " << (elapsedTime - dryRunElapsedTime) / 1000.0 << " seconds\n"; // Print out the elapsed time we calculated above.
 		}
-		
+
 	}
 
 	delete RBT_T;
@@ -113,12 +115,20 @@ void runTests()
 	delete SL;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
 	// This is a very simple entrypoint to the program which just
-	// calls the runTests method to start testing the datatypes.
+	// takes the second argument as a file path and calls the
+	// runTests method to start testing the datatypes.
 	//
-	runTests();
+	if (argc < 2)
+	{
+		cout << "No file path provided.";
+
+		return 0;
+	}
+
+	runTests(argv[1]);
 
 	return 0;
 }

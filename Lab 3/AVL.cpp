@@ -530,24 +530,24 @@ void AVL::displayStatistics()
 	// This method displays statistics related to the number of words in the tree and
 	// insertion statistics as nodes are inserted into the AVL tree.
 	//
-	cout << "AVL Stats:\n"; // Print out a header specifying that these are AVL stats
-	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
-	cout << "A to Y Balance Factor Changes: " << numberOfAToYBalanceFactorChanges << "\n"; // Print out the total number of A to Y balance factor changes
-	cout << "A to Y Passes: " << numberOfAToYPasses << "\n"; // Print out the total number of A to Y passes
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
-	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n"; // Print out the total number of insertions without any rotations needed
-	cout << "LL Rotations: " << numberOfLeftLeftRotations << "\n";		// Print out the total number of left left rotations made
-	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";		// Print out the total number of left right rotations made
-	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";	// Print out the total number of right right rotations made
-	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";		// Print out the total number of right left rotations made
 
 	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the tree
 
 	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n"; // Print out the total number of words
-	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
-	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "AVL Stats:\n"; // Print out a header specifying that these are AVL stats
+	cout << "Distinct Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
+	cout << "Tree Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
+	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
+	cout << "A to Y Balance Factor Changes: " << numberOfAToYBalanceFactorChanges << "\n"; // Print out the total number of A to Y balance factor changes
+	cout << "A to Y Passes: " << numberOfAToYPasses << "\n"; // Print out the total number of A to Y passes
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
+	cout << "LL Rotations: " << numberOfLeftLeftRotations << "\n";		// Print out the total number of left left rotations made
+	cout << "LR Rotations: " << numberOfLeftRightRotations << "\n";		// Print out the total number of left right rotations made
+	cout << "RR Rotations: " << numberOfRightRightRotations << "\n";	// Print out the total number of right right rotations made
+	cout << "RL Rotations: " << numberOfRightLeftRotations << "\n";		// Print out the total number of right left rotations made
+	cout << "No Rotations Needed: " << numberOfNoRotationsNeeded << "\n"; // Print out the total number of insertions without any rotations needed
 }

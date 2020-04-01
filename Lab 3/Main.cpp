@@ -99,7 +99,7 @@ void runTests()
 
 		if (pass == 1)
 		{
-			dryRunElapsedTime = clock() - startTime;
+			dryRunElapsedTime = elapsedTime;
 		} else if (pass > 1)
 		{
 			cout << "Elapsed Time: " << (elapsedTime - dryRunElapsedTime) / 1000.0 << " seconds\n"; // Print out the elapsed time we calculated above.

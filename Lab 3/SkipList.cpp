@@ -328,7 +328,9 @@ void SkipList::calculateNumWords(unsigned int& numWords, unsigned int& numUnique
 		p = p->down;			// we set p to the node below it.
 	}
 
-	while (!p->right->isSentinel)	// While the node to the right of p is not a sentinel node,
+	p = p->right; // We need to start counting at a non-sentinel node.
+
+	while (!p->isSentinel)	// While p is not a sentinel node,
 	{
 		numWords += p->count;		// we increment the number of words by the node's count,
 		numUniqueWords += 1;		// and the number of unique words by one, as each node represents a unique word.

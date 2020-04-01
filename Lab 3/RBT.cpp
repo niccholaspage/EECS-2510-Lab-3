@@ -472,23 +472,23 @@ void RBT::displayStatistics()
 	// insertion statistics as nodes are inserted into the RBT tree.
 	//
 
-	cout << "RBT Stats:\n"; // Print out a header specifying that these are RBT stats
-	cout << "Recolorings: " << numberOfRecolorings << "\n"; // Print out the number of recolorings made
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
-	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";  // Print out the total number of insertions without any fixes needed
-	cout << "Left Rotations: " << numberOfLeftRotations << "\n"; // Print out the number of left rotations performed
-	cout << "Right Rotations: " << numberOfRightRotations << "\n"; // Print out the number of right rotations performed
-	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n"; // Print out the number of case 1 fixes performed
-	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n"; // Print out the number of case 2 fixes performed
-	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n"; // Print out the number of case 3 fixes performed
-
 	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the tree
 
 	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n"; // Print out the total number of words
-	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
-	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "RBT Stats:\n"; // Print out a header specifying that these are RBT stats
+
+	cout << "Distinct Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
+	cout << "Tree Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
+	cout << "Recolorings: " << numberOfRecolorings << "\n"; // Print out the number of recolorings made
+	cout << "Left Rotations: " << numberOfLeftRotations << "\n"; // Print out the number of left rotations performed
+	cout << "Right Rotations: " << numberOfRightRotations << "\n"; // Print out the number of right rotations performed
+	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";  // Print out the total number of insertions without any fixes needed
+	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n"; // Print out the number of case 1 fixes performed
+	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n"; // Print out the number of case 2 fixes performed
+	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n"; // Print out the number of case 3 fixes performed
 }

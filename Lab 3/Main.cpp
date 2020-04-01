@@ -40,6 +40,8 @@ void runTests()
 	int iPtr;
 	ifstream inFile;
 
+	clock_t dryRunElapsedTime;
+
 	for (int pass = 0; pass < 6; pass++)
 	{
 		// The time at the very beginning of our pass of the file
@@ -88,14 +90,20 @@ void runTests()
 		// to get the elapsed time in seconds. We calculate the elapsed time here since
 		// we don't want our printing and calculating of stats to be included in the elapsed
 		// time.
-		double elapsedTime = (endTime - startTime) / 1000.0;
+		clock_t elapsedTime = endTime - startTime;
 
 		if (pass == 2) { if (strlen(chari)) RBT_T->insert(chari); RBT_T->displayStatistics(); } // RBT
 		else if (pass == 3) { if (strlen(chari)) AVL_T->insert(chari);  AVL_T->displayStatistics(); } // AVL
 		else if (pass == 4) { if (strlen(chari)) BST_T->insert(chari);  BST_T->displayStatistics(); } // BST
 		else if (pass == 5) { if (strlen(chari))    SL->insert(chari);     SL->displayStatistics(); } // skip list
 
-		cout << "Elapsed Time: " << elapsedTime << " seconds\n"; // Print out the elapsed time we calculated above.
+		if (pass == 1)
+		{
+			dryRunElapsedTime = clock() - startTime;
+		} else if (pass > 1)
+		{
+			cout << "Elapsed Time: " << (elapsedTime - dryRunElapsedTime) / 1000.0 << " seconds\n"; // Print out the elapsed time we calculated above.
+		}
 		
 	}
 

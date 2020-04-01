@@ -530,7 +530,6 @@ void AVL::displayStatistics()
 	// This method displays statistics related to the number of words in the tree and
 	// insertion statistics as nodes are inserted into the AVL tree.
 	//
-
 	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the tree
 
 	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values

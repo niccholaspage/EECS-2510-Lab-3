@@ -280,16 +280,15 @@ void BST::displayStatistics()
 	// This method displays statistics related to the number of words in the tree and
 	// insertion statistics as nodes are inserted into the binary search tree.
 	//
-	cout << "BST Stats:\n"; // Print out a header specifying that these are BST stats
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
-
 	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the tree
 
 	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n"; // Print out the total number of words
-	cout << "Unique Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "BST Stats:\n"; // Print out a header specifying that these are BST stats
+	cout << "Distinct Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
+	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the total number of key comparisons made
 }

@@ -43,6 +43,8 @@ void runTests(char* file_path)
 
 	clock_t dryRunElapsedTime;
 
+	cout << "File: " << file_path << "\n";
+
 	for (int pass = 0; pass < 6; pass++)
 	{
 		// The time at the very beginning of our pass of the file

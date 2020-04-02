@@ -375,18 +375,18 @@ void SkipList::displayStatistics()
 	//
 
 	cout << "Skip List Stats:\n"; // Print out a header specifying that these are skip list stats
-	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
-	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
-	cout << "Coin Tosses that were heads: " << numberOfHeadsCoinTosses << "\n"; // Print out the number of coin tosses that resulted in heads
-	cout << "Number of Items: " << numberOfItems << "\n"; // Print out the number of items in the skip list
-	cout << "Total Nodes: " << getTotalNodes() << "\n"; // Print out the total number of nodes in the list (meaning every node in every lane)
 
 	unsigned int numWords, numUniqueWords; // Declare variables for the total number of words and unique words in the list
 
 	// Call the calculateNumWords, passing in our word counts by reference so that they are set to the proper values
 	calculateNumWords(numWords, numUniqueWords);
 
-	cout << "Words: " << numWords << "\n"; // Print out the total number of words
-	cout << "Unique Words / Slow Lane Nodes: " << numUniqueWords << "\n"; // Print out the total number of unique words / slow lane nodes
+	cout << "Distinct Words / Slow Lane Nodes: " << numUniqueWords << "\n"; // Print out the total number of unique words / slow lane nodes
+	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
 	cout << "Height: " << height << "\n"; // Print out the height of the skip list
+	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
+	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
+	cout << "Heads Coin Tosses / Fast Lane Nodes: " << numberOfHeadsCoinTosses << "\n"; // Print out the number of coin tosses that resulted in heads
+	cout << "Number of Items: " << numberOfItems << "\n"; // Print out the number of items in the skip list
+	cout << "Total Nodes: " << getTotalNodes() << "\n"; // Print out the total number of nodes in the list (meaning every node in every lane)
 }

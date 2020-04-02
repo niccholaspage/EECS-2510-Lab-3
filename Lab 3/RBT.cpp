@@ -479,7 +479,7 @@ void RBT::displayStatistics()
 	cout << "RBT Stats:\n"; // Print out a header specifying that these are RBT stats
 	cout << "Distinct Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
 	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
-	cout << "Tree Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
 	cout << "Key Comparisons: " << numberOfKeyComparisonsMade << "\n"; // Print out the number of key comparisons made
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the number of reference changes made
 	cout << "Recolorings: " << numberOfRecolorings << "\n"; // Print out the number of recolorings made

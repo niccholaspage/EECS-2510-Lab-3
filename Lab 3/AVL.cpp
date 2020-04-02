@@ -538,7 +538,7 @@ void AVL::displayStatistics()
 	cout << "AVL Stats:\n"; // Print out a header specifying that these are AVL stats
 	cout << "Distinct Words: " << numUniqueWords << "\n"; // Print out the total number of unique words
 	cout << "Total Words: " << numWords << "\n"; // Print out the total number of words
-	cout << "Tree Height: " << getHeight() << "\n"; // Print out the height of the tree
+	cout << "Height: " << getHeight() << "\n"; // Print out the height of the tree
 	cout << "Reference Changes: " << numberOfReferenceChanges << "\n"; // Print out the total number of reference changes made
 	cout << "Balance Factor Changes: " << numberOfBalanceFactorChanges << "\n"; // Print out the total number of balance factor changes
 	cout << "A to Y Balance Factor Changes: " << numberOfAToYBalanceFactorChanges << "\n"; // Print out the total number of A to Y balance factor changes

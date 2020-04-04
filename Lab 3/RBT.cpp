@@ -485,8 +485,8 @@ void RBT::displayStatistics()
 	cout << "Recolorings: " << numberOfRecolorings << "\n"; // Print out the number of recolorings made
 	cout << "Left Rotations: " << numberOfLeftRotations << "\n"; // Print out the number of left rotations performed
 	cout << "Right Rotations: " << numberOfRightRotations << "\n"; // Print out the number of right rotations performed
-	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";  // Print out the total number of insertions without any fixes needed
 	cout << "Case 1 fix-ups: " << numberOfCase1Fixes << "\n"; // Print out the number of case 1 fixes performed
 	cout << "Case 2 fix-ups: " << numberOfCase2Fixes << "\n"; // Print out the number of case 2 fixes performed
 	cout << "Case 3 fix-ups: " << numberOfCase3Fixes << "\n"; // Print out the number of case 3 fixes performed
+	cout << "No Fixes Needed: " << numberOfNoFixesNeeded << "\n";  // Print out the total number of insertions without any fixes needed
 }
